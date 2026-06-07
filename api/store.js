@@ -70,5 +70,29 @@ export async function getAdminStats() {
   };
 }
 
+/**
+ * Upload a receipt file to Supabase Storage 'receipts' bucket.
+ * @param {Buffer} buffer - The file buffer from multer memoryStorage
+ * @param {string} filename - A unique filename for storage
+ * @param {string} mimetype - The MIME type of the file (e.g. 'image/png')
+ * @returns {Promise<{path: string, publicUrl: string}>}
+ */
+export async function uploadReceipt(buffer, filename, mimetype) {
+  const { data, error } = await supabase.storage
+    .from('receipts')
+    .upload(filename, buffer, {
+      contentType: mimetype,
+      upsert: false,
+    });
+
+  if (error) throw error;
+
+  const { data: urlData } = supabase.storage
+    .from('receipts')
+    .getPublicUrl(data.path);
+
+  return { path: data.path, publicUrl: urlData.publicUrl };
+}
+
 // Fallback for store compatibility if needed
 export const ensureStorage = () => { }; 

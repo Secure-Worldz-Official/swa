@@ -13,7 +13,8 @@ import {
     createOrder,
     approveOrder,
     getAdminStats,
-    ensureStorage
+    ensureStorage,
+    uploadReceipt
 } from './store.js';
 import {
     adminAuth,
@@ -111,19 +112,9 @@ app.post('/api/admin/approve', adminAuth, async (req, res) => {
     }
 });
 
-// Upload handling
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'uploads'));
-    },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
-});
-
+// Upload handling — use memoryStorage so files stay in RAM (Vercel has a read-only filesystem)
 const upload = multer({
-    storage,
+    storage: multer.memoryStorage(),
     limits: { fileSize: MAX_UPLOAD_BYTES }
 });
 
@@ -140,10 +131,21 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
     });
 
     try {
+        // Generate a unique filename for Supabase Storage
+        const ext = path.extname(req.file.originalname) || '.png';
+        const uniqueName = `${req.user.userId}/${order_id}-${Date.now()}${ext}`;
+
+        // Upload the in-memory buffer to Supabase Storage
+        const { path: storagePath } = await uploadReceipt(
+            req.file.buffer,
+            uniqueName,
+            req.file.mimetype
+        );
+
         await createOrder({
             order_id,
             user_id: req.user.userId,
-            filename: req.file.filename,
+            filename: storagePath,
             status: 'pending',
             created_at: new Date()
         });
