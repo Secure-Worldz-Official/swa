@@ -1,4 +1,10 @@
-import 'dotenv/config';
+if (!process.env.VERCEL) {
+    try {
+        await import('dotenv/config');
+    } catch (e) {
+        // Dotenv not available or already loaded
+    }
+}
 
 export const APP_NAME = 'Cyber Jai';
 export const COURSE_NAME = 'Cybersecurity with AI';
