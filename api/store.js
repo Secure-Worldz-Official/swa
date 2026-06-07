@@ -1,11 +1,21 @@
 import { createClient } from '@supabase/supabase-js';
 import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
 
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-  console.warn('⚠️ Supabase URL or Key missing. Database features will fail.');
+let supabase;
+if (SUPABASE_URL && SUPABASE_KEY) {
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+} else {
+  console.warn('⚠️ Supabase URL or Key missing.');
+  supabase = {
+    from: () => ({
+      select: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') }),
+      insert: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') }),
+      update: () => Promise.resolve({ data: [], error: new Error('Supabase not configured') })
+    })
+  };
 }
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+export { supabase };
 
 /**
  * Supabase Schema Expectations:
