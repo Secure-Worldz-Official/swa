@@ -4,11 +4,12 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Syne', 'sans-serif'],
+        mono: ['"Roboto Mono"', 'monospace'],
       },
       boxShadow: {
-        soft: '0 14px 30px rgba(0, 0, 0, 0.10)',
-        card: '0 10px 20px rgba(0, 0, 0, 0.08)',
+        soft: '0 14px 30px rgba(0, 0, 0, 0.05)',
+        card: '0 8px 30px rgba(0, 0, 0, 0.04)',
       },
       colors: {
         cyber: {

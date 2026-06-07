@@ -149,15 +149,15 @@ export default function AdminPanel() {
     }
 
     return (
-        <div className="min-h-screen bg-[#fcfcfc] text-black">
-            <nav className="fixed top-0 left-0 right-0 h-20 bg-white border-b border-[#eee] flex items-center justify-between px-8 z-50">
+        <div className="min-h-screen bg-[#0a0a0a] text-white">
+            <nav className="fixed top-0 left-0 right-0 h-20 bg-[#121212]/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-8 z-50">
                 <div className="flex items-center gap-3">
                     <ShieldLockIcon className="h-8 w-8 text-cyber-red" />
-                    <span className="font-display font-black text-xl uppercase tracking-tight">Cyber Jai <span className="text-cyber-red">Admin</span></span>
+                    <span className="font-display font-black text-xl uppercase tracking-tight text-white">Cyber J<span className="cyber-ai-glow">AI</span> <span className="text-cyber-red">Admin</span></span>
                 </div>
                 <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-cyber-red transition-colors"
+                    className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/60 hover:text-cyber-red transition-colors"
                 >
                     <LogoutIcon className="h-5 w-5" />
                     Logout
@@ -171,44 +171,44 @@ export default function AdminPanel() {
                     <StatCard label="Total Orders" value={stats?.totalOrders || 0} icon={ShieldLockIcon} />
                 </div>
 
-                <section className="bg-white rounded-[32px] border border-[#eee] shadow-sm overflow-hidden">
-                    <div className="p-8 border-b border-[#eee] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <section className="bg-[#141414] rounded-[32px] border border-white/10 shadow-lg overflow-hidden">
+                    <div className="p-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
-                            <h3 className="text-2xl font-display font-black uppercase tracking-tight">Recent Enrollments</h3>
-                            <p className="text-sm text-gray-500 uppercase font-bold tracking-widest">Verify and approve student access</p>
+                            <h3 className="text-2xl font-display font-black uppercase tracking-tight text-white">Recent Enrollments</h3>
+                            <p className="text-sm text-white/40 uppercase font-bold tracking-widest">Verify and approve student access</p>
                         </div>
                     </div>
 
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
                             <thead>
-                                <tr className="bg-[#fafafa] border-b border-[#eee]">
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400">Student</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400">Order ID</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400">Status</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400">Action</th>
+                                <tr className="bg-white/5 border-b border-white/10">
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Student</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Order ID</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Status</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-[#eee]">
+                            <tbody className="divide-y divide-white/5">
                                 {users.length === 0 ? (
                                     <tr>
-                                        <td colSpan="4" className="px-8 py-20 text-center text-gray-400 italic">No students yet</td>
+                                        <td colSpan="4" className="px-8 py-20 text-center text-white/30 italic">No students yet</td>
                                     </tr>
                                 ) : (
                                     users.map(user => (
-                                        <tr key={user.user_id}>
+                                        <tr key={user.user_id} className="hover:bg-white/5 transition-colors">
                                             <td className="px-8 py-6">
-                                                <div className="font-bold">{user.name}</div>
-                                                <div className="text-xs text-gray-500">{user.email} | {user.phone}</div>
+                                                <div className="font-bold text-white">{user.name}</div>
+                                                <div className="text-xs text-white/40">{user.email} | {user.phone}</div>
                                             </td>
-                                            <td className="px-8 py-6 font-mono text-xs">
+                                            <td className="px-8 py-6 font-mono text-xs text-white/60">
                                                 {user.order?.order_id || 'N/A'}
                                             </td>
                                             <td className="px-8 py-6">
                                                 {user.order?.status === 'approved' ? (
-                                                    <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest">Approved</span>
+                                                    <span className="px-3 py-1 bg-green-500/15 text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
                                                 ) : (
-                                                    <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-[10px] font-black uppercase tracking-widest">Pending</span>
+                                                    <span className="px-3 py-1 bg-yellow-500/15 text-yellow-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
                                                 )}
                                             </td>
                                             <td className="px-8 py-6">
@@ -216,7 +216,7 @@ export default function AdminPanel() {
                                                     <div className="flex gap-2">
                                                         <button
                                                             onClick={() => approveUser(user.user_id, user.order.order_id)}
-                                                            className="px-4 py-2 bg-black text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                                                            className="px-4 py-2 bg-cyber-red text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
                                                         >
                                                             Approve
                                                         </button>
@@ -237,18 +237,18 @@ export default function AdminPanel() {
 
 function StatCard({ label, value, icon: Icon, tone = 'neutral' }) {
     const styles = {
-        neutral: 'bg-white border-[#eee] text-black',
-        red: 'bg-white border-cyber-red text-cyber-red'
+        neutral: 'bg-[#141414] border-white/10 text-white',
+        red: 'bg-[#141414] border-cyber-red/40 text-cyber-red'
     };
 
     return (
-        <div className={`p-6 rounded-[32px] border shadow-sm ${styles[tone]}`}>
+        <div className={`p-6 rounded-[32px] border shadow-lg ${styles[tone]}`}>
             <div className="flex items-center justify-between mb-4">
-                <div className={`h-12 w-12 rounded-2xl flex items-center justify-center ${tone === 'red' ? 'bg-cyber-red/10' : 'bg-black/5'}`}>
+                <div className={`h-12 w-12 rounded-2xl flex items-center justify-center ${tone === 'red' ? 'bg-cyber-red/15' : 'bg-white/5'}`}>
                     <Icon className="h-6 w-6" />
                 </div>
             </div>
-            <p className="text-xs font-black uppercase tracking-widest opacity-60">{label}</p>
+            <p className="text-xs font-black uppercase tracking-widest text-white/40">{label}</p>
             <h4 className="text-4xl font-display font-black mt-1">{value}</h4>
         </div>
     );

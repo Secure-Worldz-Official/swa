@@ -12,15 +12,20 @@
   }
 
   body {
-    @apply min-h-screen bg-white text-black;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    @apply min-h-screen bg-white text-[#1f2937];
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.65;
     text-rendering: optimizeLegibility;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Syne', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
   p,
   li {
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   * {
@@ -39,7 +44,7 @@
   }
 
   .soft-card {
-    @apply border border-[#dadada] bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)];
+    @apply border border-gray-100 bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:border-gray-200;
   }
 
   .red-accent {
@@ -47,10 +52,33 @@
   }
 
   .ribbon-cut {
-    clip-path: polygon(0 0, 100% 0, 100% 74%, 94% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%);
   }
 
   .text-poster {
-    letter-spacing: -0.055em;
+    letter-spacing: -0.03em;
   }
 }
+
+.cyber-ai-glow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #d41212 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.4), 0 0 24px rgba(212, 18, 18, 0.3);
+  letter-spacing: 0.05em;
+  display: inline-block;
+  animation: cyber-glow-pulse 2s infinite alternate;
+}
+
+@keyframes cyber-glow-pulse {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(0, 242, 254, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.8)) drop-shadow(0 0 12px rgba(212, 18, 18, 0.6));
+  }
+}
+

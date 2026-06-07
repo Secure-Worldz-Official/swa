@@ -103,9 +103,9 @@ export default function RegistrationForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-[40px] p-8 sm:p-12 text-center border border-[#eee] shadow-xl"
+                className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)]"
             >
-                <div className="h-24 w-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_15px_35px_rgba(34,197,94,0.3)]">
+                <div className="h-24 w-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_15px_35px_rgba(34,197,94,0.25)]">
                     <CheckIcon className="h-14 w-14 text-white" />
                 </div>
                 <h2 className="text-4xl font-display font-black uppercase mb-4 tracking-tighter">Application Submitted!</h2>
@@ -124,7 +124,7 @@ export default function RegistrationForm() {
 
     return (
         <div id="registration" className="max-w-4xl mx-auto px-4 py-20">
-            <div className="bg-white rounded-[40px] border border-[#eee] shadow-2xl overflow-hidden grid md:grid-cols-[1fr_0.8fr]">
+            <div className="bg-white rounded-[32px] border border-gray-100 shadow-[0_25px_60px_rgba(0,0,0,0.06)] overflow-hidden grid md:grid-cols-[1fr_0.8fr]">
 
                 {/* Left Side: Form */}
                 <div className="p-8 sm:p-12">
@@ -200,7 +200,7 @@ export default function RegistrationForm() {
                                 onSubmit={handleSubmit}
                                 className="space-y-6"
                             >
-                                <div className="bg-[#fcf5f5] border border-cyber-red/20 rounded-[28px] p-6 text-center">
+                                <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 text-center">
                                     <p className="text-[0.65rem] font-black text-cyber-red uppercase tracking-widest mb-4">Scan QR to pay ₹{amount}</p>
                                     <div className="bg-white p-4 inline-block rounded-2xl shadow-sm mb-4">
                                         <QRCodeSVG value={upiLink} size={160} />
@@ -210,7 +210,7 @@ export default function RegistrationForm() {
 
                                 <div className="relative">
                                     <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Upload Receipt (Screenshot)</label>
-                                    <label className="flex flex-col items-center justify-center w-full h-32 bg-[#f8f8f8] border-2 border-dashed border-[#ddd] rounded-[24px] cursor-pointer hover:bg-white hover:border-cyber-red transition-all">
+                                    <label className="flex flex-col items-center justify-center w-full h-32 bg-gray-50 border-2 border-dashed border-gray-250 rounded-2xl cursor-pointer hover:bg-white hover:border-cyber-red transition-all">
                                         {formData.receipt ? (
                                             <div className="flex items-center gap-3 text-green-600 font-bold">
                                                 <CheckIcon className="h-6 w-6" />
@@ -271,7 +271,7 @@ export default function RegistrationForm() {
                             ))}
                         </ul>
 
-                        <div className="mt-20 p-6 rounded-[24px] bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div className="mt-20 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                             <p className="text-3xl font-display font-black text-cyber-red">&#8377;{amount}</p>
                             <p className="text-[0.6rem] font-black uppercase tracking-widest text-white/40 mt-1">Limited summer offer</p>
                         </div>

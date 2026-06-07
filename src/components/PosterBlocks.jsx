@@ -29,13 +29,13 @@ function CyberHeroArtwork() {
       </div>
 
       <div className="mt-4 flex flex-col items-center gap-2 sm:items-end sm:gap-2.5">
-        <div className="rounded-[4px] bg-cyber-red px-4 py-1.5 text-[0.78rem] font-black uppercase tracking-[0.08em] text-white shadow-[0_8px_20px_rgba(212,18,18,0.28)] sm:text-[0.88rem]">
+        <div className="rounded-xl bg-cyber-red px-4 py-1.5 text-[0.78rem] font-black uppercase tracking-[0.1em] text-white shadow-[0_8px_25px_rgba(212,18,18,0.25)] sm:text-[0.88rem] border border-white/10">
           READY TO
         </div>
-        <div className="rounded-[4px] bg-cyber-red px-5 py-2 text-[clamp(2.2rem,4vw,4.2rem)] font-black uppercase leading-[1.08] tracking-[-0.04em] text-white shadow-[0_8px_22px_rgba(212,18,18,0.3)]">
+        <div className="rounded-2xl bg-gradient-to-r from-cyber-red to-cyber-redDark px-6 py-2.5 text-[clamp(2.2rem,4vw,4.2rem)] font-black uppercase leading-none tracking-tight text-white shadow-[0_10px_30px_rgba(212,18,18,0.3)] border border-white/10">
           BREAK IN
         </div>
-        <div className="rotate-[-1deg] rounded-[4px] bg-[#111111] px-4 py-2 text-[clamp(1rem,1.9vw,1.55rem)] font-black uppercase leading-[1.12] tracking-[0.02em] text-white shadow-[0_10px_20px_rgba(0,0,0,0.2)]">
+        <div className="rotate-[-1deg] rounded-xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-4 py-2.5 text-[clamp(1rem,1.9vw,1.55rem)] font-black uppercase leading-none tracking-[0.05em] text-white shadow-[0_12px_25px_rgba(0,0,0,0.3)] border border-white/5">
           TO CYBER?
         </div>
       </div>
@@ -49,7 +49,7 @@ export function BrandHeader() {
       <ShieldLockIcon className="mt-0.5 h-10 w-10 shrink-0 text-cyber-red sm:h-11 sm:w-11" />
       <p className="font-display text-[clamp(0.9rem,1.55vw,1.3rem)] leading-[1.18] font-black uppercase tracking-[0.04em] text-black">
         <span className="block">
-          LEARN WITH <span className="text-cyber-red">CYBER JAI</span>
+          LEARN WITH <span className="text-cyber-red">CYBER J</span><span className="cyber-ai-glow">AI</span>
         </span>
         <span className="block">
           FROM ZERO TO <span className="text-cyber-red">CYBER HERO</span>
@@ -100,10 +100,10 @@ function MotionCard({ children, className = '', ...props }) {
 
 export function BeginnersCard() {
   return (
-    <MotionCard className="soft-card flex h-full flex-col rounded-[22px] p-4 sm:p-5">
-      <div className="flex items-start gap-3 sm:gap-4">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-cyber-red text-cyber-red sm:h-[72px] sm:w-[72px]">
-          <UserOutlineIcon className="h-10 w-10 sm:h-11 sm:w-11" />
+    <MotionCard className="soft-card flex h-full flex-col rounded-3xl p-6">
+      <div className="flex items-start gap-4">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-cyber-red/10 border border-cyber-red/20 text-cyber-red">
+          <UserOutlineIcon className="h-9 w-9" />
         </div>
         <p className="pt-0.5 font-display text-[clamp(1rem,1.55vw,1.3rem)] leading-[1.22] font-black uppercase tracking-[0.02em] text-black">
           THIS COURSE IS FOR <span className="text-cyber-red">PURE BEGINNERS</span>
@@ -111,10 +111,10 @@ export function BeginnersCard() {
         </p>
       </div>
 
-      <div className="ribbon-cut mt-4 rounded-[12px] bg-[#111111] px-4 py-3 text-white shadow-[0_10px_20px_rgba(0,0,0,0.18)]">
+      <div className="ribbon-cut mt-6 rounded-2xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-5 py-4 text-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] border border-white/5">
         <div className="flex items-start gap-3">
-          <span className="mt-0.5 h-10 w-[3px] shrink-0 rounded-full bg-cyber-red" />
-          <p className="text-[0.92rem] leading-[1.35] text-white/90">
+          <span className="mt-1.5 h-8 w-[3px] shrink-0 rounded-full bg-cyber-red" />
+          <p className="text-[0.92rem] leading-[1.45] text-white/90">
             No prior knowledge needed.
             <br />
             We take you from scratch to success.
@@ -127,14 +127,14 @@ export function BeginnersCard() {
 
 export function PriceCard({ label, amount, amountClassName = 'text-black', labelClassName = 'bg-cyber-red text-white' }) {
   return (
-    <MotionCard className="soft-card flex h-full flex-col overflow-hidden rounded-[16px]">
+    <MotionCard className="soft-card flex h-full flex-col overflow-hidden rounded-3xl">
       <div
-        className={`px-4 py-2 text-center text-[0.82rem] font-extrabold uppercase tracking-[0.04em] ${labelClassName}`}
+        className={`px-4 py-2.5 text-center text-[0.72rem] font-black uppercase tracking-[0.1em] border-b border-gray-100 ${labelClassName}`}
       >
         {label}
       </div>
-      <div className="flex flex-1 items-center justify-center px-4 py-5 text-center">
-        <div className={`font-display text-[clamp(3rem,6vw,4.7rem)] leading-[1.08] font-black ${amountClassName}`}>
+      <div className="flex flex-1 items-center justify-center px-4 py-6 text-center">
+        <div className={`font-display text-[clamp(2.5rem,5.5vw,4.2rem)] leading-none font-black tracking-tight ${amountClassName}`}>
           &#8377;{amount}
         </div>
       </div>
@@ -144,13 +144,15 @@ export function PriceCard({ label, amount, amountClassName = 'text-black', label
 
 export function StudentsCard() {
   return (
-    <MotionCard className="h-full rounded-[16px] bg-[#101010] px-4 py-4 text-center text-white shadow-[0_10px_20px_rgba(0,0,0,0.18)]">
+    <MotionCard className="h-full rounded-3xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-5 py-6 text-center text-white border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.18)] hover:border-cyber-red/20 transition-all duration-300">
       <div className="flex h-full flex-col justify-between">
-        <GroupIcon className="mx-auto h-11 w-11 text-cyber-red" />
-        <div className="mt-1 font-display text-[clamp(2.95rem,5.8vw,4.4rem)] leading-[1.08] font-black">
+        <div className="h-12 w-12 rounded-xl bg-white/5 flex items-center justify-center text-cyber-red mx-auto mb-2">
+          <GroupIcon className="h-6 w-6" />
+        </div>
+        <div className="font-display text-[clamp(2.95rem,5.8vw,4.4rem)] leading-none font-black text-white">
           60
         </div>
-        <div className="mt-1 text-[0.78rem] font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-white/96">
+        <div className="mt-2 text-[0.72rem] font-black uppercase leading-[1.3] tracking-[0.1em] text-white/60">
           STUDENTS ONLY
           <br />
           AVAILABLE.
@@ -162,9 +164,9 @@ export function StudentsCard() {
 
 export function SeatsPill() {
   return (
-    <MotionCard className="mx-auto inline-flex items-center gap-2 rounded-[12px] border border-[#cfcfcf] bg-white px-4 py-2.5 shadow-[0_8px_16px_rgba(0,0,0,0.07)]">
+    <MotionCard className="mx-auto inline-flex items-center gap-2.5 rounded-full border border-gray-100 bg-white px-6 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:border-cyber-red/25 hover:shadow-[0_12px_35px_rgba(212,18,18,0.06)] transition-all duration-300">
       <ClockIcon className="h-5 w-5 text-cyber-red" />
-      <p className="text-[0.88rem] font-semibold uppercase tracking-[0.04em] text-black">
+      <p className="text-[0.8rem] font-black uppercase tracking-[0.1em] text-black">
         LIMITED SEATS. <span className="text-cyber-red">MAXIMUM IMPACT.</span>
       </p>
     </MotionCard>
@@ -189,14 +191,14 @@ export function SectionRuleHeading() {
 
 export function ReasonCard({ number, icon: Icon, title, description }) {
   return (
-    <MotionCard className="soft-card relative flex h-full rounded-[28px] px-5 py-6">
-      <div className="absolute -top-3 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-cyber-red text-[0.95rem] font-black text-white shadow-[0_8px_16px_rgba(212,18,18,0.22)]">
+    <MotionCard className="soft-card relative flex h-full px-6 py-8">
+      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-cyber-red text-[0.85rem] font-black text-white shadow-[0_8px_20px_rgba(212,18,18,0.3)] border-2 border-white">
         {number}
       </div>
 
       <div className="flex min-h-[230px] flex-1 flex-col items-center justify-center text-center">
         <Icon className="h-12 w-12 text-cyber-red" />
-        <h3 className="mt-4 font-display text-[1.02rem] font-black uppercase leading-[1.32] tracking-[0.02em]">
+        <h3 className="mt-4 font-display text-[1.05rem] font-black uppercase leading-[1.32] tracking-[0.02em]">
           {title.map((part, index) => (
             <span
               key={`${part.text}-${index}`}
@@ -206,7 +208,7 @@ export function ReasonCard({ number, icon: Icon, title, description }) {
             </span>
           ))}
         </h3>
-        <p className="mt-5 text-[0.86rem] leading-[1.52] text-[#151515]">
+        <p className="mt-5 text-[0.86rem] leading-[1.52] text-gray-500">
           {description.map((line, index) => (
             <span key={`${line}-${index}`} className="block">
               {line}
@@ -257,23 +259,23 @@ export function FooterBanner() {
           ))}
         </div>
 
-        <div className="h-full overflow-hidden rounded-[4px] border border-white/10">
-          <div className="bg-cyber-red px-4 py-2 text-center text-[0.82rem] font-black uppercase tracking-[0.08em] text-white">
+        <div className="h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#141414] to-[#0a0a0a] shadow-lg">
+          <div className="bg-cyber-red px-4 py-2.5 text-center text-[0.75rem] font-black uppercase tracking-[0.12em] text-white">
             SECURE YOUR SEAT
           </div>
-          <div className="relative flex h-full flex-col justify-center bg-[#090909] px-4 pb-4 pt-3 text-center">
+          <div className="relative flex h-full flex-col justify-center px-4 pb-6 pt-4 text-center">
             <div className="flex items-center justify-center gap-2">
-              <span className="font-display text-[clamp(2.6rem,5.4vw,3.8rem)] leading-[1.08] font-black uppercase tracking-[-0.03em]">
+              <span className="font-display text-[clamp(2.6rem,5.4vw,3.8rem)] leading-[1.08] font-black uppercase tracking-tight text-white">
                 NOW!
               </span>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyber-red text-cyber-red">
-                <LockSealIcon className="h-6 w-6 text-cyber-red" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyber-red text-cyber-red bg-cyber-red/10 shadow-[0_0_15px_rgba(212,18,18,0.25)]">
+                <LockSealIcon className="h-5 w-5 text-cyber-red" />
               </div>
             </div>
-            <p className="mt-3 text-[0.88rem] font-semibold uppercase tracking-[0.08em] text-white/92">
+            <p className="mt-3 text-[0.8rem] font-bold uppercase tracking-[0.12em] text-white/80">
               YOUR CYBER JOURNEY
             </p>
-            <p className="text-[0.88rem] font-semibold uppercase tracking-[0.08em] text-white/92">
+            <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-cyber-red">
               STARTS WITH ONE STEP.
             </p>
           </div>
