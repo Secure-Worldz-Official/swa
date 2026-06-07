@@ -14,14 +14,14 @@ export default function ExperienceCarousel() {
             icon: LaptopCodeIcon,
             text: "Let’s be honest—traditional coding theory classes are boring. Here, we don’t just throw thick PDF textbooks at you. Our classes feel like solving a puzzle with a friend. We learn in an incredibly easy, structured, and fun way where you understand the 'why' behind every single cyber attack. Zero stress, pure practical hacking, and interactive sessions that actually make you want to learn more every day.",
             visual: (
-                <div className="bg-gradient-to-br from-[#1e1e1e] to-[#0a0a0a] rounded-3xl border border-white/10 p-6 font-mono text-[11px] text-green-400 shadow-xl relative h-56 flex flex-col justify-between overflow-hidden">
+                <div className="bg-gradient-to-br from-[#121212] to-[#080808] rounded-2xl border border-white/10 p-6 font-mono text-[11px] text-green-400 shadow-2xl relative w-full max-w-md mx-auto text-left">
                     <div className="flex items-center gap-1.5 border-b border-white/5 pb-3 mb-3">
                         <div className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
                         <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
                         <div className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
                         <span className="text-[9px] text-white/40 ml-1.5">bash - root@cyberjai</span>
                     </div>
-                    <div className="space-y-2 flex-1 select-none text-left">
+                    <div className="space-y-2 select-none">
                         <p className="text-white/40">$ nmap -sS -O 192.168.1.105</p>
                         <p className="text-green-400">● Port 80/tcp OPEN (HTTP Server)</p>
                         <p className="text-green-400">● Port 22/tcp OPEN (SSH SecureShell)</p>
@@ -29,7 +29,6 @@ export default function ExperienceCarousel() {
                         <p className="text-white/30">$ python exploit.py --target 192.168.1.105</p>
                         <p className="text-cyan-400 font-bold">● Payload injected. Opening reverse shell...</p>
                     </div>
-                    <div className="text-right text-white/20 text-[9px] font-black uppercase tracking-wider">Session Active</div>
                 </div>
             )
         },
@@ -39,12 +38,12 @@ export default function ExperienceCarousel() {
             icon: GrowthIcon,
             text: "We are not preparing you to just pass another exam; we are building your launchpad into a high-paying tech career. The global demand for cyber skills is exploding, and we give you the exact insider blueprints, portfolio-worthy real-world labs, and community backing to stand out. From getting your resume noticed to cracking tough technical interviews confidently, we've got your back at every single step.",
             visual: (
-                <div className="bg-gradient-to-br from-[#1e1e1e] to-[#0a0a0a] rounded-3xl border border-white/10 p-6 text-white shadow-xl relative h-56 flex flex-col justify-between overflow-hidden">
+                <div className="bg-gradient-to-br from-[#121212] to-[#080808] rounded-2xl border border-white/10 p-6 text-white shadow-2xl relative w-full max-w-md mx-auto text-left">
                     <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4">
                         <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Market Traction</span>
                         <span className="text-[9px] font-black uppercase tracking-widest text-green-400 bg-green-500/10 px-2.5 py-0.5 rounded-full border border-green-500/20">Active</span>
                     </div>
-                    <div className="space-y-4 flex-1 flex flex-col justify-center">
+                    <div className="space-y-4">
                         <div>
                             <div className="flex justify-between text-[11px] font-bold text-white/80 mb-1.5">
                                 <span>Cyber Security Unfulfilled Roles</span>
@@ -64,7 +63,6 @@ export default function ExperienceCarousel() {
                             </div>
                         </div>
                     </div>
-                    <div className="text-left text-[9px] font-black text-white/30 uppercase tracking-widest">CYBER JAI INSIDER BLUEPRINT</div>
                 </div>
             )
         },
@@ -74,7 +72,7 @@ export default function ExperienceCarousel() {
             icon: ShieldLockIcon,
             text: "You aren't learning from an academic lecturer who only reads off slides. You are training directly under a battle-tested elite cybersecurity consultant. Someone who deals with real-world cyber threats, live red-teaming simulations, and enterprise-grade AI defense systems daily. You get raw industry experience, direct 1-on-1 mentorship, and the exact roadmap used by top-tier global pros.",
             visual: (
-                <div className="relative h-56 w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden border border-cyber-red/20 shadow-[0_10px_35px_rgba(212,18,18,0.15)] group bg-[#111]">
+                <div className="relative h-60 w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden border border-cyber-red/20 shadow-[0_15px_45px_rgba(212,18,18,0.2)] group bg-[#111]">
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 z-10" />
                     <img
                         src={mentorImage}
@@ -95,7 +93,7 @@ export default function ExperienceCarousel() {
         const timer = setInterval(() => {
             setDirection(1);
             setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-        }, 7500); // Transitions automatically every 7.5s
+        }, 7500);
 
         return () => clearInterval(timer);
     }, [slides.length]);
@@ -115,31 +113,33 @@ export default function ExperienceCarousel() {
         setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
     };
 
-    // Framer motion animation variants
     const slideVariants = {
         enter: (dir) => ({
-            x: dir > 0 ? 100 : -100,
-            opacity: 0
+            x: dir > 0 ? 150 : -150,
+            opacity: 0,
+            scale: 0.95
         }),
         center: {
             x: 0,
-            opacity: 1
+            opacity: 1,
+            scale: 1
         },
         exit: (dir) => ({
-            x: dir > 0 ? -100 : 100,
-            opacity: 0
+            x: dir > 0 ? -150 : 150,
+            opacity: 0,
+            scale: 0.95
         })
     };
 
     return (
-        <div className="max-w-5xl mx-auto px-4 mt-12">
-            <div className="bg-white border border-gray-100 rounded-[36px] shadow-[0_20px_50px_rgba(0,0,0,0.03)] p-8 md:p-14 relative min-h-[500px] flex flex-col justify-between overflow-hidden">
-                {/* Visual tech background */}
-                <div className="absolute -bottom-12 -left-12 p-8 opacity-[0.02] pointer-events-none">
-                    <ShieldLockIcon className="h-64 w-64 text-black" />
+        <div className="max-w-4xl mx-auto px-4 mt-12">
+            <div className="bg-white border border-gray-100 rounded-[40px] shadow-[0_30px_70px_rgba(0,0,0,0.04)] p-8 md:p-16 relative min-h-[580px] flex flex-col justify-between overflow-hidden text-center">
+                {/* Visual background element */}
+                <div className="absolute -bottom-16 -right-16 p-8 opacity-[0.015] pointer-events-none">
+                    <ShieldLockIcon className="h-72 w-72 text-black" />
                 </div>
 
-                <div className="relative z-10 flex-1 flex flex-col justify-center">
+                <div className="relative z-10 flex-1 flex flex-col justify-center items-center">
                     <AnimatePresence initial={false} custom={direction} mode="wait">
                         <motion.div
                             key={activeIndex}
@@ -148,44 +148,39 @@ export default function ExperienceCarousel() {
                             initial="enter"
                             animate="center"
                             exit="exit"
-                            transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
-                            className="grid md:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-14 items-center"
+                            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                            className="flex flex-col items-center max-w-2xl mx-auto space-y-8"
                         >
-                            {/* Slide Left Side: Info */}
-                            <div className="text-left space-y-6">
-                                <div className="flex items-center gap-3">
-                                    <div className="h-10 w-10 rounded-xl bg-cyber-red/10 flex items-center justify-center text-cyber-red">
-                                        {React.createElement(slides[activeIndex].icon, { className: "h-5 w-5" })}
-                                    </div>
-                                    <span className="text-[0.7rem] font-black text-cyber-red uppercase tracking-[0.2em] bg-cyber-red/5 px-3 py-1 rounded-full border border-cyber-red/10">
-                                        {slides[activeIndex].category}
-                                    </span>
+                            {/* Slide Title and Category Info */}
+                            <div className="flex flex-col items-center space-y-4">
+                                <div className="h-12 w-12 rounded-2xl bg-cyber-red/10 flex items-center justify-center text-cyber-red">
+                                    {React.createElement(slides[activeIndex].icon, { className: "h-6 w-6" })}
                                 </div>
-                                <h3 className="text-3xl font-display font-black uppercase text-black tracking-tight leading-tight">
-                                    Why This Matters
+                                <h3 className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight text-black leading-none">
+                                    {slides[activeIndex].category}
                                 </h3>
-                                <p className="text-[0.95rem] text-gray-500 leading-relaxed font-medium">
-                                    {slides[activeIndex].text}
-                                </p>
                             </div>
 
-                            {/* Slide Right Side: Visual Accent */}
-                            <div className="flex justify-center items-center">
-                                <div className="w-full max-w-sm">
-                                    {slides[activeIndex].visual}
-                                </div>
+                            {/* Main Slide Text Description */}
+                            <p className="text-[1.02rem] text-gray-500 leading-relaxed font-medium max-w-xl">
+                                {slides[activeIndex].text}
+                            </p>
+
+                            {/* Centered Visual Element */}
+                            <div className="w-full pt-4 flex justify-center">
+                                {slides[activeIndex].visual}
                             </div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                {/* Navigation Controls & Dot Indicators */}
-                <div className="relative z-10 mt-10 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    {/* Navigation Buttons */}
-                    <div className="flex gap-2">
+                {/* Navigation and Bottom Indicators */}
+                <div className="relative z-10 mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    {/* Arrow Navigation */}
+                    <div className="flex gap-3">
                         <button
                             onClick={handlePrev}
-                            className="h-10 w-10 rounded-full border border-gray-150 flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-colors active:scale-95 cursor-pointer"
+                            className="h-11 w-11 rounded-full border border-gray-150 flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-colors active:scale-95 cursor-pointer"
                         >
                             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -193,7 +188,7 @@ export default function ExperienceCarousel() {
                         </button>
                         <button
                             onClick={handleNext}
-                            className="h-10 w-10 rounded-full border border-gray-150 flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-colors active:scale-95 cursor-pointer"
+                            className="h-11 w-11 rounded-full border border-gray-150 flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-colors active:scale-95 cursor-pointer"
                         >
                             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -201,7 +196,7 @@ export default function ExperienceCarousel() {
                         </button>
                     </div>
 
-                    {/* Progress Slider Dots */}
+                    {/* Progress Dots */}
                     <div className="flex items-center gap-3">
                         {slides.map((_, idx) => (
                             <button
@@ -209,14 +204,14 @@ export default function ExperienceCarousel() {
                                 onClick={() => handleDotClick(idx)}
                                 className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                                     idx === activeIndex 
-                                        ? 'w-8 bg-cyber-red' 
+                                        ? 'w-10 bg-cyber-red' 
                                         : 'w-2.5 bg-gray-200 hover:bg-gray-400'
                                 }`}
                             />
                         ))}
                     </div>
 
-                    {/* Auto progression tracker line */}
+                    {/* Active Timer Line */}
                     <div className="hidden sm:block w-36 h-1 bg-gray-100 rounded-full overflow-hidden">
                         <motion.div
                             key={activeIndex}
