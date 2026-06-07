@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    @apply bg-white antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-white text-black;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  p,
+  li {
+    line-height: 1.7;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .poster-shell {
+    @apply relative overflow-hidden bg-white;
+  }
+
+  .soft-card {
+    @apply border border-[#dadada] bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)];
+  }
+
+  .red-accent {
+    color: #d41212;
+  }
+
+  .ribbon-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 74%, 94% 100%, 0 100%);
+  }
+
+  .text-poster {
+    letter-spacing: -0.055em;
+  }
+}
