@@ -12,7 +12,7 @@ export const OFFER_AMOUNT = 2000;
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
 export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@cyberjai.local';
-export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin@12345';
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin@jangu.baba';
 export const JWT_SECRET = process.env.JWT_SECRET || 'cyber-jai-dev-secret-change-me';
 
 export const PAYMENT_PURPOSE = 'Summer Offer';

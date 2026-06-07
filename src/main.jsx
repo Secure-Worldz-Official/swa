@@ -10,8 +10,18 @@ function Main() {
         window.location.href = '/admin';
       }
     };
+
+    const preventAction = (e) => e.preventDefault();
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('contextmenu', preventAction);
+    window.addEventListener('copy', preventAction);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('contextmenu', preventAction);
+      window.removeEventListener('copy', preventAction);
+    };
   }, []);
 
   return <App />;
