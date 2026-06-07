@@ -187,3 +187,44 @@ export function LockSealIcon({ className = 'h-12 w-12', ...props }) {
     </svg>
   );
 }
+
+export function CheckIcon({ className = 'h-6 w-6', ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} strokeWidth="3" {...common} {...props}>
+      <path d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+export function XIcon({ className = 'h-6 w-6', ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} strokeWidth="3" {...common} {...props}>
+      <path d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  );
+}
+
+export function LogoutIcon({ className = 'h-6 w-6', ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...common} {...props}>
+      <path d="M17 16l4-4-4-4M21 12H9M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+    </svg>
+  );
+}
+
+export function CloudUploadIcon({ className = 'h-6 w-6', ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...common} {...props}>
+      <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+    </svg>
+  );
+}
+
+export function CameraIcon({ className = 'h-6 w-6', ...props }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...common} {...props}>
+      <path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+      <circle cx="12" cy="13" r="3" {...common} />
+    </svg>
+  );
+}

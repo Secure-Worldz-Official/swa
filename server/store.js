@@ -1,58 +1,65 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { createClient } from '@supabase/supabase-js';
+import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
 
-const serverDir = path.dirname(fileURLToPath(import.meta.url));
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.warn('⚠️ Supabase URL or Key missing. Database features will fail.');
+}
 
-export const dataDir = path.join(serverDir, 'data');
-export const uploadDir = path.join(serverDir, 'uploads');
-export const dbPath = path.join(dataDir, 'db.json');
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function normalizeDb(db) {
-  const source = db && typeof db === 'object' && !Array.isArray(db) ? db : {};
-  const payments = Array.isArray(source.payments)
-    ? source.payments
-    : Array.isArray(source.orders)
-      ? source.orders
-      : [];
+/**
+ * Supabase Schema Expectations:
+ * Tables:
+ * 1. users: userId (text, pk), name (text), email (text), phone (text), createdAt (timestamp)
+ * 2. orders: orderId (text, pk), userId (text, fk), filename (text), status (text), createdAt (timestamp), approvedAt (timestamp)
+ * 3. notifications: id (serial, pk), message (text), type (text), createdAt (timestamp)
+ */
+
+export async function readUsers() {
+  const { data, error } = await supabase.from('users').select('*');
+  if (error) throw error;
+  return data || [];
+}
+
+export async function readOrders() {
+  const { data, error } = await supabase.from('orders').select('*');
+  if (error) throw error;
+  return data || [];
+}
+
+export async function registerUser(userData) {
+  const { data, error } = await supabase.from('users').insert([userData]).select();
+  if (error) throw error;
+  return data[0];
+}
+
+export async function createOrder(orderData) {
+  const { data, error } = await supabase.from('orders').insert([orderData]).select();
+  if (error) throw error;
+  return data[0];
+}
+
+export async function approveOrder(orderId) {
+  const { data, error } = await supabase
+    .from('orders')
+    .update({ status: 'approved', approvedAt: new Date() })
+    .eq('orderId', orderId)
+    .select();
+  if (error) throw error;
+  return data[0];
+}
+
+export async function getAdminStats() {
+  const { count: userCount, error: ue } = await supabase.from('users').select('*', { count: 'exact', head: true });
+  const { count: orderCount, error: oe } = await supabase.from('orders').select('*', { count: 'exact', head: true });
+  const { count: pendingCount, error: pe } = await supabase.from('orders').select('*', { count: 'exact', head: true }).eq('status', 'pending');
 
   return {
-    users: Array.isArray(source.users) ? source.users : [],
-    payments,
-    orders: payments,
-    notifications: Array.isArray(source.notifications) ? source.notifications : [],
-    auditLog: Array.isArray(source.auditLog) ? source.auditLog : [],
+    totalUsers: userCount || 0,
+    totalOrders: orderCount || 0,
+    pendingOrders: pendingCount || 0
   };
 }
 
-export function ensureStorage() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(dbPath)) {
-    fs.writeFileSync(dbPath, JSON.stringify(normalizeDb(), null, 2), 'utf8');
-  }
-}
-
-export function readDb() {
-  ensureStorage();
-  const raw = fs.readFileSync(dbPath, 'utf8');
-  return normalizeDb(JSON.parse(raw));
-}
-
-export function writeDb(db) {
-  ensureStorage();
-  fs.writeFileSync(dbPath, JSON.stringify(normalizeDb(db), null, 2), 'utf8');
-}
-
-export function updateDb(mutator) {
-  const db = readDb();
-  const result = mutator(db);
-  writeDb(db);
-  return result;
-}
+// Fallback for store compatibility if needed
+export const ensureStorage = () => { }; 

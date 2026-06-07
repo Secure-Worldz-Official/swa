@@ -1,5 +1,10 @@
+import 'dotenv/config';
+
 export const APP_NAME = 'Cyber Jai';
 export const COURSE_NAME = 'Cybersecurity with AI';
+
+export const SUPABASE_URL = process.env.SUPABASE_URL || '';
+export const SUPABASE_KEY = process.env.SUPABASE_KEY || '';
 export const UPI_ID = process.env.UPI_ID || 'cyberjai@upi';
 export const UPI_NAME = process.env.UPI_NAME || 'Cyber Jai Academy';
 export const COURSE_FEE = 5000;
