@@ -150,14 +150,15 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
     }
 });
 
-// Serve static files from Vite build
-const distPath = path.join(__dirname, '../dist');
-app.use(express.static(distPath));
+// Only serve static files if NOT on Vercel
+if (!process.env.VERCEL) {
+    const distPath = path.join(__dirname, '../dist');
+    app.use(express.static(distPath));
 
-// Fallback for SPA
-app.get(/^(?!\/api).*/, (req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
-});
+    app.get(/^(?!\/api).*/, (req, res) => {
+        res.sendFile(path.join(distPath, 'index.html'));
+    });
+}
 
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     app.listen(port, () => {
