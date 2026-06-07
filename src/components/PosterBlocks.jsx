@@ -10,115 +10,21 @@ import {
   ShieldLockIcon,
   UserOutlineIcon,
 } from './Icons';
+import heroImage from '../assets/hero-hacker.png';
 
-function BinaryBackdrop() {
-  const rows = [
-    '0101010010110010101010010110',
-    '1010010110100101011001010010',
-    '0101100101001010110100101011',
-    '1010010101100101001011010010',
-    '0101001011010010110100101010',
-    '1011010010100101101001011001',
-    '0100101101001010010110100101',
-  ];
-
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute left-[13%] top-[4%] w-[58%] select-none font-mono text-[0.58rem] leading-[1.35] tracking-[0.42em] text-[#8a0000]/35 sm:text-[0.64rem]"
-    >
-      {rows.map((row, index) => (
-        <div key={`${row}-${index}`} className={index % 2 === 1 ? 'pl-4' : ''}>
-          {row}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function HoodFigureSvg() {
-  return (
-    <svg
-      viewBox="0 0 540 540"
-      className="absolute inset-0 h-full w-full"
-      aria-hidden="true"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <defs>
-        <radialGradient id="hero-red-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ff1b1b" stopOpacity="0.95" />
-          <stop offset="36%" stopColor="#d41212" stopOpacity="0.72" />
-          <stop offset="68%" stopColor="#d41212" stopOpacity="0.14" />
-          <stop offset="100%" stopColor="#d41212" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="hood-body" x1="270" y1="78" x2="270" y2="340" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#1b1b1b" />
-          <stop offset="100%" stopColor="#020202" />
-        </linearGradient>
-        <linearGradient id="torso-body" x1="270" y1="220" x2="270" y2="390" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#151515" />
-          <stop offset="100%" stopColor="#000000" />
-        </linearGradient>
-      </defs>
-
-      <circle cx="350" cy="130" r="114" fill="url(#hero-red-glow)" />
-      <circle cx="353" cy="133" r="128" fill="none" stroke="#d41212" strokeOpacity="0.88" strokeWidth="8" />
-
-      <g transform="translate(0 6)">
-        <path
-          d="M270 56c-42 0-77 33-89 79-11 43-6 93 18 129 9 14 24 22 41 22h60c17 0 32-8 41-22 24-36 29-86 18-129-12-46-47-79-89-79Z"
-          fill="url(#hood-body)"
-        />
-        <path
-          d="M270 79c-25 0-45 20-52 46-6 24-3 53 8 71 5 8 12 14 23 14h42c11 0 18-6 23-14 11-18 14-47 8-71-7-26-27-46-52-46Z"
-          fill="#050505"
-        />
-        <path
-          d="M270 95c-14 0-25 11-30 25-5 14-2 31 5 42 4 7 11 11 20 11h10c9 0 16-4 20-11 7-11 10-28 5-42-5-14-16-25-30-25Z"
-          fill="#000000"
-        />
-
-        <path
-          d="M177 214c20-25 46-38 78-41 5 0 10 0 15 0 32 3 58 16 78 41 17 20 29 45 38 76H139c9-31 21-56 38-76Z"
-          fill="url(#torso-body)"
-        />
-        <path
-          d="M136 291h268c2 12 3 24 4 37H132c1-13 2-25 4-37Z"
-          fill="#040404"
-        />
-        <path
-          d="M184 202c18 10 42 15 86 15s68-5 86-15"
-          fill="none"
-          stroke="#1b1b1b"
-          strokeOpacity="0.76"
-          strokeWidth="2"
-        />
-      </g>
-    </svg>
-  );
-}
 
 function CyberHeroArtwork() {
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="relative overflow-hidden rounded-[32px] border border-[#ececec] bg-[#090909] p-4 shadow-[0_22px_54px_rgba(0,0,0,0.12)] sm:p-5">
-        <div className="relative aspect-[0.98/1] overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_50%_18%,rgba(212,18,18,0.08),transparent_34%),linear-gradient(180deg,#101010_0%,#080808_100%)]">
-          <div className="absolute inset-0 rounded-[24px] bg-[radial-gradient(circle_at_74%_24%,rgba(212,18,18,0.12),transparent_18%),radial-gradient(circle_at_56%_52%,rgba(0,0,0,0.1),transparent_56%)]" />
-          <BinaryBackdrop />
-          <HoodFigureSvg />
-
-          <div className="absolute left-[21.5%] top-[48.5%] z-10 h-[22%] w-[44%] rounded-[8px] border border-[#696969] bg-[#040404] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_28px_rgba(0,0,0,0.28)] sm:w-[46%]" />
-          <div className="absolute left-[24%] top-[51.5%] z-10 h-[17.5%] w-[39%] rounded-[6px] bg-[#080808] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] sm:w-[41%]" />
-
-          <div className="absolute left-1/2 top-[58.5%] z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-            <div className="absolute h-24 w-24 rounded-full bg-cyber-red/40 blur-2xl" />
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#ff3838]/55 bg-[#0b0b0b]/95 shadow-[0_0_30px_rgba(212,18,18,0.42)]">
-              <LockSealIcon className="h-10 w-10 text-[#ff2828]" />
-            </div>
-          </div>
-
-          <div className="absolute left-[26%] top-[61.5%] z-20 h-[1px] w-[36%] bg-[#d41212]/45 blur-[0.5px]" />
-          <div className="absolute left-[27%] top-[65.2%] z-20 h-[1px] w-[34%] bg-[#d41212]/35 blur-[0.5px]" />
+      <div className="relative overflow-hidden rounded-[32px] border border-[#ececec] bg-[#090909] shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
+        <div className="relative aspect-[1/1] overflow-hidden">
+          <img
+            src={heroImage}
+            alt="Cyber Hacker Hero"
+            className="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,18,18,0.15),transparent_70%)]" />
         </div>
       </div>
 
@@ -180,10 +86,10 @@ function MotionCard({ children, className = '', ...props }) {
         prefersReducedMotion
           ? undefined
           : {
-              y: -4,
-              scale: 1.01,
-              transition: { duration: 0.2 },
-            }
+            y: -4,
+            scale: 1.01,
+            transition: { duration: 0.2 },
+          }
       }
       {...props}
     >
