@@ -59,26 +59,10 @@
     letter-spacing: -0.03em;
   }
 }
-
 .cyber-ai-glow {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #d41212; /* primary corporate red */
   font-weight: 900;
-  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #d41212 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 12px rgba(0, 242, 254, 0.4), 0 0 24px rgba(212, 18, 18, 0.3);
   letter-spacing: 0.05em;
   display: inline-block;
-  animation: cyber-glow-pulse 2s infinite alternate;
-}
-
-@keyframes cyber-glow-pulse {
-  0% {
-    filter: drop-shadow(0 0 2px rgba(0, 242, 254, 0.4));
-  }
-  100% {
-    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.8)) drop-shadow(0 0 12px rgba(212, 18, 18, 0.6));
-  }
 }
 

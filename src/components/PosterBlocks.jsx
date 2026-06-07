@@ -223,62 +223,71 @@ export function ReasonCard({ number, icon: Icon, title, description }) {
 export function FooterBanner() {
   return (
     <motion.footer
-      className="mt-6 border-t border-[#161616] bg-[#0d0d0d] px-4 py-4 text-white sm:px-5 lg:px-6"
+      className="mt-12 rounded-[36px] border border-white/5 bg-gradient-to-br from-[#0F111A] to-[#07080d] p-8 md:p-12 text-white shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative overflow-hidden"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="grid gap-4 lg:grid-cols-[1.1fr_1.65fr_1fr] lg:items-stretch">
-        <div className="flex h-full items-center gap-3 border-b border-white/10 pb-4 lg:border-b-0 lg:border-r lg:border-white/10 lg:pb-0 lg:pr-5">
-          <LockSealIcon className="h-14 w-14 shrink-0 text-white" />
-          <p className="font-display text-[clamp(1rem,2vw,1.8rem)] leading-[1.18] font-black uppercase tracking-[0.03em]">
-            DON&apos;T JUST LEARN.
-            <span className="block text-cyber-red">DEFEND THE</span>
-            <span className="block text-cyber-red">DIGITAL WORLD.</span>
-          </p>
+      {/* Background Accent Grid or Glow */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-cyber-red/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <div className="grid gap-8 lg:grid-cols-[1.2fr_1.8fr_1.1fr] lg:items-center">
+        {/* Left Branding Statement */}
+        <div className="flex items-center gap-4 border-b border-white/5 pb-6 lg:border-b-0 lg:border-r lg:border-white/5 lg:pb-0 lg:pr-8">
+          <div className="h-16 w-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+            <LockSealIcon className="h-8 w-8 text-white" />
+          </div>
+          <div className="text-left space-y-1">
+            <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">Secure Worldz Official</p>
+            <h3 className="font-display text-[clamp(1.2rem,2.2vw,1.9rem)] leading-[1.15] font-black uppercase tracking-tight">
+              DON&apos;T JUST LEARN.
+              <span className="block text-cyber-red">DEFEND THE DIGITAL WORLD.</span>
+            </h3>
+          </div>
         </div>
 
-        <div className="grid h-full grid-cols-2 gap-3 sm:grid-cols-4 lg:px-2">
+        {/* Middle Feature Highlights */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:px-4">
           {[
             { icon: BrainIcon, label: 'AI-POWERED\nTOOLS' },
             { icon: GlobeIcon, label: 'REAL-WORLD\nSCENARIOS' },
             { icon: CertificateIcon, label: 'CERTIFICATE\nOF COMPLETION' },
             { icon: HeadsetIcon, label: 'LIFETIME\nSUPPORT' },
-          ].map(({ icon: Icon, label }, index) => (
+          ].map(({ icon: Icon, label }) => (
             <div
               key={label}
-              className="flex min-h-[92px] flex-col items-center justify-center rounded-[12px] border border-white/10 bg-white/0 px-2 py-2 text-center"
-              style={{ borderLeftColor: index === 0 ? 'rgba(212,18,18,0.55)' : undefined }}
+              className="flex flex-col items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-4 text-center hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
             >
-              <Icon className="h-8 w-8 text-white" />
-              <p className="mt-2 whitespace-pre-line text-[0.68rem] leading-[1.25] font-medium uppercase tracking-[0.04em] text-white/90">
+              <div className="h-10 w-10 rounded-xl bg-white/5 flex items-center justify-center mb-3 text-white">
+                <Icon className="h-5 w-5" />
+              </div>
+              <p className="whitespace-pre-line text-[0.68rem] leading-[1.3] font-bold uppercase tracking-wider text-white/70">
                 {label}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="h-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#141414] to-[#0a0a0a] shadow-lg">
-          <div className="bg-cyber-red px-4 py-2.5 text-center text-[0.75rem] font-black uppercase tracking-[0.12em] text-white">
+        {/* Right Seat Checkout Ticket */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#151722] to-[#0c0d14] p-6 text-center shadow-2xl flex flex-col justify-center items-center">
+          <span className="inline-block bg-cyber-red/10 border border-cyber-red/35 text-cyber-red text-[0.65rem] font-black uppercase tracking-[0.15em] px-3 py-1 rounded-md mb-4">
             SECURE YOUR SEAT
-          </div>
-          <div className="relative flex h-full flex-col justify-center px-4 pb-6 pt-4 text-center">
-            <div className="flex items-center justify-center gap-2">
-              <span className="font-display text-[clamp(2.6rem,5.4vw,3.8rem)] leading-[1.08] font-black uppercase tracking-tight text-white">
-                NOW!
-              </span>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyber-red text-cyber-red bg-cyber-red/10 shadow-[0_0_15px_rgba(212,18,18,0.25)]">
-                <LockSealIcon className="h-5 w-5 text-cyber-red" />
-              </div>
+          </span>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="font-display text-[clamp(2.4rem,4.5vw,3.2rem)] leading-none font-black uppercase tracking-tight text-white">
+              NOW!
+            </span>
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-cyber-red/40 text-cyber-red bg-cyber-red/10 shadow-[0_0_15px_rgba(212,18,18,0.25)]">
+              <LockSealIcon className="h-4.5 w-4.5 text-cyber-red" />
             </div>
-            <p className="mt-3 text-[0.8rem] font-bold uppercase tracking-[0.12em] text-white/80">
-              YOUR CYBER JOURNEY
-            </p>
-            <p className="text-[0.8rem] font-bold uppercase tracking-[0.12em] text-cyber-red">
-              STARTS WITH ONE STEP.
-            </p>
           </div>
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-white/55">
+            YOUR CYBER JOURNEY
+          </p>
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-cyber-red mt-0.5">
+            STARTS WITH ONE STEP.
+          </p>
         </div>
       </div>
     </motion.footer>
