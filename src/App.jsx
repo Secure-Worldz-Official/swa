@@ -324,11 +324,8 @@ function LandingPage() {
 
         <FooterBanner />
 
-        <div className="mt-20 text-center pb-10">
-          <Link to="/admin" className="text-[0.65rem] font-black uppercase tracking-[0.3em] text-gray-300 hover:text-cyber-red transition-colors">
-            Security Infrastructure Management Access
-          </Link>
-        </div>
+
+
       </div>
     </div>
   );
