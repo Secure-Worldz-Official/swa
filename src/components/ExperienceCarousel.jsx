@@ -72,17 +72,31 @@ export default function ExperienceCarousel() {
             icon: ShieldLockIcon,
             text: "You aren't learning from an academic lecturer who only reads off slides. You are training directly under a battle-tested elite cybersecurity consultant. Someone who deals with real-world cyber threats, live red-teaming simulations, and enterprise-grade AI defense systems daily. You get raw industry experience, direct 1-on-1 mentorship, and the exact roadmap used by top-tier global pros.",
             visual: (
-                <div className="relative h-60 w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden border border-cyber-red/20 shadow-[0_15px_45px_rgba(212,18,18,0.2)] group bg-[#111]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 z-10" />
-                    <img
-                        src={mentorImage}
-                        alt="Cyber Jai Lead Instructor"
-                        className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 select-none pointer-events-none"
-                    />
-                    <div className="absolute inset-0 border-[2px] border-cyber-red/0 group-hover:border-cyber-red/35 rounded-3xl transition-colors duration-500 z-20 pointer-events-none" />
-                    <div className="absolute bottom-5 left-5 right-5 text-left z-20">
-                        <p className="text-[0.6rem] font-black text-cyber-red uppercase tracking-widest mb-0.5">ELITE CONSULTANT</p>
-                        <h4 className="text-white font-display font-black text-base uppercase tracking-tight">CYBER JAI</h4>
+                <div className="relative mx-auto w-full max-w-[290px] rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 p-4 shadow-[0_25px_60px_rgba(0,0,0,0.35)] group transition-all duration-500 hover:border-cyber-red/30 overflow-visible">
+                    {/* Futuristic Ambient Neon Glow Behind Card */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyber-red to-red-600 rounded-3xl blur-xl opacity-10 group-hover:opacity-25 transition-opacity duration-700 -z-10" />
+
+                    {/* Asymmetric Cyber Frame for Photo */}
+                    <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#0c0c0c] border border-white/5 shadow-inner">
+                        <img
+                            src={mentorImage}
+                            alt="Cyber Jai Lead Instructor"
+                            className="w-full h-full object-contain filter brightness-[1.02] contrast-[1.05] transition-transform duration-700 group-hover:scale-[1.02] select-none pointer-events-none"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                    </div>
+
+                    {/* Elite Tech details below image */}
+                    <div className="mt-4 text-center">
+                        <span className="inline-block bg-cyber-red/10 border border-cyber-red/35 text-cyber-red text-[0.68rem] font-black uppercase tracking-widest px-3 py-1 rounded-md mb-2 shadow-[0_0_15px_rgba(212,18,18,0.1)]">
+                            ELITE CONSULTANT
+                        </span>
+                        <h4 className="text-white font-display font-black text-xl uppercase tracking-tight leading-none mb-1">
+                            CYBER JAI
+                        </h4>
+                        <p className="text-[0.65rem] font-bold text-white/45 tracking-widest uppercase">
+                            Secure Worldz Official
+                        </p>
                     </div>
                 </div>
             )

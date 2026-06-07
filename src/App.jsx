@@ -11,6 +11,7 @@ import {
 } from './components/Icons';
 import { HeroPreview, ReasonCard, FooterBanner } from './components/PosterBlocks';
 import Reveal from './components/Reveal';
+import brandLogo from './assets/brand_logo.jpg';
 import {
   footerFeatures,
   heroStats,
@@ -24,13 +25,17 @@ import ExperienceCarousel from './components/ExperienceCarousel';
 
 function BrandLockup() {
   return (
-    <Link to="/" className="flex items-start gap-3">
-      <ShieldLockIcon className="mt-0.5 h-11 w-11 shrink-0 text-cyber-red" />
-      <div className="space-y-1.5 text-left">
+    <Link to="/" className="flex items-center gap-3">
+      <img
+        src={brandLogo}
+        alt="Secure Worldz Brand Logo"
+        className="h-10 w-10 shrink-0 object-contain rounded-lg border border-gray-100/10 shadow-sm"
+      />
+      <div className="space-y-0.5 text-left">
         <p className="font-display text-[0.92rem] leading-[1.18] font-black uppercase tracking-[0.12em] text-[#111]">
           LEARN WITH <span className="text-cyber-red">CYBER J</span><span className="cyber-ai-glow">AI</span>
         </p>
-        <p className="text-[0.78rem] font-semibold leading-[1.35] uppercase tracking-[0.22em] text-[#5a5a5a]">
+        <p className="text-[0.68rem] font-semibold leading-[1.35] uppercase tracking-[0.22em] text-[#5a5a5a]">
           FROM ZERO TO CYBER HERO
         </p>
       </div>
