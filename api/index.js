@@ -67,7 +67,11 @@ app.post('/api/auth/register', async (req, res) => {
         res.json({ token, userId: user_id });
     } catch (err) {
         console.error('Registration Error:', err);
-        res.status(500).json({ message: 'Registration failed', error: err.message });
+        res.status(500).json({
+            message: 'Registration failed',
+            error: err.message,
+            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        });
     }
 });
 
