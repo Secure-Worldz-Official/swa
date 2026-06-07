@@ -10,7 +10,6 @@ import {
   CheckIcon,
 } from './components/Icons';
 import { HeroPreview, ReasonCard, FooterBanner } from './components/PosterBlocks';
-import mentorImage from './assets/mentor_placeholder.png';
 import Reveal from './components/Reveal';
 import {
   footerFeatures,
@@ -21,6 +20,7 @@ import {
 } from './data/content';
 import EnrollmentPage from './components/EnrollmentPage';
 import AdminPanel from './components/AdminPanel';
+import ExperienceCarousel from './components/ExperienceCarousel';
 
 function BrandLockup() {
   return (
@@ -259,162 +259,7 @@ function LandingPage() {
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto px-4">
-            {/* Part 1: Learn Info (The Knowledge Hub) */}
-            <Reveal delay={0.1}>
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-cyber-red/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-                <div>
-                  <div className="h-12 w-12 rounded-xl bg-cyber-red/10 flex items-center justify-center text-cyber-red mb-6 group-hover:scale-105 transition-transform duration-300">
-                    <LaptopCodeIcon className="h-6 w-6" />
-                  </div>
-                  <p className="text-[0.65rem] font-black uppercase tracking-widest text-cyber-red mb-1">Part 1 / The Tools</p>
-                  <h3 className="text-xl font-display font-black uppercase tracking-tight text-black mb-1">Learn Info</h3>
-                  <p className="text-gray-400 text-[0.7rem] leading-none mb-6 uppercase font-bold tracking-wider">The Knowledge Hub</p>
-                  
-                  <div className="space-y-5">
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">15+ Hands-On Labs</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Interactive terminal tasks, firewall configuration, threat hunting, and core commands.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">Attack Simulations</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Real-world emulation of Ransomware, SQLi/XSS exploits, DDoS vectors, and modern phishing.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">Advanced Cyber Tools</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Gain mastery over Metasploit, Wireshark, Nmap, Burp Suite, and AI-driven automated scanners.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap gap-1.5">
-                  {['Wireshark', 'Metasploit', 'Nmap', 'Burp Suite'].map(tool => (
-                    <span key={tool} className="px-2.5 py-0.5 bg-gray-50 border border-gray-100 rounded-full text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:bg-black hover:text-white transition-colors duration-200">{tool}</span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Part 2: Career Info (The Growth Hub) */}
-            <Reveal delay={0.2}>
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-cyber-red/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-                <div>
-                  <div className="h-12 w-12 rounded-xl bg-cyber-red/10 flex items-center justify-center text-cyber-red mb-6 group-hover:scale-105 transition-transform duration-300">
-                    <GrowthIcon className="h-6 w-6" />
-                  </div>
-                  <p className="text-[0.65rem] font-black uppercase tracking-widest text-cyber-red mb-1">Part 2 / Opportunity</p>
-                  <h3 className="text-xl font-display font-black uppercase tracking-tight text-black mb-1">Career Info</h3>
-                  <p className="text-gray-400 text-[0.7rem] leading-none mb-6 uppercase font-bold tracking-wider">The Growth Hub</p>
-
-                  <div className="space-y-5">
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">High-Paying Career Tracks</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Unlock tracks like Cyber Analyst, Penetration Tester, DevSecOps Engineer, and AI Security Specialist.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">Global Job Demand</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Join a booming domain with over 3.5 million unfulfilled cybersecurity job listings globally.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3.5">
-                      <div className="h-5 w-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5 text-green-600">
-                        <CheckIcon className="h-3 w-3" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs text-black uppercase tracking-wider">Portfolio & Community</h4>
-                        <p className="text-[0.7rem] text-gray-500 mt-1 leading-relaxed">Build verifiable proof of skill. Access a private discord network, study groups, and CTF challenges.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap gap-1.5">
-                  {['Analyst', 'PenTester', 'DevSecOps', 'AI Security'].map(role => (
-                    <span key={role} className="px-2.5 py-0.5 bg-gray-50 border border-gray-100 rounded-full text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:bg-black hover:text-white transition-colors duration-200">{role}</span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Part 3: Mentor Info (The Expert Hub) */}
-            <Reveal delay={0.3}>
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-cyber-red/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-                <div>
-                  <div className="h-12 w-12 rounded-xl bg-cyber-red/10 flex items-center justify-center text-cyber-red mb-6 group-hover:scale-105 transition-transform duration-300">
-                    <ShieldLockIcon className="h-6 w-6" />
-                  </div>
-                  <p className="text-[0.65rem] font-black uppercase tracking-widest text-cyber-red mb-1">Part 3 / Instruction</p>
-                  <h3 className="text-xl font-display font-black uppercase tracking-tight text-black mb-1">Mentor Info</h3>
-                  <p className="text-gray-400 text-[0.7rem] leading-none mb-6 uppercase font-bold tracking-wider">The Expert Hub</p>
-
-                  {/* Mentor Profile Picture Placeholder Card */}
-                  <div className="relative overflow-hidden rounded-[20px] border border-gray-100 aspect-[1.35/1] mb-5 group-hover:border-cyber-red/25 transition-colors duration-300 bg-gray-50 flex items-center justify-center shadow-inner">
-                    <img 
-                      src={mentorImage} 
-                      alt="Cyber Jai - Expert Mentor" 
-                      className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-85" />
-                    <div className="absolute bottom-3.5 left-4 right-4 text-left z-10">
-                      <p className="text-[0.55rem] font-black text-cyber-red uppercase tracking-widest mb-0.5">LEAD INSTRUCTOR</p>
-                      <h4 className="text-white font-display font-black text-base uppercase tracking-tight">CYBER JAI</h4>
-                    </div>
-                  </div>
-
-                  {/* Bio Area & Accomplishments */}
-                  <p className="text-[0.72rem] text-gray-500 leading-relaxed mb-5">
-                    A veteran security consultant and AI safety architect. Cyber Jai leads complex red-teaming simulations and designs automation platforms to secure enterprise production environments.
-                  </p>
-
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 text-[0.68rem] font-bold text-gray-700 uppercase tracking-wider">
-                      <div className="h-1.5 w-1.5 rounded-full bg-cyber-red shrink-0" />
-                      <span>7+ Years Red-Teaming & Consulting</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[0.68rem] font-bold text-gray-700 uppercase tracking-wider">
-                      <div className="h-1.5 w-1.5 rounded-full bg-cyber-red shrink-0" />
-                      <span>Former Enterprise Security Architect</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[0.68rem] font-bold text-gray-700 uppercase tracking-wider">
-                      <div className="h-1.5 w-1.5 rounded-full bg-cyber-red shrink-0" />
-                      <span>OSCP & CEH-Aligned Training</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+          <ExperienceCarousel />
         </section>
 
         <section id="pricing" className="py-24 border-t border-gray-100 bg-gray-50/20">
