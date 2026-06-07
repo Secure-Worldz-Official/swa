@@ -33,7 +33,7 @@ export default function AdminPanel() {
             });
             if (uRes.ok) {
                 setUsers(await uRes.json());
-            } else {
+            } else if (uRes.status === 401 || uRes.status === 403) {
                 localStorage.removeItem('adminToken');
                 setToken(null);
             }
