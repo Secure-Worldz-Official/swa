@@ -10,9 +10,8 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 /**
  * Supabase Schema Expectations:
  * Tables:
- * 1. users: userId (text, pk), name (text), email (text), phone (text), createdAt (timestamp)
- * 2. orders: orderId (text, pk), userId (text, fk), filename (text), status (text), createdAt (timestamp), approvedAt (timestamp)
- * 3. notifications: id (serial, pk), message (text), type (text), createdAt (timestamp)
+ * 1. users: user_id (text, pk), name (text), email (text), phone (text), created_at (timestamp)
+ * 2. orders: order_id (text, pk), user_id (text, fk), filename (text), status (text), created_at (timestamp), approved_at (timestamp)
  */
 
 export async function readUsers() {
@@ -42,8 +41,8 @@ export async function createOrder(orderData) {
 export async function approveOrder(orderId) {
   const { data, error } = await supabase
     .from('orders')
-    .update({ status: 'approved', approvedAt: new Date() })
-    .eq('orderId', orderId)
+    .update({ status: 'approved', approved_at: new Date() })
+    .eq('order_id', orderId)
     .select();
   if (error) throw error;
   return data[0];

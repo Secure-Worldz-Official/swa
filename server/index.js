@@ -60,12 +60,13 @@ app.post('/api/auth/register', async (req, res) => {
         return res.status(400).json({ message: 'Name and email are required' });
     }
 
-    const userId = Math.random().toString(36).substring(2, 9);
+    const user_id = Math.random().toString(36).substring(2, 9);
     try {
-        await registerUser({ userId, name, email, phone, createdAt: new Date() });
-        const token = signUserToken({ userId });
-        res.json({ token, userId });
+        await registerUser({ user_id, name, email, phone, created_at: new Date() });
+        const token = signUserToken({ userId: user_id });
+        res.json({ token, userId: user_id });
     } catch (err) {
+        console.error('Registration Error:', err);
         res.status(500).json({ message: 'Registration failed', error: err.message });
     }
 });
@@ -86,7 +87,7 @@ app.get('/api/admin/users', adminAuth, async (req, res) => {
         const users = await readUsers();
         const orders = await readOrders();
         const students = users.map(u => {
-            const order = orders.find(o => o.userId === u.userId);
+            const order = orders.find(o => o.user_id === u.user_id);
             return { ...u, order };
         });
         res.json(students);
@@ -127,23 +128,24 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
         return res.status(400).json({ message: 'No file uploaded' });
     }
 
-    const orderId = Math.random().toString(36).substring(2, 12).toUpperCase();
+    const order_id = Math.random().toString(36).substring(2, 12).toUpperCase();
     const receiptToken = signReceiptToken({
-        orderId,
+        orderId: order_id,
         userId: req.user.userId,
         scope: 'verification'
     });
 
     try {
         await createOrder({
-            orderId,
-            userId: req.user.userId,
+            order_id,
+            user_id: req.user.userId,
             filename: req.file.filename,
             status: 'pending',
-            createdAt: new Date()
+            created_at: new Date()
         });
-        res.json({ orderId, receiptToken });
+        res.json({ orderId: order_id, receiptToken });
     } catch (err) {
+        console.error('Upload Error:', err);
         res.status(500).json({ message: 'Order creation failed' });
     }
 });

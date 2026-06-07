@@ -61,6 +61,12 @@ export default function RegistrationForm() {
                     phone: formData.phone
                 })
             });
+
+            const contentType = regRes.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Server returned non-JSON response. Check if API is running.");
+            }
+
             const regData = await regRes.json();
 
             if (!regRes.ok) throw new Error(regData.message);
@@ -75,7 +81,13 @@ export default function RegistrationForm() {
                 body: fileData
             });
 
-            if (!uploadRes.ok) throw new Error('Upload failed');
+            const uContentType = uploadRes.headers.get("content-type");
+            if (!uContentType || !uContentType.includes("application/json")) {
+                throw new Error("Server returned non-JSON response during upload.");
+            }
+
+            const uploadResult = await uploadRes.json();
+            if (!uploadRes.ok) throw new Error(uploadResult.message || 'Upload failed');
 
             setSuccess(true);
             setStep(3);

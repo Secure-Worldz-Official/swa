@@ -196,13 +196,13 @@ export default function AdminPanel() {
                                     </tr>
                                 ) : (
                                     users.map(user => (
-                                        <tr key={user.userId}>
+                                        <tr key={user.user_id}>
                                             <td className="px-8 py-6">
                                                 <div className="font-bold">{user.name}</div>
                                                 <div className="text-xs text-gray-500">{user.email} | {user.phone}</div>
                                             </td>
                                             <td className="px-8 py-6 font-mono text-xs">
-                                                {user.order?.orderId || 'N/A'}
+                                                {user.order?.order_id || 'N/A'}
                                             </td>
                                             <td className="px-8 py-6">
                                                 {user.order?.status === 'approved' ? (
@@ -212,10 +212,10 @@ export default function AdminPanel() {
                                                 )}
                                             </td>
                                             <td className="px-8 py-6">
-                                                {user.order?.status !== 'approved' && user.order?.orderId && (
+                                                {user.order?.status !== 'approved' && user.order?.order_id && (
                                                     <div className="flex gap-2">
                                                         <button
-                                                            onClick={() => approveUser(user.userId, user.order.orderId)}
+                                                            onClick={() => approveUser(user.user_id, user.order.order_id)}
                                                             className="px-4 py-2 bg-black text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-800 transition-colors"
                                                         >
                                                             Approve
