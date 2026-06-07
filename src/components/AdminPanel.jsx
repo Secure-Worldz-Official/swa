@@ -66,7 +66,7 @@ export default function AdminPanel() {
                 setError(data.message || 'Login failed');
             }
         } catch (err) {
-            setError('Connection error');
+            setError(`Connection error: ${err.message}`);
         } finally {
             setLoading(false);
         }
