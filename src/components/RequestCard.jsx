@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import spideyAvatar from "./spiderman_avatar_1780939994433.png";
 
-export default function RequestCard({ user }) {
+export default function RequestCard({ user, onApprove }) {
   const [expanded, setExpanded] = useState(false);
   const [showReceipt, setShowReceipt] = useState(false);
 
@@ -34,9 +34,15 @@ export default function RequestCard({ user }) {
           {/* Name + Status */}
           <div className="flex-1 ml-4">
             <h3 className="text-xl font-display font-black text-white">{user.name}</h3>
-            <span className="inline-block mt-1 px-3 py-0.5 bg-green-500/15 text-green-400 rounded-full text-xs font-black uppercase tracking-widest">
-              {user.enrollmentStatus ?? "Pending"}
-            </span>
+            {user.order?.status === 'approved' ? (
+              <span className="inline-block mt-1 px-3 py-0.5 bg-green-500/15 text-green-400 border border-green-500/20 rounded-full text-xs font-black uppercase tracking-widest">
+                Approved
+              </span>
+            ) : (
+              <span className="inline-block mt-1 px-3 py-0.5 bg-yellow-500/15 text-yellow-400 border border-yellow-500/20 rounded-full text-xs font-black uppercase tracking-widest">
+                Pending
+              </span>
+            )}
           </div>
         </div>
 
@@ -74,6 +80,17 @@ export default function RequestCard({ user }) {
                 onClick={openReceipt}
               >
                 VIEW RECEIPT SCREENSHOT
+              </button>
+            )}
+            {user.order?.status !== 'approved' && user.order?.order_id && (
+              <button
+                className="mt-3 w-full bg-emerald-600 text-white font-bold py-2.5 rounded-lg hover:bg-emerald-700 transition-colors uppercase tracking-wider text-xs shadow-[0_4px_12px_rgba(16,185,129,0.2)]"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onApprove && onApprove();
+                }}
+              >
+                Approve Enrollment
               </button>
             )}
           </div>

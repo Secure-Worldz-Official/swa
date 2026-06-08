@@ -11,6 +11,8 @@ import {
 } from './Icons';
 
 import RequestCard from './RequestCard';
+
+export default function AdminPanel() {
     const [token, setToken] = useState(localStorage.getItem('adminToken'));
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
