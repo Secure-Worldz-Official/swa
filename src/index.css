@@ -66,18 +66,3 @@
   display: inline-block;
 }
 
-.neon-pulse {
-  animation: neon-pulse 2s infinite ease-in-out;
-}
-
-@keyframes neon-pulse {
-  0%, 100% {
-    box-shadow: 0 0 8px rgba(212, 18, 18, 0.4), 0 0 16px rgba(0, 119, 255, 0.5);
-    border-color: rgba(212, 18, 18, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(212, 18, 18, 0.8), 0 0 32px rgba(0, 119, 255, 0.9);
-    border-color: rgba(0, 119, 255, 0.8);
-  }
-}
-

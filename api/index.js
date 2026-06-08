@@ -14,12 +14,10 @@ import {
     approveOrder,
     getAdminStats,
     ensureStorage,
-    uploadReceipt,
-    supabase
+    uploadReceipt
 } from './store.js';
 import {
     adminAuth,
-    verifyAdminToken,
     signAdminToken,
     signReceiptToken,
     signUserToken,
@@ -182,46 +180,6 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
             message: 'Order creation failed',
             error: err.message,
         });
-    }
-});
-
-// Serve local uploads folder as static if needed
-app.use('/uploads', express.static('uploads'));
-
-// Serve receipts securely from Supabase Storage
-app.get('/api/receipt/:path(*)', (req, res, next) => {
-    const authHeader = req.headers.authorization || '';
-    const headerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
-    const queryToken = req.query.token;
-    const token = headerToken || queryToken;
-
-    if (!token) {
-        return res.status(401).json({ message: 'Admin access token required.' });
-    }
-
-    try {
-        const payload = verifyAdminToken(token);
-        if (payload.role !== 'admin') {
-            return res.status(403).json({ message: 'Invalid admin token.' });
-        }
-        return next();
-    } catch (err) {
-        return res.status(401).json({ message: 'Admin session expired.' });
-    }
-}, async (req, res) => {
-    const filePath = req.params.path;
-    try {
-        const { data, error } = await supabase.storage
-            .from('receipts')
-            .download(filePath);
-        if (error) throw error;
-        
-        const buffer = Buffer.from(await data.arrayBuffer());
-        res.setHeader('Content-Type', data.type || 'image/png');
-        res.send(buffer);
-    } catch (err) {
-        console.error('Error serving receipt:', err.message);
-        res.status(404).send('Not Found');
     }
 });
 

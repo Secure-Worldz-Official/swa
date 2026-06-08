@@ -10,8 +10,6 @@ import {
     LogoutIcon
 } from './Icons';
 
-import RequestCard from './RequestCard';
-
 export default function AdminPanel() {
     const [token, setToken] = useState(localStorage.getItem('adminToken'));
     const [email, setEmail] = useState('');
@@ -180,14 +178,56 @@ export default function AdminPanel() {
                             <p className="text-sm text-white/40 uppercase font-bold tracking-widest">Verify and approve student access</p>
                         </div>
                     </div>
-                    <div className="p-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {users.length === 0 ? (
-                            <p className="text-center text-white/30 italic">No students yet</p>
-                        ) : (
-                            users.map(user => (
-                                <RequestCard key={user.user_id} user={user} onApprove={() => approveUser(user.user_id, user.order?.order_id)} />
-                            ))
-                        )}
+
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left">
+                            <thead>
+                                <tr className="bg-white/5 border-b border-white/10">
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Student</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Order ID</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Status</th>
+                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5">
+                                {users.length === 0 ? (
+                                    <tr>
+                                        <td colSpan="4" className="px-8 py-20 text-center text-white/30 italic">No students yet</td>
+                                    </tr>
+                                ) : (
+                                    users.map(user => (
+                                        <tr key={user.user_id} className="hover:bg-white/5 transition-colors">
+                                            <td className="px-8 py-6">
+                                                <div className="font-bold text-white">{user.name}</div>
+                                                <div className="text-xs text-white/40">{user.email} | {user.phone}</div>
+                                            </td>
+                                            <td className="px-8 py-6 font-mono text-xs text-white/60">
+                                                {user.order?.order_id || 'N/A'}
+                                            </td>
+                                            <td className="px-8 py-6">
+                                                {user.order?.status === 'approved' ? (
+                                                    <span className="px-3 py-1 bg-green-500/15 text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
+                                                ) : (
+                                                    <span className="px-3 py-1 bg-yellow-500/15 text-yellow-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
+                                                )}
+                                            </td>
+                                            <td className="px-8 py-6">
+                                                {user.order?.status !== 'approved' && user.order?.order_id && (
+                                                    <div className="flex gap-2">
+                                                        <button
+                                                            onClick={() => approveUser(user.user_id, user.order.order_id)}
+                                                            className="px-4 py-2 bg-cyber-red text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
+                                                        >
+                                                            Approve
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
                     </div>
                 </section>
             </main>
