@@ -22,6 +22,7 @@ import {
 import EnrollmentPage from './components/EnrollmentPage';
 import AdminPanel from './components/AdminPanel';
 import ExperienceCarousel from './components/ExperienceCarousel';
+import Footer from './components/Footer';
 
 function BrandLockup() {
   return (
@@ -259,7 +260,7 @@ function LandingPage() {
             <SectionHeading
               center
               eyebrow="Why you should join?"
-              title={<>A premium blueprint to <span className="text-cyber-red">job-ready</span> excellence</>}
+              title={<>A practical path to <span className="text-cyber-red">job ready</span> cyber skills</>}
               description="Gain the elite skillsets required to defend, detect, and dominate in the digital age."
             />
           </Reveal>
@@ -323,9 +324,7 @@ function LandingPage() {
         </section>
 
         <FooterBanner />
-
-
-
+        <Footer />
       </div>
     </div>
   );
