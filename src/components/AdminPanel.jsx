@@ -18,6 +18,19 @@ export default function AdminPanel() {
     const [stats, setStats] = useState(null);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [expandedUserId, setExpandedUserId] = useState(null);
+
+    const toggleRow = (userId) => {
+        setExpandedUserId(prev => prev === userId ? null : userId);
+    };
+
+    const getImageUrl = (filename) => {
+        if (!filename) return '';
+        if (filename.startsWith('data:') || filename.startsWith('http')) {
+            return filename;
+        }
+        return `https://qqahllaidvbsccvenydb.supabase.co/storage/v1/object/public/receipts/${filename}`;
+    };
 
     const fetchData = async (authToken) => {
         try {
@@ -195,36 +208,162 @@ export default function AdminPanel() {
                                         <td colSpan="4" className="px-8 py-20 text-center text-white/30 italic">No students yet</td>
                                     </tr>
                                 ) : (
-                                    users.map(user => (
-                                        <tr key={user.user_id} className="hover:bg-white/5 transition-colors">
-                                            <td className="px-8 py-6">
-                                                <div className="font-bold text-white">{user.name}</div>
-                                                <div className="text-xs text-white/40">{user.email} | {user.phone}</div>
-                                            </td>
-                                            <td className="px-8 py-6 font-mono text-xs text-white/60">
-                                                {user.order?.order_id || 'N/A'}
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                {user.order?.status === 'approved' ? (
-                                                    <span className="px-3 py-1 bg-green-500/15 text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
-                                                ) : (
-                                                    <span className="px-3 py-1 bg-yellow-500/15 text-yellow-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
-                                                )}
-                                            </td>
-                                            <td className="px-8 py-6">
-                                                {user.order?.status !== 'approved' && user.order?.order_id && (
-                                                    <div className="flex gap-2">
-                                                        <button
-                                                            onClick={() => approveUser(user.user_id, user.order.order_id)}
-                                                            className="px-4 py-2 bg-cyber-red text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
-                                                        >
-                                                            Approve
-                                                        </button>
-                                                    </div>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    ))
+                                    users.map(user => {
+                                        const isExpanded = expandedUserId === user.user_id;
+                                        return (
+                                            <React.Fragment key={user.user_id}>
+                                                <tr
+                                                    onClick={() => toggleRow(user.user_id)}
+                                                    className={`hover:bg-white/5 transition-colors cursor-pointer ${isExpanded ? 'bg-white/5' : ''}`}
+                                                >
+                                                    <td className="px-8 py-6">
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="font-bold text-white">{user.name}</div>
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    toggleRow(user.user_id);
+                                                                }}
+                                                                className="text-[10px] text-cyber-red/80 hover:text-cyber-red font-bold uppercase tracking-widest flex items-center gap-1.5 bg-cyber-red/10 hover:bg-cyber-red/20 px-3 py-1.5 rounded-xl border border-cyber-red/20 transition-all active:scale-[0.97]"
+                                                            >
+                                                                View Details
+                                                                <motion.svg
+                                                                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                                                                    className="h-3.5 w-3.5"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                                                                </motion.svg>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-8 py-6 font-mono text-xs text-white/60">
+                                                        {user.order?.order_id || 'N/A'}
+                                                    </td>
+                                                    <td className="px-8 py-6">
+                                                        {user.order?.status === 'approved' ? (
+                                                            <span className="px-3 py-1 bg-green-500/15 text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
+                                                        ) : (
+                                                            <span className="px-3 py-1 bg-yellow-500/15 text-yellow-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
+                                                        )}
+                                                    </td>
+                                                    <td className="px-8 py-6">
+                                                        {user.order?.status !== 'approved' && user.order?.order_id && (
+                                                            <div className="flex gap-2">
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        approveUser(user.user_id, user.order.order_id);
+                                                                    }}
+                                                                    className="px-4 py-2 bg-cyber-red text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
+                                                                >
+                                                                    Approve
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                                <AnimatePresence initial={false}>
+                                                    {isExpanded && (
+                                                        <tr className="bg-white/[0.01] border-b border-white/5">
+                                                            <td colSpan="4" className="px-8 py-0">
+                                                                <motion.div
+                                                                    initial={{ height: 0, opacity: 0 }}
+                                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                                    exit={{ height: 0, opacity: 0 }}
+                                                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                                                    className="overflow-hidden"
+                                                                >
+                                                                    <div className="pb-8 pt-4">
+                                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/5 mt-4 pt-6">
+                                                                            {/* Left side: Details */}
+                                                                            <div className="space-y-6">
+                                                                                <div>
+                                                                                    <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Applicant Details</h4>
+                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                                                                                        <div>
+                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Full Name</span>
+                                                                                            <span className="text-sm font-bold text-white">{user.name}</span>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Email Address</span>
+                                                                                            <a href={`mailto:${user.email}`} className="text-sm font-bold text-cyber-red hover:underline" onClick={(e) => e.stopPropagation()}>{user.email}</a>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Phone Number</span>
+                                                                                            <a href={`tel:${user.phone}`} className="text-sm font-bold text-white/80 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>{user.phone || 'N/A'}</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div>
+                                                                                    <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Order Information</h4>
+                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                                                                                        <div className="flex justify-between items-center">
+                                                                                            <div>
+                                                                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Order ID</span>
+                                                                                                <span className="text-xs font-mono text-white/80">{user.order?.order_id || 'N/A'}</span>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Status</span>
+                                                                                                {user.order?.status === 'approved' ? (
+                                                                                                    <span className="px-2.5 py-0.5 bg-green-500/15 text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
+                                                                                                ) : (
+                                                                                                    <span className="px-2.5 py-0.5 bg-yellow-500/15 text-yellow-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
+                                                                                                )}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        {user.order?.status !== 'approved' && user.order?.order_id && (
+                                                                                            <button
+                                                                                                onClick={(e) => {
+                                                                                                    e.stopPropagation();
+                                                                                                    approveUser(user.user_id, user.order.order_id);
+                                                                                                }}
+                                                                                                className="w-full py-3 bg-cyber-red text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
+                                                                                            >
+                                                                                                Approve enrollment
+                                                                                            </button>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            {/* Right side: Proof Image */}
+                                                                            <div className="flex flex-col justify-start">
+                                                                                <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Payment Receipt / Proof of Upload</h4>
+                                                                                {user.order?.filename ? (
+                                                                                    <div className="relative group bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center p-2 min-h-[220px]">
+                                                                                        <img
+                                                                                            src={getImageUrl(user.order.filename)}
+                                                                                            alt="Payment Receipt"
+                                                                                            className="max-h-[320px] w-auto object-contain rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 cursor-zoom-in"
+                                                                                            onClick={(e) => {
+                                                                                                e.stopPropagation();
+                                                                                                window.open(getImageUrl(user.order.filename), '_blank');
+                                                                                            }}
+                                                                                        />
+                                                                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">Click to expand</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[220px] text-white/30 italic">
+                                                                                        No proof uploaded
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </motion.div>
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </AnimatePresence>
+                                            </React.Fragment>
+                                        );
+                                    })
                                 )}
                             </tbody>
                         </table>
