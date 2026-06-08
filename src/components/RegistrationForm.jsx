@@ -37,6 +37,7 @@ export default function RegistrationForm() {
     };
 
     const handleFileChange = (e) => {
+        setError('');
         setFormData({ ...formData, receipt: e.target.files[0] });
     };
 
@@ -159,7 +160,10 @@ export default function RegistrationForm() {
                                         className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
                                         placeholder="Enter your name"
                                         value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        onChange={(e) => {
+                                            setError('');
+                                            setFormData({ ...formData, name: e.target.value });
+                                        }}
                                     />
                                 </div>
                                 <div>
@@ -170,7 +174,10 @@ export default function RegistrationForm() {
                                         className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
                                         placeholder="name@example.com"
                                         value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        onChange={(e) => {
+                                            setError('');
+                                            setFormData({ ...formData, email: e.target.value });
+                                        }}
                                     />
                                 </div>
                                 <div>
@@ -181,7 +188,10 @@ export default function RegistrationForm() {
                                         className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
                                         placeholder="+91 00000 00000"
                                         value={formData.phone}
-                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                        onChange={(e) => {
+                                            setError('');
+                                            setFormData({ ...formData, phone: e.target.value });
+                                        }}
                                     />
                                 </div>
                                 {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
@@ -231,7 +241,10 @@ export default function RegistrationForm() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <button
                                         type="button"
-                                        onClick={() => setStep(1)}
+                                        onClick={() => {
+                                            setError('');
+                                            setStep(1);
+                                        }}
                                         className="bg-[#eee] text-gray-600 font-bold py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e5e5e5] transition-all"
                                     >
                                         Back

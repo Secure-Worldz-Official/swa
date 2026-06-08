@@ -37,6 +37,7 @@ export default function EnrollmentPage() {
     };
 
     const handleFileChange = (e) => {
+        setError('');
         setFormData({ ...formData, receipt: e.target.files[0] });
     };
 
@@ -187,9 +188,12 @@ export default function EnrollmentPage() {
                                                     className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
                                                     placeholder="Enter your name"
                                                     value={formData.name}
-                                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                />
-                                            </div>
+                                                onChange={(e) => {
+                                                    setError('');
+                                                    setFormData({ ...formData, name: e.target.value });
+                                                }}
+                                            />
+                                        </div>
                                             <div>
                                                 <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Email Address</label>
                                                 <input
@@ -198,9 +202,12 @@ export default function EnrollmentPage() {
                                                     className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
                                                     placeholder="name@example.com"
                                                     value={formData.email}
-                                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                />
-                                            </div>
+                                                onChange={(e) => {
+                                                    setError('');
+                                                    setFormData({ ...formData, email: e.target.value });
+                                                }}
+                                            />
+                                        </div>
                                             <div>
                                                 <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Phone Number</label>
                                                 <input
@@ -209,9 +216,12 @@ export default function EnrollmentPage() {
                                                     className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
                                                     placeholder="+91 00000 00000"
                                                     value={formData.phone}
-                                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                />
-                                            </div>
+                                                onChange={(e) => {
+                                                    setError('');
+                                                    setFormData({ ...formData, phone: e.target.value });
+                                                }}
+                                            />
+                                        </div>
                                             {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
                                             <button
                                                 type="submit"
@@ -259,7 +269,10 @@ export default function EnrollmentPage() {
                                             <div className="grid grid-cols-2 gap-4 mt-2">
                                                 <button
                                                     type="button"
-                                                    onClick={() => setStep(1)}
+                                                    onClick={() => {
+                                                        setError('');
+                                                        setStep(1);
+                                                    }}
                                                     className="bg-gray-100 text-gray-600 font-bold py-4 rounded-2xl uppercase tracking-widest hover:bg-gray-200 transition-colors active:scale-[0.98]"
                                                 >
                                                     Back

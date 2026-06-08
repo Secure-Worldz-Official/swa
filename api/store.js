@@ -1,9 +1,19 @@
 import { createClient } from '@supabase/supabase-js';
-import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
+import {
+  SUPABASE_URL,
+  SUPABASE_KEY,
+  SUPABASE_SERVICE_ROLE_KEY,
+  SUPABASE_WRITE_KEY,
+} from './config.js';
 
 let supabase;
-if (SUPABASE_URL && SUPABASE_KEY) {
-  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const configuredKey = SUPABASE_WRITE_KEY || SUPABASE_KEY;
+
+if (SUPABASE_URL && configuredKey) {
+  supabase = createClient(SUPABASE_URL, configuredKey);
+  if (process.env.VERCEL && !SUPABASE_SERVICE_ROLE_KEY) {
+    console.warn('Supabase service role key is not configured. Writes will depend on anon-key database policies.');
+  }
 } else {
   console.warn('⚠️ Supabase URL or Key missing.');
   supabase = {
@@ -37,25 +47,24 @@ export async function readOrders() {
 }
 
 export async function registerUser(userData) {
-  const { data, error } = await supabase.from('users').insert([userData]).select();
+  const { error } = await supabase.from('users').insert([userData]);
   if (error) throw error;
-  return data[0];
+  return userData;
 }
 
 export async function createOrder(orderData) {
-  const { data, error } = await supabase.from('orders').insert([orderData]).select();
+  const { error } = await supabase.from('orders').insert([orderData]);
   if (error) throw error;
-  return data[0];
+  return orderData;
 }
 
 export async function approveOrder(orderId) {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('orders')
     .update({ status: 'approved', approved_at: new Date() })
-    .eq('order_id', orderId)
-    .select();
+    .eq('order_id', orderId);
   if (error) throw error;
-  return data[0];
+  return true;
 }
 
 export async function getAdminStats() {
