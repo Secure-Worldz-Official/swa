@@ -4,10 +4,7 @@ import brandLogo from '../assets/brand_logo.jpg';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B0F19] text-[#8F9CAE] border-t border-white/[0.03] pt-16 pb-8 mt-20 relative overflow-hidden">
-      {/* Subtle ambient lighting grid overlay */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[200px] bg-cyber-red/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-
+    <footer className="bg-white text-gray-600 border-t border-gray-100 pt-16 pb-8 mt-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
           
@@ -17,23 +14,23 @@ export default function Footer() {
               <img
                 src={brandLogo}
                 alt="Secure Worldz Logo"
-                className="h-10 w-10 shrink-0 object-contain rounded-lg border border-white/10 shadow-lg"
+                className="h-10 w-10 shrink-0 object-contain rounded-lg border border-gray-100 shadow-sm"
               />
-              <h2 className="font-display text-lg font-black uppercase tracking-[0.08em] text-white">
+              <h2 className="font-display text-lg font-black uppercase tracking-[0.08em] text-black">
                 SECURE WORLDZ
               </h2>
             </div>
-            <p className="text-sm leading-relaxed text-[#8F9CAE]/85 max-w-xs">
+            <p className="text-sm leading-relaxed text-gray-500 max-w-xs">
               Smart solutions for a smarter digital world.
             </p>
             {/* Sleek Row for SVG Social Media Icon Placeholders */}
             <div className="flex gap-4">
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/thecyberjai?igsh=MXVwN3h0cjZ0Zjh2dg=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-[#8F9CAE] hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
+                className="h-10 w-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -48,7 +45,7 @@ export default function Footer() {
                 href="https://wa.me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-[#8F9CAE] hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
+                className="h-10 w-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
                 aria-label="WhatsApp"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -58,10 +55,10 @@ export default function Footer() {
 
               {/* YouTube */}
               <a
-                href="https://youtube.com"
+                href="https://youtube.com/@thecyberjai?si=pJ2sEXElismjSABn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-[#8F9CAE] hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
+                className="h-10 w-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:text-cyber-red hover:bg-cyber-red/5 hover:border-cyber-red/20 transition-all duration-300 active:scale-95"
                 aria-label="YouTube"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -74,27 +71,27 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="space-y-5">
-            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-white">
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-black">
               Quick Links
             </h3>
             <ul className="space-y-3.5 text-[0.88rem]">
               <li>
-                <Link to="/" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <Link to="/" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Home
                 </Link>
               </li>
               <li>
-                <a href="#features" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#features" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Services Overview
                 </a>
               </li>
               <li>
-                <Link to="/enroll" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <Link to="/enroll" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Proworldz Academy
                 </Link>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#pricing" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Contact Us
                 </a>
               </li>
@@ -103,27 +100,27 @@ export default function Footer() {
 
           {/* Column 3: Services */}
           <div className="space-y-5">
-            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-white">
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-black">
               Services
             </h3>
             <ul className="space-y-3.5 text-[0.88rem]">
               <li>
-                <a href="#features" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#features" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Cyber Security Services
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#features" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Website Development
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#features" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   AI Development
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#features" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Training &amp; Certification
                 </a>
               </li>
@@ -132,27 +129,27 @@ export default function Footer() {
 
           {/* Column 4: Legal */}
           <div className="space-y-5">
-            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-white">
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.2em] text-black">
               Legal
             </h3>
             <ul className="space-y-3.5 text-[0.88rem]">
               <li>
-                <a href="#privacy" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#privacy" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#terms" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#terms" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#cookies" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#cookies" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Cookie Policy
                 </a>
               </li>
               <li>
-                <a href="#acceptable-use" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
+                <a href="#acceptable-use" className="text-gray-600 hover:text-cyber-red hover:underline decoration-cyber-red/40 underline-offset-4 transition-all duration-200">
                   Acceptable Use Policy
                 </a>
               </li>
@@ -162,17 +159,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Row */}
-        <div className="pt-8 mt-4 border-t border-white/[0.03] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#8F9CAE]/60">
+        <div className="pt-8 mt-4 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>© 2026 Secure Worldz. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#privacy" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 transition-all duration-200">
               Privacy Policy
             </a>
-            <span className="text-white/10">|</span>
+            <span className="text-gray-200">|</span>
             <a href="#terms" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 transition-all duration-200">
               Terms of Service
             </a>
-            <span className="text-white/10">|</span>
+            <span className="text-gray-200">|</span>
             <a href="#cookies" className="hover:text-cyber-red hover:underline decoration-cyber-red/40 transition-all duration-200">
               Cookie Policy
             </a>

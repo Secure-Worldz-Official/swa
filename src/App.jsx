@@ -260,7 +260,7 @@ function LandingPage() {
             <SectionHeading
               center
               eyebrow="Why you should join?"
-              title={<>A premium blueprint to <span className="text-cyber-red">job-ready</span> excellence</>}
+              title={<>A practical path to <span className="text-cyber-red">job ready</span> cyber skills</>}
               description="Gain the elite skillsets required to defend, detect, and dominate in the digital age."
             />
           </Reveal>
