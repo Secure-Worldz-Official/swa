@@ -27,6 +27,9 @@ if (SUPABASE_URL && configuredKey) {
 
 export { supabase };
 
+const RECEIPTS_BUCKET = 'receipts';
+let storageReadyPromise = null;
+
 /**
  * Supabase Schema Expectations:
  * Tables:
@@ -88,7 +91,7 @@ export async function getAdminStats() {
  */
 export async function uploadReceipt(buffer, filename, mimetype) {
   const { data, error } = await supabase.storage
-    .from('receipts')
+    .from(RECEIPTS_BUCKET)
     .upload(filename, buffer, {
       contentType: mimetype,
       upsert: false,
@@ -97,11 +100,38 @@ export async function uploadReceipt(buffer, filename, mimetype) {
   if (error) throw error;
 
   const { data: urlData } = supabase.storage
-    .from('receipts')
+    .from(RECEIPTS_BUCKET)
     .getPublicUrl(data.path);
 
   return { path: data.path, publicUrl: urlData.publicUrl };
 }
 
-// Fallback for store compatibility if needed
-export const ensureStorage = () => { }; 
+export async function ensureStorage() {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return;
+  }
+
+  if (!storageReadyPromise) {
+    storageReadyPromise = (async () => {
+      const { data: buckets, error } = await supabase.storage.listBuckets();
+      if (error) throw error;
+
+      const receiptsBucket = (buckets || []).find((bucket) => bucket.name === RECEIPTS_BUCKET);
+      if (receiptsBucket) {
+        return receiptsBucket;
+      }
+
+      const { error: createError } = await supabase.storage.createBucket(RECEIPTS_BUCKET, {
+        public: false,
+      });
+      if (createError) throw createError;
+
+      return { name: RECEIPTS_BUCKET };
+    })().catch((err) => {
+      storageReadyPromise = null;
+      throw err;
+    });
+  }
+
+  return storageReadyPromise;
+}

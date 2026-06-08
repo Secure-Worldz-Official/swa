@@ -69,7 +69,13 @@ export default function EnrollmentPage() {
             }
 
             const regData = await regRes.json();
-            if (!regRes.ok) throw new Error(regData.message || 'Registration failed');
+            if (!regRes.ok) {
+                throw new Error(
+                    regData.error
+                        ? `${regData.message || 'Registration failed'}: ${regData.error}`
+                        : (regData.message || 'Registration failed')
+                );
+            }
 
             // 2. Upload screenshot
             const fileData = new FormData();
@@ -87,7 +93,13 @@ export default function EnrollmentPage() {
             }
 
             const uploadResult = await uploadRes.json();
-            if (!uploadRes.ok) throw new Error(uploadResult.message || 'Upload failed');
+            if (!uploadRes.ok) {
+                throw new Error(
+                    uploadResult.error
+                        ? `${uploadResult.message || 'Upload failed'}: ${uploadResult.error}`
+                        : (uploadResult.message || 'Upload failed')
+                );
+            }
 
             setSuccess(true);
             setStep(3);

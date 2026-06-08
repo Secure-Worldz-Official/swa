@@ -131,28 +131,52 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
     });
 
     try {
+        await ensureStorage();
+
         // Generate a unique filename for Supabase Storage
         const ext = path.extname(req.file.originalname) || '.png';
         const uniqueName = `${req.user.userId}/${order_id}-${Date.now()}${ext}`;
 
         // Upload the in-memory buffer to Supabase Storage
-        const { path: storagePath } = await uploadReceipt(
-            req.file.buffer,
-            uniqueName,
-            req.file.mimetype
-        );
+        let storagePath;
+        try {
+            const uploadResult = await uploadReceipt(
+                req.file.buffer,
+                uniqueName,
+                req.file.mimetype
+            );
+            storagePath = uploadResult.path;
+        } catch (uploadErr) {
+            console.error('Receipt Upload Error:', uploadErr);
+            return res.status(500).json({
+                message: 'Receipt upload failed',
+                error: uploadErr.message,
+            });
+        }
 
-        await createOrder({
-            order_id,
-            user_id: req.user.userId,
-            filename: storagePath,
-            status: 'pending',
-            created_at: new Date()
-        });
+        try {
+            await createOrder({
+                order_id,
+                user_id: req.user.userId,
+                filename: storagePath,
+                status: 'pending',
+                created_at: new Date()
+            });
+        } catch (orderErr) {
+            console.error('Order Record Error:', orderErr);
+            return res.status(500).json({
+                message: 'Order record creation failed',
+                error: orderErr.message,
+            });
+        }
+
         res.json({ orderId: order_id, receiptToken });
     } catch (err) {
         console.error('Upload Error:', err);
-        res.status(500).json({ message: 'Order creation failed' });
+        res.status(500).json({
+            message: 'Order creation failed',
+            error: err.message,
+        });
     }
 });
 

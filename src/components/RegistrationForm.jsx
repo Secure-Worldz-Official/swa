@@ -70,7 +70,13 @@ export default function RegistrationForm() {
 
             const regData = await regRes.json();
 
-            if (!regRes.ok) throw new Error(regData.message);
+            if (!regRes.ok) {
+                throw new Error(
+                    regData.error
+                        ? `${regData.message || 'Registration failed'}: ${regData.error}`
+                        : (regData.message || 'Registration failed')
+                );
+            }
 
             // 2. Upload Receipt
             const fileData = new FormData();
@@ -88,7 +94,13 @@ export default function RegistrationForm() {
             }
 
             const uploadResult = await uploadRes.json();
-            if (!uploadRes.ok) throw new Error(uploadResult.message || 'Upload failed');
+            if (!uploadRes.ok) {
+                throw new Error(
+                    uploadResult.error
+                        ? `${uploadResult.message || 'Upload failed'}: ${uploadResult.error}`
+                        : (uploadResult.message || 'Upload failed')
+                );
+            }
 
             setSuccess(true);
             setStep(3);
