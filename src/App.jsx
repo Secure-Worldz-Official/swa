@@ -22,6 +22,7 @@ import {
 import EnrollmentPage from './components/EnrollmentPage';
 import AdminPanel from './components/AdminPanel';
 import ExperienceCarousel from './components/ExperienceCarousel';
+import Footer from './components/Footer';
 
 function BrandLockup() {
   return (
@@ -323,9 +324,7 @@ function LandingPage() {
         </section>
 
         <FooterBanner />
-
-
-
+        <Footer />
       </div>
     </div>
   );
