@@ -131,14 +131,19 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
     });
 
     try {
-        await ensureStorage();
+        await ensureStorage().catch((err) => {
+            console.warn('Storage bootstrap skipped:', err.message);
+        });
 
         // Generate a unique filename for Supabase Storage
         const ext = path.extname(req.file.originalname) || '.png';
         const uniqueName = `${req.user.userId}/${order_id}-${Date.now()}${ext}`;
 
-        // Upload the in-memory buffer to Supabase Storage
-        let storagePath;
+        // Upload the in-memory buffer to Supabase Storage when possible.
+        // If storage is blocked by policy, keep the receipt payload in the order row
+        // so the enrollment still completes instead of failing hard.
+        let storagePath = uniqueName;
+        let receiptStoredInBucket = false;
         try {
             const uploadResult = await uploadReceipt(
                 req.file.buffer,
@@ -146,12 +151,10 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
                 req.file.mimetype
             );
             storagePath = uploadResult.path;
+            receiptStoredInBucket = true;
         } catch (uploadErr) {
-            console.error('Receipt Upload Error:', uploadErr);
-            return res.status(500).json({
-                message: 'Receipt upload failed',
-                error: uploadErr.message,
-            });
+            console.warn('Receipt upload fallback:', uploadErr.message);
+            storagePath = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
         }
 
         try {
@@ -170,7 +173,7 @@ app.post('/api/upload', userAuth, upload.single('receipt'), async (req, res) => 
             });
         }
 
-        res.json({ orderId: order_id, receiptToken });
+        res.json({ orderId: order_id, receiptToken, receiptStoredInBucket });
     } catch (err) {
         console.error('Upload Error:', err);
         res.status(500).json({
