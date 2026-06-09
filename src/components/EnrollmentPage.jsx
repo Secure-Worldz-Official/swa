@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { QRCodeSVG } from 'qrcode.react';
+import phonepeQr from '../assets/phonepe_qr.jpg';
 import { Link } from 'react-router-dom';
 import {
     ShieldLockIcon,
@@ -253,7 +253,7 @@ export default function EnrollmentPage() {
                                             <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 text-center shadow-inner">
                                                 <p className="text-[0.65rem] font-black text-cyber-red uppercase tracking-widest mb-3">Scan QR to pay ₹{amount}</p>
                                                 <div className="bg-white p-4 inline-block rounded-2xl shadow-sm mb-3">
-                                                    <QRCodeSVG value={upiLink} size={150} />
+                                                    <img src={phonepeQr} alt="Scan QR to pay" className="w-[150px] h-[150px] object-contain mx-auto" />
                                                 </div>
                                                 <p className="text-[0.78rem] font-bold text-gray-500">{upiId}</p>
                                             </div>
