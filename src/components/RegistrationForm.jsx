@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import phonepeQr from '../assets/phonepe_qr.jpg';
+// ✅ Custom QR Code Image — swap the file at this path to update the payment QR
+import customQrCodeImage from '../assets/phonepe_qr.jpg';
 import {
     ShieldLockIcon,
     LockSealIcon,
@@ -225,9 +226,9 @@ export default function RegistrationForm() {
                                 <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 text-center">
                                     <p className="text-[0.65rem] font-black text-cyber-red uppercase tracking-widest mb-4">Scan QR to pay ₹{amount}</p>
                                     <div className="bg-white p-4 inline-block rounded-2xl shadow-sm mb-4">
-                                        <img src={phonepeQr} alt="Scan QR to pay" className="w-[160px] h-[160px] object-contain mx-auto" />
+                                        <img src={customQrCodeImage} alt="Scan QR to pay" className="w-[160px] h-[160px] object-contain mx-auto" />
                                     </div>
-                                    <p className="text-[0.8rem] font-bold text-gray-600">{upiId}</p>
+                                    <p className="text-[0.85rem] font-black text-gray-600 tracking-wide">MS SECURE WORLDZ</p>
                                 </div>
 
                                 <div className="relative">
