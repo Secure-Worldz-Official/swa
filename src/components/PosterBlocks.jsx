@@ -15,28 +15,34 @@ import heroImage from '../assets/hero-hacker.png';
 
 function CyberHeroArtwork() {
   return (
-    <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="relative overflow-hidden rounded-[32px] border border-[#ececec] bg-[#090909] shadow-[0_22px_54px_rgba(0,0,0,0.12)]">
-        <div className="relative aspect-[1/1] overflow-hidden">
+    <div className="relative mx-auto w-full max-w-[610px]">
+      {/* Terminal-inspired frame keeps the original cyber image as the hero focal point. */}
+      <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#080808] shadow-[0_32px_90px_rgba(0,0,0,0.55)]">
+        <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.035] px-5 py-4">
+          <span className="h-3 w-3 rounded-full bg-cyber-red shadow-[0_0_18px_rgba(212,18,18,0.8)]" />
+          <span className="h-3 w-3 rounded-full bg-white/25" />
+          <span className="h-3 w-3 rounded-full bg-white/12" />
+          <span className="ml-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/38">
+            secure-worldz.exe
+          </span>
+        </div>
+
+        <div className="relative aspect-[1/1] overflow-hidden sm:aspect-[1.05/1]">
           <img
             src={heroImage}
-            alt="Cyber Hacker Hero"
-            className="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+            alt="Cybersecurity terminal hacker graphic"
+            className="h-full w-full object-cover transition-all duration-700 hover:scale-[1.025]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent opacity-60" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,18,18,0.15),transparent_70%)]" />
-        </div>
-      </div>
-
-      <div className="mt-4 flex flex-col items-center gap-2 sm:items-end sm:gap-2.5">
-        <div className="rounded-xl bg-cyber-red px-4 py-1.5 text-[0.78rem] font-black uppercase tracking-[0.1em] text-white shadow-[0_8px_25px_rgba(212,18,18,0.25)] sm:text-[0.88rem] border border-white/10">
-          READY TO
-        </div>
-        <div className="rounded-2xl bg-gradient-to-r from-cyber-red to-cyber-redDark px-6 py-2.5 text-[clamp(2.2rem,4vw,4.2rem)] font-black uppercase leading-none tracking-tight text-white shadow-[0_10px_30px_rgba(212,18,18,0.3)] border border-white/10">
-          BREAK IN
-        </div>
-        <div className="rotate-[-1deg] rounded-xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-4 py-2.5 text-[clamp(1rem,1.9vw,1.55rem)] font-black uppercase leading-none tracking-[0.05em] text-white shadow-[0_12px_25px_rgba(0,0,0,0.3)] border border-white/5">
-          TO CYBER?
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-45" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(212,18,18,0.16),transparent_58%)]" />
+          <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-cyber-red/25 bg-black/62 px-5 py-4 backdrop-blur-md">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-cyber-red">
+              cyber security initiated
+            </p>
+            <p className="mt-1 font-display text-[clamp(1.05rem,2.2vw,1.45rem)] font-black uppercase leading-tight text-white">
+              Learn. Defend. Dominate.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -64,13 +70,15 @@ export function HeroPreview() {
 
   return (
     <motion.figure
-      className="relative isolate mx-auto w-full max-w-[560px] lg:ml-auto"
+      className="relative isolate mx-auto w-full max-w-[640px] lg:ml-auto"
       initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.96, y: 18 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       whileHover={prefersReducedMotion ? undefined : { rotate: 0.4, scale: 1.01 }}
     >
-      <div className="absolute inset-0 -z-10 rounded-[44px] bg-[radial-gradient(circle_at_70%_18%,rgba(212,18,18,0.16),transparent_42%),radial-gradient(circle_at_50%_60%,rgba(0,0,0,0.06),transparent_55%)] blur-2xl" />
+      <div className="absolute -inset-8 -z-10 rounded-[48px] bg-[radial-gradient(circle_at_62%_22%,rgba(212,18,18,0.28),transparent_42%),radial-gradient(circle_at_50%_72%,rgba(212,18,18,0.12),transparent_48%)] blur-2xl" />
+      <div className="absolute -right-2 top-10 -z-10 h-28 w-28 rounded-full border border-cyber-red/25" />
+      <div className="absolute -bottom-3 -left-2 -z-10 h-20 w-20 rounded-full border border-white/10" />
       <CyberHeroArtwork />
     </motion.figure>
   );

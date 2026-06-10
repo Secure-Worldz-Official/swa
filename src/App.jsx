@@ -30,13 +30,13 @@ function BrandLockup() {
       <img
         src={brandLogo}
         alt="Secure Worldz Brand Logo"
-        className="h-10 w-10 shrink-0 object-contain rounded-lg border border-gray-100/10 shadow-sm"
+        className="h-11 w-11 shrink-0 rounded-xl border border-white/10 object-contain shadow-[0_10px_28px_rgba(0,0,0,0.35)]"
       />
       <div className="space-y-0.5 text-left">
-        <p className="font-display text-[0.92rem] leading-[1.18] font-black uppercase tracking-[0.12em] text-[#111]">
+        <p className="font-display text-[0.9rem] leading-[1.18] font-black uppercase tracking-[0.12em] text-white">
           LEARN WITH <span className="text-cyber-red">CYBER J</span><span className="cyber-ai-glow">AI</span>
         </p>
-        <p className="text-[0.68rem] font-semibold leading-[1.35] uppercase tracking-[0.22em] text-[#5a5a5a]">
+        <p className="text-[0.66rem] font-semibold leading-[1.35] uppercase tracking-[0.22em] text-white/52">
           FROM ZERO TO CYBER HERO
         </p>
       </div>
@@ -145,117 +145,118 @@ function LandingPage() {
   const stagger = prefersReducedMotion
     ? {}
     : { transition: { staggerChildren: 0.09, delayChildren: 0.05 } };
+  const navLinks = [
+    { label: 'Courses', href: '#pricing' },
+    { label: 'About Us', href: '#why' },
+    { label: 'Contact', href: '#footer' },
+    { label: 'Certificate Verification', href: '#why' },
+  ];
 
   return (
-    <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top,rgba(212,18,18,0.06),transparent_28%),linear-gradient(180deg,#ffffff_0%,#fbfbfb_100%)] text-[#111]">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.03)_1px,transparent_1px)] bg-[size:64px_64px] opacity-40" />
+    <div className="relative overflow-hidden bg-[#050505] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050505_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-35" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-8 sm:px-6 lg:px-8 lg:pb-28 lg:pt-10">
-        <header className="rounded-full border border-gray-150 bg-white/85 px-8 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.04)] backdrop-blur-md sticky top-6 z-50 transition-all duration-300">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+        <header className="sticky top-4 z-50 rounded-[28px] border border-white/10 bg-[#151515]/88 px-4 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 sm:px-6 lg:rounded-full lg:px-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <BrandLockup />
 
-            <div className="flex flex-wrap items-center gap-6 lg:gap-8">
-              <a
-                href="#why"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector('#why')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-[0.82rem] font-bold text-gray-500 hover:text-[#111] uppercase tracking-[0.15em] transition-all relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red hover:after:w-full after:transition-all after:duration-300"
-              >
-                Why join?
-              </a>
-              <a
-                href="#pricing"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-[0.82rem] font-bold text-gray-500 hover:text-[#111] uppercase tracking-[0.15em] transition-all relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red hover:after:w-full after:transition-all after:duration-300"
-              >
-                Offer & pricing
-              </a>
+            <nav className="flex flex-wrap items-center gap-x-5 gap-y-3 lg:ml-auto lg:justify-end lg:gap-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="relative py-1 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
+                >
+                  {link.label}
+                </a>
+              ))}
               <Link to="/enroll" className="no-underline">
                 <motion.span
-                  whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(212, 18, 18, 0.35)', backgroundColor: '#d41212' }}
+                  whileHover={{ scale: 1.04, boxShadow: '0 0 28px rgba(212, 18, 18, 0.42)', backgroundColor: '#d41212' }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center bg-black text-white px-7 py-3 rounded-full text-xs font-black uppercase tracking-widest border border-cyber-red/20 transition-all duration-300 cursor-pointer"
+                  className="inline-flex cursor-pointer items-center justify-center rounded-full border border-cyber-red/50 bg-cyber-red px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-all duration-300"
                 >
-                  Enroll Now
+                  Sign in
                 </motion.span>
               </Link>
-            </div>
+            </nav>
           </div>
         </header>
 
-        <section className="grid gap-16 py-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-20 lg:py-20">
+        <section className="grid min-h-[calc(100vh-118px)] gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
           <motion.div
-            className="space-y-10"
+            className="mx-auto max-w-2xl space-y-8 text-center lg:mx-0 lg:text-left"
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             <Reveal>
-              <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-[#e5e5e5] bg-white px-4 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.04)]">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-cyber-red/25 bg-cyber-red/10 px-4 py-3 shadow-[0_12px_36px_rgba(212,18,18,0.12)] backdrop-blur">
                 <ShieldLockIcon className="h-5 w-5 text-cyber-red" />
-                <span className="max-w-full text-[0.8rem] font-bold leading-[1.35] uppercase tracking-[0.16em] text-[#444]">
-                  LEARN WITH <span className="text-cyber-red">CYBER J</span><span className="cyber-ai-glow">AI</span> / FROM ZERO TO{' '}
-                  <span className="text-cyber-red">CYBER HERO</span>
+                <span className="max-w-full text-[0.76rem] font-bold leading-[1.35] uppercase tracking-[0.16em] text-white/74">
+                  Beginner-friendly cybersecurity training
                 </span>
               </div>
             </Reveal>
 
             <Reveal>
-              <div className="max-w-4xl text-left">
-                <h1 className="font-display text-[clamp(2.85rem,6.2vw,5.8rem)] leading-[1.1] font-black uppercase tracking-[-0.045em] text-[#101010]">
-                  <span className="block">CYBERSECURITY</span>
-                  <span className="block text-cyber-red">
-                    WITH <span className="cyber-ai-glow relative inline-block px-1">AI</span>
-                  </span>
+              <div>
+                <h1 className="font-display text-[clamp(2.65rem,6vw,5.9rem)] font-black uppercase leading-[1.02] tracking-[-0.035em] text-white">
+                  <span className="block">Master</span>
+                  <span className="block text-cyber-red">Cybersecurity</span>
+                  <span className="block">With AI</span>
                 </h1>
               </div>
             </Reveal>
 
             <Reveal>
-              <p className="max-w-2xl text-[1.06rem] text-left leading-8 text-[#4a4a4a] sm:text-[1.15rem]">
-                Master the skills. Build the future. <span className="font-semibold text-cyber-red">Be unstoppable.</span>
+              <p className="mx-auto max-w-xl text-[1.02rem] leading-8 text-white/68 sm:text-[1.14rem] lg:mx-0">
+                Build real defensive skills, understand attack patterns, and move from zero to cyber hero with a sharp practical roadmap.
               </p>
             </Reveal>
 
             <Reveal>
-              <div className="flex flex-col gap-4 sm:flex-row">
+              <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
                 <CTAButton to="/enroll" variant="solid">
-                  <span>Secure your seat now!</span>
+                  <span>GET STARTED</span>
                 </CTAButton>
-                <CTAButton href="#why" variant="ghost">
-                  <span>See why you should join</span>
-                </CTAButton>
+                <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
+                  Limited seats for the next live cohort
+                </p>
               </div>
             </Reveal>
 
             <Reveal>
-              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {heroStats.map((card) => (
-                  <StatCard
-                    key={card.label}
-                    label={card.label}
-                    value={card.value}
-                    prefix={card.prefix}
-                    struck={card.struck}
-                    tone={card.tone}
-                  />
+              <div className="grid gap-3 pt-2 text-left sm:grid-cols-3">
+                {['Hands-on labs', 'AI security tools', 'Career-ready basics'].map((item) => (
+                  <div key={item} className="border-l-2 border-cyber-red bg-white/[0.035] px-4 py-3">
+                    <p className="text-[0.76rem] font-black uppercase tracking-[0.14em] text-white/76">
+                      {item}
+                    </p>
+                  </div>
                 ))}
               </div>
             </Reveal>
           </motion.div>
 
-          <Reveal delay={0.08} className="lg:pl-4">
+          <Reveal delay={0.08} className="lg:pl-2">
             <HeroPreview />
           </Reveal>
         </section>
+      </div>
 
-        <section id="why" className="py-24 border-t border-[#eee] bg-[#fafafa]/30">
+      <div className="relative bg-[linear-gradient(180deg,#ffffff_0%,#fbfbfb_100%)] text-[#111]">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.03)_1px,transparent_1px)] bg-[size:64px_64px] opacity-40" />
+
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+        <section id="why" className="border-t border-[#eee] bg-[#fafafa]/30 py-24">
           <Reveal>
             <SectionHeading
               center
@@ -324,7 +325,10 @@ function LandingPage() {
         </section>
 
         <FooterBanner />
-        <Footer />
+        <div id="footer">
+          <Footer />
+        </div>
+        </div>
       </div>
     </div>
   );
