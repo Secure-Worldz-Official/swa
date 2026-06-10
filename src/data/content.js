@@ -13,11 +13,11 @@ import {
 export const footerFeatures = [
   {
     icon: BrainIcon,
-    label: 'AI-POWERED\nTOOLS',
+    label: 'AI POWERED\nTOOLS',
   },
   {
     icon: GlobeIcon,
-    label: 'REAL-WORLD\nSCENARIOS',
+    label: 'REAL WORLD\nSCENARIOS',
   },
   {
     icon: CertificateIcon,
@@ -71,12 +71,12 @@ export const reasonCards = [
       { text: '100% PRACTICAL', tone: 'black' },
       { text: 'LEARNING', tone: 'red' },
     ],
-    description: ['Hands-on labs,', 'real-world projects,', 'real skills.'],
+    description: ['Hands on labs,', 'real world projects,', 'real skills.'],
   },
   {
     number: '3',
     icon: CommunityIcon,
-    title: [{ text: 'COMMUNITY-FIRST', tone: 'red' }],
+    title: [{ text: 'COMMUNITY FIRST', tone: 'red' }],
     description: ['Learn together.', 'Grow together.', 'Win together.'],
   },
   {

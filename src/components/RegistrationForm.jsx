@@ -124,7 +124,7 @@ export default function RegistrationForm() {
                 </div>
                 <h2 className="text-4xl font-display font-black uppercase mb-4 tracking-tighter">Application Submitted!</h2>
                 <p className="text-gray-600 leading-relaxed max-w-md mx-auto mb-10">
-                    Your payment is being verified. You will receive an email confirmation within 2-4 hours with your login credentials.
+                    Your payment is being verified. You will receive an email confirmation within 2 to 4 hours with your login credentials.
                 </p>
                 <button
                     onClick={() => window.location.reload()}
