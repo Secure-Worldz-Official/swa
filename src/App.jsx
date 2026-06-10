@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, useParams } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { CheckIcon, ShieldLockIcon } from './components/Icons';
 import { HeroPreview, FooterBanner } from './components/PosterBlocks';
 import Reveal from './components/Reveal';
@@ -49,7 +48,7 @@ function SectionHeading({ eyebrow, title, description, center = false }) {
   );
 }
 
-function CTAButton({ children, variant = 'solid', href, to }) {
+function CTAButton({ children, variant = 'solid', href, to, className = '' }) {
   const base =
     'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[0.95rem] font-bold uppercase tracking-widest transition-all';
   const styles =
@@ -60,7 +59,7 @@ function CTAButton({ children, variant = 'solid', href, to }) {
   if (to) {
     return (
       <motion.div whileHover={{ y: -2 }} className="inline-block">
-        <Link to={to} className={`${base} ${styles}`}>
+        <Link to={to} className={`${base} ${styles} ${className}`}>
           {children}
         </Link>
       </motion.div>
@@ -75,136 +74,55 @@ function CTAButton({ children, variant = 'solid', href, to }) {
   };
 
   return (
-    <motion.a href={href} onClick={handleClick} whileHover={{ y: -2 }} className={`${base} ${styles}`}>
+    <motion.a href={href} onClick={handleClick} whileHover={{ y: -2 }} className={`${base} ${styles} ${className}`}>
       {children}
     </motion.a>
   );
 }
 
-function CourseDropdown() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const handlePointerDown = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('pointerdown', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={dropdownRef}
-      className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <motion.button
-        type="button"
-        onClick={() => setIsOpen((value) => !value)}
-        aria-haspopup="menu"
-        aria-expanded={isOpen}
-        whileHover={{ scale: 1.03, boxShadow: '0 0 28px rgba(212, 18, 18, 0.38)' }}
-        whileTap={{ scale: 0.98 }}
-        className="inline-flex cursor-pointer items-center justify-center gap-3 rounded-full border border-cyber-red/50 bg-cyber-red px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-all duration-300"
-      >
-        Explore Courses
-        <svg className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.button>
-
-      <AnimatePresence>
-        {isOpen ? (
-          <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 top-[calc(100%+14px)] z-50 w-[min(88vw,430px)] overflow-hidden rounded-[28px] border border-white/12 bg-[#111111]/88 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.55)] backdrop-blur-2xl"
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,18,18,0.18),transparent_38%)]" />
-            <div className="relative space-y-2">
-              {courses.map((course) => (
-                <Link
-                  key={course.id}
-                  to={`/courses/${course.id}`}
-                  onClick={() => setIsOpen(false)}
-                  className="group block rounded-3xl border border-white/8 bg-white/[0.035] p-4 transition-all duration-300 hover:border-cyber-red/40 hover:bg-white/[0.07]"
-                >
-                  <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-cyber-red">
-                    {course.eyebrow}
-                  </p>
-                  <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h3 className="font-display text-lg font-black uppercase leading-tight text-white">
-                        {course.title}
-                      </h3>
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/58">
-                        {course.hook}
-                      </p>
-                    </div>
-                    <span className="shrink-0 rounded-full border border-cyber-red/30 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-white/70 transition-colors group-hover:bg-cyber-red group-hover:text-white">
-                      View Course Details
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </div>
-  );
-}
-
 function SiteNavbar() {
-  const navLinks = [
-    { label: 'About Us', href: '#why' },
-    { label: 'Contact', href: '#footer' },
-    { label: 'Certificate Verification', href: '#why' },
-  ];
-
-  const scrollToSection = (href) => {
-    if (window.location.pathname !== '/') {
-      window.location.href = `/${href}`;
-      return;
-    }
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <header className="sticky top-4 z-50 rounded-[28px] border border-white/10 bg-[#151515]/88 px-4 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 sm:px-6 lg:rounded-full lg:px-8">
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <BrandLockup />
 
         <nav className="flex flex-wrap items-center gap-x-5 gap-y-3 lg:ml-auto lg:justify-end lg:gap-x-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              type="button"
-              onClick={() => scrollToSection(link.href)}
-              className="relative py-1 text-left text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
-            >
-              {link.label}
-            </button>
-          ))}
-          <CourseDropdown />
+          <Link
+            to="/courses"
+            className="rounded-full border border-cyber-red/50 bg-cyber-red px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(212,18,18,0.38)] active:scale-[0.98]"
+          >
+            Explore Courses
+          </Link>
+          <a
+            href="#why"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#why')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="relative py-1 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
+          >
+            About Us
+          </a>
+          <a
+            href="#footer"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="relative py-1 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
+          >
+            Contact
+          </a>
+          <a
+            href="#why"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#why')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="relative py-1 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
+          >
+            Certificate Verification
+          </a>
         </nav>
       </div>
     </header>
@@ -253,7 +171,7 @@ function LandingPage() {
 
             <Reveal>
               <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-                <CTAButton to="/courses/cybersecurity" variant="solid">
+                <CTAButton to="/courses" variant="solid">
                   <span>GET STARTED</span>
                 </CTAButton>
                 <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
@@ -298,45 +216,21 @@ function LandingPage() {
             <ExperienceCarousel />
           </section>
 
-          <section id="pricing" className="border-t border-gray-100 bg-gray-50/20 py-24">
+          <section className="border-t border-gray-100 bg-gray-50/20 py-24">
             <Reveal>
               <SectionHeading
                 center
-                eyebrow="Explore every learning path"
-                title={<>Choose the course that matches <span className="text-cyber-red">your next move</span></>}
-                description="Each course is built with clear guidance, practical assignments, and portfolio friendly outcomes."
+                eyebrow="Courses"
+                title={<>Browse the full <span className="text-cyber-red">course catalog</span></>}
+                description="Choose a track, then open its dedicated page for pricing, schedule, certificate, and hands on specifics."
               />
             </Reveal>
 
-            <Reveal delay={0.15}>
-              <div className="mt-16 grid gap-6 lg:grid-cols-3">
-                {courses.map((course) => (
-                  <article key={course.id} className="group relative overflow-hidden rounded-[28px] border border-gray-100 bg-white p-7 shadow-[0_15px_50px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-cyber-red/25 hover:shadow-[0_22px_65px_rgba(0,0,0,0.08)]">
-                    <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-cyber-red/5 transition-transform duration-500 group-hover:scale-110" />
-                    <p className="text-[0.65rem] font-black uppercase tracking-widest text-cyber-red">
-                      {course.eyebrow}
-                    </p>
-                    <h3 className="mt-5 font-display text-2xl font-black uppercase leading-tight text-black">
-                      {course.title}
-                    </h3>
-                    <p className="mt-4 text-sm leading-7 text-gray-500">
-                      {course.summary}
-                    </p>
-                    <div className="my-6 rounded-2xl border border-cyber-red/10 bg-cyber-red/5 px-4 py-3">
-                      <p className="text-sm font-black leading-7 text-cyber-red">
-                        {course.pricing}
-                      </p>
-                    </div>
-                    <Link
-                      to={`/courses/${course.id}`}
-                      className="inline-flex w-full items-center justify-center rounded-2xl bg-black px-5 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:bg-cyber-red"
-                    >
-                      View Course Details
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            </Reveal>
+            <div className="mt-12 flex justify-center">
+              <CTAButton to="/courses" variant="solid">
+                <span>View Course Catalog</span>
+              </CTAButton>
+            </div>
           </section>
 
           <FooterBanner />
@@ -349,12 +243,83 @@ function LandingPage() {
   );
 }
 
+function CoursesCatalogPage() {
+  return (
+    <div className="relative min-h-screen overflow-hidden bg-[#050505] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(212,18,18,0.18),transparent_28%),radial-gradient(circle_at_88%_12%,rgba(212,18,18,0.11),transparent_30%),linear-gradient(180deg,#151515_0%,#070707_52%,#050505_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-30" />
+
+      <main className="relative mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+        <SiteNavbar />
+
+        <section className="py-14 sm:py-16 lg:py-20">
+          <div className="max-w-4xl">
+            <p className="text-[0.75rem] font-black uppercase tracking-[0.22em] text-cyber-red">
+              Course Catalog
+            </p>
+            <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,5.6rem)] font-black uppercase leading-[1.02] text-white">
+              Three tracks. One clean path.
+            </h1>
+            <p className="mt-6 max-w-3xl text-[1.05rem] leading-9 text-white/68">
+              Browse the available tracks, compare the previews, and open the detail page for pricing, scheduling, and certificate information.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {courses.map((course) => (
+              <article
+                key={course.id}
+                className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyber-red/35 hover:bg-white/[0.06]"
+              >
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-cyber-red/5 transition-transform duration-500 group-hover:scale-110" />
+                <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-cyber-red">
+                  {course.eyebrow}
+                </p>
+                <h2 className="mt-5 font-display text-2xl font-black uppercase leading-tight text-white">
+                  {course.title}
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/64">
+                  {course.preview}
+                </p>
+                <div className="mt-6 space-y-3 rounded-[24px] border border-white/8 bg-black/20 p-5">
+                  <div>
+                    <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                      Duration
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-white/80">
+                      {course.duration}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                      Offer
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-white/80">
+                      {course.offerTag} {course.offerPrice}
+                    </p>
+                  </div>
+                </div>
+                <Link
+                  to={`/courses/${course.id}`}
+                  className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-cyber-red px-5 py-4 text-sm font-black uppercase tracking-widest text-white shadow-[0_18px_42px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark"
+                >
+                  View Course Details
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
 function CourseDetailPage() {
   const { courseId } = useParams();
   const course = courseMap[courseId];
 
   if (!course) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/courses" replace />;
   }
 
   return (
@@ -368,10 +333,10 @@ function CourseDetailPage() {
         <section className="grid gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-14 lg:py-20">
           <div>
             <Link
-              to="/"
+              to="/courses"
               className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-[0.72rem] font-black uppercase tracking-[0.16em] text-white/64 transition-all duration-300 hover:border-cyber-red/50 hover:text-white"
             >
-              Back to Home
+              Go Back to Courses
             </Link>
 
             <p className="mt-10 text-[0.75rem] font-black uppercase tracking-[0.22em] text-cyber-red">
@@ -399,18 +364,24 @@ function CourseDetailPage() {
                   Pricing
                 </p>
                 <p className="mt-3 text-lg font-black leading-8 text-white">
-                  {course.pricing}
+                  {course.pricingLabel} {course.originalPrice}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/72">
+                  {course.offerTag}: {course.offerPrice}
                 </p>
               </div>
               <div className="rounded-[24px] border border-white/10 bg-white/[0.045] p-5">
                 <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-white/48">
-                  Duration
+                  Duration and Schedule
                 </p>
                 <p className="mt-3 text-lg font-black leading-8 text-white">
                   {course.duration}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/58">
-                  {course.schedule}
+                  {course.scheduleLabel}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-white/58">
+                  {course.scheduleTime}
                 </p>
               </div>
             </div>
@@ -421,7 +392,10 @@ function CourseDetailPage() {
               What you will walk away with
             </p>
             <ul className="mt-6 space-y-4">
-              {course.outcomes.map((outcome) => (
+              {[
+                course.certificate,
+                ...course.outcomes,
+              ].map((outcome) => (
                 <li key={outcome} className="flex gap-3 rounded-2xl border border-white/8 bg-black/24 p-4">
                   <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyber-red text-white">
                     <CheckIcon className="h-3.5 w-3.5" />
@@ -443,7 +417,10 @@ function CourseDetailPage() {
 
         <section className="grid gap-6 pb-16 lg:grid-cols-3">
           {course.highlights.map((highlight) => (
-            <article key={highlight.title} className="rounded-[30px] border border-white/10 bg-white/[0.045] p-7 backdrop-blur transition-all duration-300 hover:border-cyber-red/35 hover:bg-white/[0.065]">
+            <article
+              key={highlight.title}
+              className="rounded-[30px] border border-white/10 bg-white/[0.045] p-7 backdrop-blur transition-all duration-300 hover:border-cyber-red/35 hover:bg-white/[0.065]"
+            >
               <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-cyber-red">
                 Detail
               </p>
@@ -466,9 +443,10 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/courses" element={<CoursesCatalogPage />} />
+        <Route path="/courses/:courseId" element={<CourseDetailPage />} />
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/enroll" element={<EnrollmentPage />} />
-        <Route path="/courses/:courseId" element={<CourseDetailPage />} />
       </Routes>
     </Router>
   );
