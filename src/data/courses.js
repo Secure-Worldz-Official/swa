@@ -5,7 +5,7 @@ export const courses = [
     title: 'Cybersecurity with AI',
     eyebrow: 'Enterprise defense bootcamp',
     preview:
-      'Master AI driven threat detection, live defense simulations, and practical automation for modern security teams.',
+      'Master AI driven threat detection and automate defensive workflows with live cyber operations training.',
     hook: 'Master AI driven threat detection and automate your defense mechanisms like an enterprise expert.',
     pricingLabel: 'Premium Package',
     originalPrice: '\u20B95,000',
@@ -17,7 +17,12 @@ export const courses = [
     timingTrack: '7:00 PM - 8:00 PM Daily',
     certificate: 'Verified Global Certificate of Completion',
     summary:
-      'A practical cyber program for learners who want guided labs, clear explanations, and real confidence with modern AI assisted security workflows.',
+      "Master AI-driven threat detection and learn to automate defensive workflows. Gain combat-level deployment skills by simulating live enterprise cyber attacks, scripting automated patches, and analyzing real-time threat patterns. You aren't just learning theory—you are breaking and building defense systems.",
+    timelinePoints: [
+      'Live tracking logs for daily guided execution',
+      'Industry simulators for real time defense scenarios',
+      'Certification parameters with verified completion',
+    ],
     highlights: [
       {
         title: 'Real Time Industry Experience',
@@ -47,7 +52,7 @@ export const courses = [
     title: 'Vibe Coding',
     eyebrow: 'AI app builder accelerator',
     preview:
-      'Stop fighting syntax errors and learn how to orchestrate full stack apps smoothly using natural language and AI code agents.',
+      'Stop fighting syntax errors and learn to architect production ready applications fast using AI code agents.',
     hook: 'Stop fighting syntax errors. Learn how to orchestrate full stack apps smoothly using natural language and cutting edge AI code agents.',
     pricingLabel: 'Original Price',
     originalPrice: '\u20B92,500',
@@ -59,7 +64,12 @@ export const courses = [
     timingTrack: 'Flexible Hands On Milestones',
     certificate: 'Specialized Vibe Developer Badge and Certificate of Completion',
     summary:
-      'A builder focused program for students, founders, creators, and operators who want to turn ideas into real software without getting stuck in repetitive syntax work.',
+      'Stop getting stuck in syntax hell. Learn to architect full stack web platforms and production ready applications fast by orchestrating advanced AI code agents. Master the art of structured system logic, codebase guidance, and prompt pipelines while shipping 3 major projects straight to your GitHub portfolio.',
+    timelinePoints: [
+      'Flexible hands on milestones for guided project work',
+      '3 live MVP portfolio projects with review ready output',
+      'Specialized Vibe Developer Badge and certificate confirmation',
+    ],
     highlights: [
       {
         title: 'The Future of Development',
@@ -101,7 +111,12 @@ export const courses = [
     timingTrack: 'Live Weekend Workshops',
     certificate: 'Certified Prompt Engineer Credentials and downloadable framework assets',
     summary:
-      'A focused masterclass for professionals, students, and creators who want stronger outputs from AI tools through structure, context, evaluation, and repeatable workflows.',
+      'Unlock the hidden layers of Large Language Models. Move past basic questions and master advanced reasoning frameworks, chain-of-thought engineering, zero-shot/few-shot templates, and automated API enterprise workflows. Learn to design precise communication blueprints for corporate data environments.',
+    timelinePoints: [
+      'Live weekend workshops with structured exercises',
+      'Advanced reasoning templates and workflow design',
+      'Certified Prompt Engineer credentials with assets',
+    ],
     highlights: [
       {
         title: 'Advanced Frameworks',

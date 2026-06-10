@@ -9,9 +9,20 @@ function MetricRow({ title, value }) {
       <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/42">
         {title}
       </p>
-      <p className="mt-2 text-sm font-semibold leading-6 text-white/82">
+      <p className="mt-2 text-sm font-semibold leading-6 text-white/80">
         {value}
       </p>
+    </div>
+  );
+}
+
+function ChecklistItem({ text }) {
+  return (
+    <div className="flex gap-4 rounded-[24px] border border-white/10 bg-white/[0.045] p-5 backdrop-blur transition-colors hover:border-cyber-red/35 hover:bg-white/[0.06]">
+      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyber-red text-white">
+        <CheckIcon className="h-4 w-4" />
+      </span>
+      <p className="text-sm leading-7 text-white/72 sm:text-[0.98rem]">{text}</p>
     </div>
   );
 }
@@ -23,6 +34,13 @@ export default function CourseDetailPage() {
   if (!course) {
     return <Navigate to="/courses" replace />;
   }
+
+  const timelineItems = [
+    course.duration,
+    course.timingTrack,
+    ...(course.timelinePoints ?? []),
+    course.certificate,
+  ];
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0F19] text-white">
@@ -68,31 +86,16 @@ export default function CourseDetailPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-cyber-red/35 bg-cyber-red/10 text-cyber-red">
-                  <ClockIcon className="h-4.5 w-4.5" />
+                  <ClockIcon className="h-4 w-4" />
                 </span>
                 <p className="text-[0.72rem] font-black uppercase tracking-[0.18em] text-white/50">
-                  Course Timeline and Core Value Propositions
+                  Course Timeline and Value Propositions
                 </p>
               </div>
 
               <div className="grid gap-4">
-                {[
-                  course.duration,
-                  `${course.scheduleLabel} ${course.scheduleTime}`,
-                  'Real time industry labs with practical enterprise attack simulation',
-                  course.certificate,
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex gap-4 rounded-[24px] border border-white/10 bg-white/[0.045] p-5 backdrop-blur transition-colors hover:border-cyber-red/35 hover:bg-white/[0.06]"
-                  >
-                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyber-red text-white">
-                      <CheckIcon className="h-4 w-4" />
-                    </span>
-                    <p className="text-sm leading-7 text-white/72 sm:text-[0.98rem]">
-                      {item}
-                    </p>
-                  </div>
+                {timelineItems.map((item) => (
+                  <ChecklistItem key={item} text={item} />
                 ))}
               </div>
             </div>
@@ -110,7 +113,7 @@ export default function CourseDetailPage() {
                     <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/40">
                       Original Price
                     </p>
-                    <p className="text-2xl font-black text-white/48 line-through">
+                    <p className="text-2xl font-black text-white/50 line-through">
                       {course.originalPrice}
                     </p>
                   </div>
@@ -131,8 +134,10 @@ export default function CourseDetailPage() {
               <div className="mt-6 grid gap-4">
                 <MetricRow title="Duration Metric" value={course.duration} />
                 <MetricRow title="Timing Track" value={course.timingTrack} />
-                <MetricRow title="Experience Mode" value="Hands on Real time Experience" />
-                <MetricRow title="Certification" value={course.certificate} />
+                <MetricRow
+                  title="Credentials"
+                  value={course.certificate}
+                />
               </div>
 
               <Link
@@ -141,27 +146,29 @@ export default function CourseDetailPage() {
               >
                 ENROLL NOW
               </Link>
+
+              <div className="mt-6 rounded-[28px] border border-white/10 bg-white/[0.045] p-4">
+                <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">
+                  Your Mentor
+                </p>
+                <div className="mt-4 flex items-center gap-4">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-cyber-red/35 bg-[radial-gradient(circle_at_30%_30%,rgba(212,18,18,0.34),rgba(255,255,255,0.06)_55%,rgba(0,0,0,0.2)_100%)] shadow-[0_0_0_6px_rgba(212,18,18,0.08)]">
+                    <span className="text-lg font-black tracking-[0.12em] text-white">
+                      CJ
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-base font-black uppercase tracking-[0.1em] text-white">
+                      Cyber Jai
+                    </p>
+                    <p className="mt-1 text-sm text-white/60">
+                      Cybersecurity Engineer
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </aside>
-        </section>
-
-        <section className="grid gap-6 pb-16 lg:grid-cols-3">
-          {course.highlights.map((highlight) => (
-            <article
-              key={highlight.title}
-              className="rounded-[30px] border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur transition-all duration-300 hover:border-cyber-red/35 hover:bg-white/[0.065]"
-            >
-              <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-cyber-red">
-                Detail
-              </p>
-              <h2 className="mt-4 font-display text-2xl font-black uppercase leading-tight text-white">
-                {highlight.title}
-              </h2>
-              <p className="mt-5 text-sm leading-7 text-white/66">
-                {highlight.body}
-              </p>
-            </article>
-          ))}
         </section>
       </main>
     </div>
