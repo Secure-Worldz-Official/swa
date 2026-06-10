@@ -14,6 +14,7 @@ export const courses = [
     duration: '1 Month Intensive Bootcamp',
     scheduleLabel: 'Daily 1 Hour Live Tracker',
     scheduleTime: '7:00 PM to 8:00 PM',
+    timingTrack: '7:00 PM - 8:00 PM Daily',
     certificate: 'Verified Global Certificate of Completion',
     summary:
       'A practical cyber program for learners who want guided labs, clear explanations, and real confidence with modern AI assisted security workflows.',
@@ -55,6 +56,7 @@ export const courses = [
     duration: '3 Week Rapid Accelerator',
     scheduleLabel: 'Flexible Hands On Project Timeline',
     scheduleTime: 'Self paced project workflow with guided checkpoints',
+    timingTrack: 'Flexible Hands On Milestones',
     certificate: 'Specialized Vibe Developer Badge and Certificate of Completion',
     summary:
       'A builder focused program for students, founders, creators, and operators who want to turn ideas into real software without getting stuck in repetitive syntax work.',
@@ -96,6 +98,7 @@ export const courses = [
     duration: '2 Week Masterclass',
     scheduleLabel: 'Live Interactive Weekend Workshops',
     scheduleTime: 'Weekend sessions with live exercises',
+    timingTrack: 'Live Weekend Workshops',
     certificate: 'Certified Prompt Engineer Credentials and downloadable framework assets',
     summary:
       'A focused masterclass for professionals, students, and creators who want stronger outputs from AI tools through structure, context, evaluation, and repeatable workflows.',
