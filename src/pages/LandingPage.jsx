@@ -1,5 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ShieldLockIcon } from '../components/Icons';
 import { FooterBanner, HeroPreview } from '../components/PosterBlocks';
@@ -51,55 +50,41 @@ function CTAButton({ children, variant = 'solid', to }) {
   );
 }
 
-function HeroLaunchButton({ isHacked, onLaunch }) {
+/**
+ * GET STARTED — smooth-scroll anchor.
+ * Clicking scrolls to the #why section with no page navigation or overlay.
+ * scroll-behavior: smooth is already set on <html> in index.css.
+ */
+function GetStartedButton() {
+  function handleClick(e) {
+    e.preventDefault();
+    const target = document.getElementById('why');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   return (
     <button
       type="button"
-      onClick={onLaunch}
-      disabled={isHacked}
+      onClick={handleClick}
       style={{ fontSize: 'var(--text-sm)' }}
-      className="group inline-flex items-center gap-3 rounded-full bg-cyber-red font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] disabled:cursor-wait disabled:opacity-95 px-[clamp(1.25rem,3vw,2rem)] py-[clamp(0.75rem,1.5vw,1rem)]"
+      className="group inline-flex items-center gap-3 rounded-full bg-cyber-red font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] px-[clamp(1.25rem,3vw,2rem)] py-[clamp(0.75rem,1.5vw,1rem)]"
+      aria-label="Scroll to Why You Should Join section"
     >
       <span>GET STARTED</span>
       <span className="inline-block translate-x-0 transition-transform duration-300 group-hover:translate-x-2">
-        &rarr;
+        &darr;
       </span>
     </button>
   );
 }
 
 export default function LandingPage() {
-  const navigate = useNavigate();
   const prefersReducedMotion = useReducedMotion();
-  const [isHacked, setIsHacked] = useState(false);
   const stagger = prefersReducedMotion
     ? {}
     : { transition: { staggerChildren: 0.09, delayChildren: 0.05 } };
-
-  const slogans = useMemo(
-    () => [
-      {
-        text: 'Defending Pixels. Securing Futures.',
-      },
-      {
-        text: 'Where AI Meets Absolute Cyber Defense.',
-        highlight: 'Absolute Cyber Defense',
-      },
-      {
-        text: 'Decentralize Threats. Master the Matrix.',
-        highlight: 'Master the Matrix',
-      },
-    ],
-    []
-  );
-
-  function handleLaunch() {
-    if (isHacked) return;
-    setIsHacked(true);
-    window.setTimeout(() => {
-      navigate('/courses');
-    }, 900);
-  }
 
   return (
     <div className="relative w-full overflow-x-hidden bg-[#050508] text-white">
@@ -109,21 +94,7 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute left-[-8rem] top-24 h-[32rem] w-[32rem] rounded-full bg-red-900/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-[-10rem] top-44 h-[36rem] w-[36rem] rounded-full bg-red-900/10 blur-[120px]" />
 
-      {isHacked ? (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black pointer-events-none">
-          <div className="relative flex h-full w-full flex-col items-center justify-center animate-cyber-glitch">
-            <div className="animate-scan" />
-            <div className="space-y-4 px-4 text-center font-mono select-none">
-              <h2 className="glitch-text mb-4 text-3xl font-black uppercase tracking-[0.18em] text-cyber-red sm:text-5xl">
-                DECRYPTING BOOTCAMP...
-              </h2>
-              <p className="text-[0.8rem] uppercase tracking-[0.25em] text-white/50 sm:text-[0.95rem]">
-                ACCESS INTRUSION CONFIRMED
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {/* Glitch overlay removed — GET STARTED now smooth-scrolls to #why */
 
       {/*
        * fluid-container: max-width 90rem, clamp() horizontal padding.
@@ -182,37 +153,23 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <div className="flex flex-col items-center space-y-[clamp(1rem,2vw,1.5rem)] text-center">
-                <HeroLaunchButton isHacked={isHacked} onLaunch={handleLaunch} />
+              {/*
+               * Minimal CTA block — just the button + a single understated
+               * micro-copy line. The noisy slogan pills are removed so the
+               * hero breathes and the eye lands cleanly on the button.
+               */}
+              <div className="flex flex-col items-center gap-4 text-center">
+                <GetStartedButton />
 
-                <p style={{ fontSize: 'var(--text-xs)' }} className="text-center font-semibold uppercase tracking-[0.16em] text-white/42">
-                  Limited seats for the next live cohort
+                {/* Subtle scroll hint — replaces the cluttered pill rows */}
+                <p
+                  style={{ fontSize: 'var(--text-xs)' }}
+                  className="flex items-center gap-2 font-semibold uppercase tracking-[0.18em] text-white/35"
+                >
+                  <span className="inline-block h-px w-6 bg-white/20" />
+                  Limited seats · Next live cohort
+                  <span className="inline-block h-px w-6 bg-white/20" />
                 </p>
-
-                <div className="my-4 flex w-full max-w-2xl flex-col items-center gap-3">
-                  {slogans.map((item, index) => {
-                    const parts = item.highlight ? item.text.split(item.highlight) : [item.text];
-                    return (
-                      <div
-                        key={item.text}
-                        className={`w-full rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-center font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm ${
-                          index === 0 ? 'rotate-[-1deg]' : index === 1 ? 'rotate-[0.75deg]' : 'rotate-[-0.5deg]'
-                        }`}
-                        style={{ fontSize: 'var(--text-xs)' }}
-                      >
-                        {item.highlight ? (
-                          <>
-                            {parts[0]}
-                            <span className="text-cyber-red">{item.highlight}</span>
-                            {parts[1]}
-                          </>
-                        ) : (
-                          item.text
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
               </div>
             </Reveal>
           </motion.div>
