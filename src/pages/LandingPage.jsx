@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ShieldLockIcon } from '../components/Icons';
 import { FooterBanner, HeroPreview } from '../components/PosterBlocks';
@@ -42,17 +43,70 @@ function CTAButton({ children, variant = 'solid', to }) {
   );
 }
 
+function HeroLaunchButton({ launching, onLaunch }) {
+  return (
+    <button
+      type="button"
+      onClick={onLaunch}
+      disabled={launching}
+      className="group inline-flex items-center gap-3 rounded-full bg-cyber-red px-8 py-4 text-[0.95rem] font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] disabled:cursor-wait disabled:opacity-95"
+    >
+      <span>GET STARTED</span>
+      <span className="inline-flex translate-x-0 transition-transform duration-300 group-hover:translate-x-1">
+        &rarr;
+      </span>
+    </button>
+  );
+}
+
 export default function LandingPage() {
+  const navigate = useNavigate();
   const prefersReducedMotion = useReducedMotion();
+  const [launching, setLaunching] = useState(false);
   const stagger = prefersReducedMotion
     ? {}
     : { transition: { staggerChildren: 0.09, delayChildren: 0.05 } };
 
+  const slogans = useMemo(
+    () => [
+      {
+        text: 'Defending Pixels. Securing Futures.',
+      },
+      {
+        text: 'Where AI Meets Absolute Cyber Defense.',
+        highlight: 'Absolute Cyber Defense',
+      },
+      {
+        text: 'Decentralize Threats. Master the Matrix.',
+        highlight: 'Master the Matrix',
+      },
+    ],
+    []
+  );
+
+  function handleLaunch() {
+    if (launching) return;
+    setLaunching(true);
+    window.setTimeout(() => {
+      navigate('/courses');
+    }, 500);
+  }
+
   return (
-    <div className="relative overflow-hidden bg-[#050505] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050505_100%)]" />
+    <div className="relative overflow-hidden bg-[#050508] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050508_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-35" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
+      <div className="pointer-events-none absolute left-[-8rem] top-24 h-[32rem] w-[32rem] rounded-full bg-red-900/10 blur-[120px]" />
+      <div className="pointer-events-none absolute right-[-10rem] top-44 h-[36rem] w-[36rem] rounded-full bg-red-900/10 blur-[120px]" />
+
+      {launching ? (
+        <div className="cyber-launch-overlay pointer-events-none fixed inset-0 z-[90]">
+          <div className="cyber-launch-ripple absolute inset-0" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:44px_44px] opacity-20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,18,18,0.22),transparent_38%)]" />
+        </div>
+      ) : null}
 
       <div className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
         <SiteNavbar />
@@ -89,12 +143,36 @@ export default function LandingPage() {
 
             <Reveal>
               <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-                <CTAButton to="/courses" variant="solid">
-                  <span>GET STARTED</span>
-                </CTAButton>
+                <HeroLaunchButton launching={launching} onLaunch={handleLaunch} />
                 <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
                   Limited seats for the next live cohort
                 </p>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-3 lg:mx-0">
+                {slogans.map((item, index) => {
+                  const parts = item.highlight ? item.text.split(item.highlight) : [item.text];
+                  return (
+                    <div
+                      key={item.text}
+                      className={`rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-left text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm ${
+                        index === 0 ? 'rotate-[-1deg]' : index === 1 ? 'rotate-[0.75deg]' : 'rotate-[-0.5deg]'
+                      }`}
+                    >
+                      {item.highlight ? (
+                        <>
+                          {parts[0]}
+                          <span className="text-cyber-red">{item.highlight}</span>
+                          {parts[1]}
+                        </>
+                      ) : (
+                        item.text
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </Reveal>
           </motion.div>

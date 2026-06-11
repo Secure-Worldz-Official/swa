@@ -66,3 +66,60 @@
   display: inline-block;
 }
 
+@keyframes cyberGlitch {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.01);
+    filter: blur(0.5px);
+  }
+  45% {
+    opacity: 0.92;
+    transform: scale(1.03) skewX(-1deg);
+  }
+  70% {
+    opacity: 0.78;
+    transform: scale(1.01) skewX(1deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(2px);
+  }
+}
+
+@keyframes cyberRipple {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@layer components {
+  .cyber-launch-overlay {
+    background:
+      radial-gradient(circle at center, rgba(212, 18, 18, 0.24), transparent 34%),
+      linear-gradient(180deg, rgba(5, 5, 8, 0.96), rgba(5, 5, 8, 0.98));
+    animation: cyberGlitch 500ms ease both;
+  }
+
+  .cyber-launch-ripple {
+    background:
+      radial-gradient(circle at center, rgba(255, 0, 0, 0.18), transparent 20%),
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 42%);
+    animation: cyberRipple 500ms ease both;
+    mix-blend-mode: screen;
+  }
+}
+
