@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { CheckIcon, ClockIcon } from '../components/Icons';
+import { CheckIcon, ClockIcon, ShieldLockIcon } from '../components/Icons';
 import SiteNavbar from '../components/SiteNavbar';
 import { courseMap } from '../data/courses';
 import mentorPhoto from '../assets/mentor_photo.jpg';
@@ -19,7 +19,7 @@ function FeatureChip({ text }) {
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[0.72rem] font-black uppercase tracking-[0.14em] text-white/75">
       <span className="flex h-4 w-4 items-center justify-center rounded-full bg-cyber-red text-white">
-        <CheckIcon className="h-2.5 w-2.5" />
+        <ShieldLockIcon className="h-2.5 w-2.5" />
       </span>
       <span className="whitespace-nowrap">{text}</span>
     </div>
