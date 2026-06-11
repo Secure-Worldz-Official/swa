@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ClockIcon, CertificateIcon, GlobeIcon, ShieldLockIcon } from '../components/Icons';
-import { FooterBanner } from '../components/PosterBlocks';
+import { FooterBanner, HeroPreview } from '../components/PosterBlocks';
 import Reveal from '../components/Reveal';
 import SiteNavbar from '../components/SiteNavbar';
 import ExperienceCarousel from '../components/ExperienceCarousel';
@@ -57,9 +57,9 @@ export default function LandingPage() {
       <div id="top" className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
         <SiteNavbar theme="light" />
 
-        <section className="flex min-h-[calc(100vh-120px)] items-center justify-center py-14 sm:py-16 lg:py-20">
+        <section className="grid min-h-[calc(100vh-120px)] gap-14 py-14 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-10 lg:py-20">
           <motion.div
-            className="mx-auto flex max-w-5xl flex-col items-center text-center"
+            className="mx-auto flex max-w-2xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
             initial="hidden"
             animate="visible"
             variants={stagger}
@@ -97,7 +97,7 @@ export default function LandingPage() {
                 <CTAButton to="/courses" variant="hero">
                   <span>GET STARTED</span>
                 </CTAButton>
-                <p className="max-w-[24rem] text-center text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-black/42">
+                <p className="max-w-[24rem] text-center text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-black/42 lg:text-left">
                   Limited seats for the next live cohort
                 </p>
               </div>
@@ -122,6 +122,10 @@ export default function LandingPage() {
               </div>
             </Reveal>
           </motion.div>
+
+          <Reveal delay={0.08} className="mx-auto w-full max-w-[640px] lg:mx-0 lg:justify-self-end">
+            <HeroPreview />
+          </Reveal>
         </section>
       </div>
 

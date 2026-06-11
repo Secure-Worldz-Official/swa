@@ -33,7 +33,9 @@ export default function SiteNavbar({ theme = 'dark' }) {
             src={brandLogo}
             alt="Secure Worldz Brand Logo"
             className={`h-11 w-11 shrink-0 rounded-xl object-contain ${
-              light ? 'border border-black/10 shadow-[0_10px_28px_rgba(0,0,0,0.08)]' : 'border border-white/10 shadow-[0_10px_28px_rgba(0,0,0,0.35)]'
+              light
+                ? 'border border-black/10 shadow-[0_10px_28px_rgba(0,0,0,0.08)]'
+                : 'border border-white/10 shadow-[0_10px_28px_rgba(0,0,0,0.35)]'
             }`}
           />
           <div className="space-y-0.5 text-left">
@@ -64,7 +66,7 @@ export default function SiteNavbar({ theme = 'dark' }) {
                 <NavIcon label="X" light />
               </a>
               <a href="#top" aria-label="Theme" className="inline-flex">
-                <NavIcon label="◐" light />
+                <NavIcon label="T" light />
               </a>
             </>
           ) : (
