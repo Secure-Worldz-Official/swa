@@ -144,39 +144,60 @@ export default function CourseDetailPage() {
                 ENROLL NOW
               </Link>
 
-              <div className="mt-6 rounded-[28px] border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">
-                  Your Mentor
-                </p>
-                <div className="mt-4 grid gap-4 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-                  <div className="relative mx-auto h-44 w-44 shrink-0 sm:h-48 sm:w-48 lg:mx-0">
-                    <div className="absolute inset-0 -m-1.5 rounded-[46%_54%_58%_42%/48%_42%_58%_52%] border-[5px] border-cyber-red shadow-[0_0_0_6px_rgba(212,18,18,0.12)]" />
-                    <div className="relative h-full w-full overflow-hidden rounded-[46%_54%_58%_42%/48%_42%_58%_52%] bg-[#f5f5f5]">
+              <div className="mt-6 rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.04))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">
+                    Mentor Spotlight
+                  </p>
+                  <span className="rounded-full border border-cyber-red/25 bg-cyber-red/10 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.18em] text-cyber-red">
+                    Live Mentor
+                  </span>
+                </div>
+
+                <div className="mt-4 grid gap-5 sm:grid-cols-[150px_1fr] sm:items-center">
+                  <div className="relative mx-auto h-36 w-36 shrink-0 sm:h-40 sm:w-40 lg:mx-0">
+                    <div className="absolute inset-0 -m-2 rounded-[42%_58%_56%_44%/48%_40%_60%_52%] border-[5px] border-cyber-red shadow-[0_0_0_10px_rgba(212,18,18,0.08)]" />
+                    <div className="absolute inset-[8px] rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[radial-gradient(circle_at_30%_30%,rgba(212,18,18,0.12),rgba(255,255,255,0.03)_52%,rgba(0,0,0,0.06)_100%)]" />
+                    <div className="relative h-full w-full overflow-hidden rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[#12151d]">
                       <img
                         src={mentorPhoto}
                         alt="Jaiganesh Lakshmanan"
-                        className="h-full w-full object-cover object-top"
+                        className="h-full w-full object-cover object-center"
                       />
                     </div>
                   </div>
 
                   <div className="min-w-0 space-y-3">
-                    <p className="text-base font-black leading-6 text-white sm:text-lg">
-                      Hi, My name is{' '}
-                      <span className="text-cyber-red">Jaiganesh Lakshmanan</span>, I
-                      am your mentor
+                    <p className="text-[0.82rem] font-black uppercase tracking-[0.22em] text-white/55">
+                      Cybersecurity leadership mentor
                     </p>
-                    <p className="text-[0.92rem] font-black uppercase tracking-[0.12em] text-cyber-red">
-                      Introduction
+                    <h3 className="text-[1.35rem] font-black leading-tight text-white sm:text-[1.6rem]">
+                      <span className="text-cyber-red">Jaiganesh Lakshmanan</span>
+                    </h3>
+                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/65">
+                      Cybersecurity Specialist
+                      <span className="px-2 text-cyber-red" aria-hidden="true">
+                        &middot;
+                      </span>
+                      CEO and Founder, Secure Worldz
                     </p>
-                    <p className="text-sm leading-7 text-white/62 sm:text-[0.96rem]">
-                      Cyber security specialist, CEO and founder of Secure Worldz.
-                      I help learners build a practical mindset for real world
-                      defense, response, and security leadership.
+                    <p className="max-w-[32rem] text-sm leading-7 text-white/70 sm:text-[0.96rem]">
+                      A hands on mentor focused on practical defense strategy,
+                      security leadership, and real world execution. He helps
+                      learners think like defenders and build with confidence.
                     </p>
-                    <p className="inline-flex border-b border-white/20 pb-1 text-sm font-medium text-cyber-red">
-                      Cyber Security Specialist & CEO, Secure Worldz
-                    </p>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {['Security Strategy', 'Industry Perspective', 'Founder Led Mentorship'].map(
+                        (item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/72"
+                          >
+                            {item}
+                          </span>
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
