@@ -94,7 +94,7 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute left-[-8rem] top-24 h-[32rem] w-[32rem] rounded-full bg-red-900/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-[-10rem] top-44 h-[36rem] w-[36rem] rounded-full bg-red-900/10 blur-[120px]" />
 
-      {/* Glitch overlay removed — GET STARTED now smooth-scrolls to #why */
+      {/* Glitch overlay removed — GET STARTED now smooth-scrolls to #why */}
 
       {/*
        * fluid-container: max-width 90rem, clamp() horizontal padding.
