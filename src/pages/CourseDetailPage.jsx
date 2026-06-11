@@ -160,7 +160,7 @@ export default function CourseDetailPage() {
                   <img
                     src={mentorPhoto}
                     alt="Jaiganesh Lakshmanan"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
 
