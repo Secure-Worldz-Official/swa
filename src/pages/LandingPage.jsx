@@ -53,7 +53,7 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.045)_1px,transparent_1px)] bg-[size:72px_72px] opacity-45" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/90 to-transparent" />
       <div id="top" className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
-        <SiteNavbar />
+        <SiteNavbar theme="light" />
 
         <section className="flex min-h-[calc(100vh-120px)] items-center justify-center py-14 sm:py-16 lg:py-20">
           <motion.div
@@ -101,17 +101,6 @@ export default function LandingPage() {
               </div>
             </Reveal>
 
-            <Reveal>
-              <div className="grid gap-3 pt-2 text-left sm:grid-cols-3">
-                {['Hands on labs', 'AI security tools', 'Career ready basics'].map((item) => (
-                  <div key={item} className="border-l-2 border-cyber-red bg-white/[0.035] px-4 py-3">
-                    <p className="text-[0.76rem] font-black uppercase tracking-[0.14em] text-white/76">
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </motion.div>
         </section>
       </div>
