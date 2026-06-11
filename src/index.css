@@ -2,13 +2,50 @@
 @config "../tailwind.config.js";
 
 @layer base {
+  /* ─── Fluid Design Tokens ───────────────────────────────────────────────────
+   * All clamp() values scale linearly between:
+   *   min  → 320 px  (small mobile)
+   *   max  → 2560 px (4K ultra-wide)
+   * Formula used: clamp(min, preferred-vw, max)
+   * This eliminates every hardcoded breakpoint jump for typography & spacing.
+   * ──────────────────────────────────────────────────────────────────────── */
   :root {
     color-scheme: light;
+
+    /* ── Typography scale (fluid) ── */
+    --text-xs:   clamp(0.65rem,  0.62rem + 0.14vw, 0.78rem);  /* ~10–12.5 px  */
+    --text-sm:   clamp(0.75rem,  0.70rem + 0.22vw, 0.95rem);  /* ~12–15.2 px  */
+    --text-base: clamp(0.92rem,  0.85rem + 0.30vw, 1.10rem);  /* ~14.7–17.6 px*/
+    --text-lg:   clamp(1.05rem,  0.95rem + 0.44vw, 1.30rem);  /* ~16.8–20.8 px*/
+    --text-xl:   clamp(1.15rem,  1.00rem + 0.64vw, 1.50rem);  /* ~18.4–24 px  */
+    --text-2xl:  clamp(1.30rem,  1.10rem + 0.88vw, 1.80rem);  /* ~20.8–28.8 px*/
+    --text-3xl:  clamp(1.50rem,  1.20rem + 1.30vw, 2.20rem);  /* ~24–35.2 px  */
+    --text-4xl:  clamp(1.80rem,  1.40rem + 1.74vw, 2.75rem);  /* ~28.8–44 px  */
+    --text-5xl:  clamp(2.10rem,  1.55rem + 2.40vw, 3.50rem);  /* ~33.6–56 px  */
+    --text-6xl:  clamp(2.60rem,  1.80rem + 3.46vw, 4.50rem);  /* ~41.6–72 px  */
+    --text-hero: clamp(2.80rem,  1.70rem + 4.80vw, 5.50rem);  /* ~44.8–88 px  */
+
+    /* ── Fluid spacing scale ── */
+    --space-1:  clamp(0.25rem, 0.20rem + 0.22vw, 0.50rem);
+    --space-2:  clamp(0.50rem, 0.40rem + 0.44vw, 0.85rem);
+    --space-3:  clamp(0.75rem, 0.60rem + 0.65vw, 1.25rem);
+    --space-4:  clamp(1.00rem, 0.80rem + 0.87vw, 1.75rem);
+    --space-6:  clamp(1.50rem, 1.20rem + 1.30vw, 2.50rem);
+    --space-8:  clamp(2.00rem, 1.50rem + 2.17vw, 3.50rem);
+    --space-12: clamp(3.00rem, 2.20rem + 3.48vw, 5.50rem);
+    --space-16: clamp(4.00rem, 2.80rem + 5.22vw, 7.50rem);
+    --space-20: clamp(5.00rem, 3.40rem + 6.96vw, 9.50rem);
+
+    /* ── Layout constraints ── */
+    --container-max: 90rem;   /* 1440 px — content never stretches edge-to-edge on 4K */
+    --container-px:  clamp(1rem, 4vw, 5rem); /* fluid side-padding */
   }
 
   html {
     @apply bg-white antialiased;
     scroll-behavior: smooth;
+    /* Prevent horizontal scroll from rogue overflow */
+    overflow-x: hidden;
   }
 
   body {
@@ -16,6 +53,7 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.65;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -35,6 +73,7 @@
   img {
     display: block;
     max-width: 100%;
+    height: auto;
   }
 }
 
@@ -57,6 +96,99 @@
 
   .text-poster {
     letter-spacing: -0.03em;
+  }
+
+  /* ─── Fluid Container ────────────────────────────────────────────────────────
+   * Replaces rigid max-w-7xl + hardcoded px-4/px-6/px-8 ladder.
+   * The single clamp() for padding handles 320 px → 4K fluidly.
+   * ──────────────────────────────────────────────────────────────────────── */
+  .fluid-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-px);
+  }
+
+  /* ─── Fluid Hero Typography ─────────────────────────────────────────────── */
+  .hero-title {
+    font-size: var(--text-hero);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: var(--text-4xl);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .body-fluid {
+    font-size: var(--text-base);
+    line-height: 1.75;
+  }
+
+  /* ─── Fluid Navbar ───────────────────────────────────────────────────────────
+   * Uses flexbox wrap so nav items gracefully reflow on very narrow screens.
+   * The pill shape auto-widens to container max-width on 4K.
+   * ──────────────────────────────────────────────────────────────────────── */
+  .fluid-navbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+  }
+
+  /* Mobile hamburger toggle (hidden by default, shown ≤ 640 px) */
+  .nav-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .nav-hamburger:hover {
+    background: rgba(212,18,18,0.12);
+    border-color: rgba(212,18,18,0.4);
+    color: #d41212;
+  }
+  .nav-hamburger.light {
+    border-color: rgba(0,0,0,0.10);
+    background: #fff;
+    color: #111;
+  }
+
+  /* Mobile dropdown nav panel */
+  .mobile-nav-panel {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem 0 0.25rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin-top: 0.5rem;
+  }
+  .mobile-nav-panel.open {
+    display: flex;
+  }
+  .mobile-nav-panel.light {
+    border-top-color: rgba(0,0,0,0.07);
+  }
+
+  @media (max-width: 640px) {
+    .nav-hamburger { display: flex; }
+    .desktop-nav   { display: none !important; }
   }
 }
 .cyber-ai-glow {

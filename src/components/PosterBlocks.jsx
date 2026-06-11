@@ -15,9 +15,15 @@ import heroImage from '../assets/hero-hacker.png';
 
 function CyberHeroArtwork() {
   return (
-    <div className="relative mx-auto w-full max-w-[610px]">
-      {/* Terminal frame keeps the original cyber image as the hero focal point. */}
+    /*
+     * max-width uses clamp() so the card expands proportionally on wider screens
+     * but never exceeds 640px. On narrow phones (<400px) it fills 100% width.
+     * The terminal frame rounds gracefully at any size.
+     */
+    <div className="relative mx-auto w-full" style={{ maxWidth: 'clamp(300px, 90vw, 640px)' }}>
+      {/* Terminal chrome frame */}
       <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#080808] shadow-[0_32px_90px_rgba(0,0,0,0.55)]">
+        {/* Title bar */}
         <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.035] px-5 py-4">
           <span className="h-3 w-3 rounded-full bg-cyber-red shadow-[0_0_18px_rgba(212,18,18,0.8)]" />
           <span className="h-3 w-3 rounded-full bg-white/25" />
@@ -27,19 +33,33 @@ function CyberHeroArtwork() {
           </span>
         </div>
 
-        <div className="relative aspect-[1/1] overflow-hidden sm:aspect-[1.05/1]">
+        {/*
+         * Image container:
+         *   - aspect-ratio scales the height proportionally at any width
+         *   - object-fit: cover ensures the image fills the box without clipping text
+         *   - No hardcoded height—fully fluid
+         */}
+        <div
+          className="relative overflow-hidden"
+          style={{ aspectRatio: '1 / 1' }}
+        >
           <img
             src={heroImage}
             alt="Cybersecurity terminal hacker graphic"
-            className="h-full w-full object-cover transition-all duration-700 hover:scale-[1.025]"
+            className="h-full w-full transition-all duration-700 hover:scale-[1.025]"
+            style={{ objectFit: 'cover', objectPosition: 'center top' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-45" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(212,18,18,0.16),transparent_58%)]" />
+          {/* Overlay text badge — uses clamp() for font size */}
           <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-cyber-red/25 bg-black/62 px-5 py-4 backdrop-blur-md">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-cyber-red">
+            <p className="font-mono uppercase tracking-[0.16em] text-cyber-red" style={{ fontSize: 'var(--text-xs)' }}>
               cyber security initiated
             </p>
-            <p className="mt-1 font-display text-[clamp(1.05rem,2.2vw,1.45rem)] font-black uppercase leading-tight text-white">
+            <p
+              className="mt-1 font-display font-black uppercase leading-tight text-white"
+              style={{ fontSize: 'clamp(1.05rem, 2.2vw, 1.45rem)' }}
+            >
               Learn. Defend. Dominate.
             </p>
           </div>
@@ -69,16 +89,31 @@ export function HeroPreview() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
+    /*
+     * fluid figure:
+     *   max-width uses clamp() → never exceeds 640px, scales down on mobile.
+     *   lg:ml-auto keeps it right-aligned in the 2-column grid.
+     *   isolate creates a new stacking context so decorative blobs stay behind artwork.
+     */
     <motion.figure
-      className="relative isolate mx-auto w-full max-w-[640px] lg:ml-auto"
+      className="relative isolate mx-auto lg:ml-auto"
+      style={{ width: '100%', maxWidth: 'clamp(300px, 88vw, 640px)' }}
       initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.96, y: 18 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       whileHover={prefersReducedMotion ? undefined : { rotate: 0.4, scale: 1.01 }}
     >
-      <div className="absolute -inset-8 -z-10 rounded-[48px] bg-[radial-gradient(circle_at_62%_22%,rgba(212,18,18,0.28),transparent_42%),radial-gradient(circle_at_50%_72%,rgba(212,18,18,0.12),transparent_48%)] blur-2xl" />
-      <div className="absolute -right-2 top-10 -z-10 h-28 w-28 rounded-full border border-cyber-red/25" />
-      <div className="absolute -bottom-3 -left-2 -z-10 h-20 w-20 rounded-full border border-white/10" />
+      {/* Glow blob — percentage-based sizing scales with the container */}
+      <div
+        className="absolute -z-10 rounded-[48px] blur-2xl"
+        style={{
+          inset: 'clamp(-1.5rem, -3vw, -2rem)',
+          background: 'radial-gradient(circle at 62% 22%, rgba(212,18,18,0.28), transparent 42%), radial-gradient(circle at 50% 72%, rgba(212,18,18,0.12), transparent 48%)',
+        }}
+      />
+      {/* Decorative ring — scales with em so it stays proportional */}
+      <div className="absolute -right-2 top-10 -z-10 h-[7%] w-[7%] rounded-full border border-cyber-red/25" style={{ aspectRatio: '1/1' }} />
+      <div className="absolute -bottom-3 -left-2 -z-10 h-[5%] w-[5%] rounded-full border border-white/10" style={{ aspectRatio: '1/1' }} />
       <CyberHeroArtwork />
     </motion.figure>
   );
