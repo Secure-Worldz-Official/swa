@@ -51,32 +51,21 @@ function CTAButton({ children, variant = 'solid', to }) {
 }
 
 /**
- * GET STARTED — smooth-scroll anchor.
- * Clicking scrolls to the #why section with no page navigation or overlay.
- * scroll-behavior: smooth is already set on <html> in index.css.
+ * GET STARTED — redirects to /courses catalog.
  */
 function GetStartedButton() {
-  function handleClick(e) {
-    e.preventDefault();
-    const target = document.getElementById('why');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
   return (
-    <button
-      type="button"
-      onClick={handleClick}
+    <Link
+      to="/courses"
       style={{ fontSize: 'var(--text-sm)' }}
       className="group inline-flex items-center gap-3 rounded-full bg-cyber-red font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] px-[clamp(1.25rem,3vw,2rem)] py-[clamp(0.75rem,1.5vw,1rem)]"
-      aria-label="Scroll to Why You Should Join section"
+      aria-label="Redirect to Courses page"
     >
       <span>GET STARTED</span>
       <span className="inline-block translate-x-0 transition-transform duration-300 group-hover:translate-x-2">
-        &darr;
+        &rarr;
       </span>
-    </button>
+    </Link>
   );
 }
 
