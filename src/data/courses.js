@@ -17,7 +17,7 @@ export const courses = [
     timingTrack: '7:00 PM - 8:00 PM Daily',
     certificate: 'Verified Global Certificate of Completion',
     summary:
-      "Master AI-driven threat detection and learn to automate defensive workflows. Gain combat-level deployment skills by simulating live enterprise cyber attacks, scripting automated patches, and analyzing real-time threat patterns. You aren't just learning theory—you are breaking and building defense systems.",
+      "Master AI driven threat detection and learn to automate defensive workflows. Gain combat level deployment skills by simulating live enterprise cyber attacks, scripting automated patches, and analyzing real time threat patterns. You aren't just learning theory—you are breaking and building defense systems.",
     timelinePoints: [
       'Live tracking logs for daily guided execution',
       'Industry simulators for real time defense scenarios',
@@ -111,7 +111,7 @@ export const courses = [
     timingTrack: 'Live Weekend Workshops',
     certificate: 'Certified Prompt Engineer Credentials and downloadable framework assets',
     summary:
-      'Unlock the hidden layers of Large Language Models. Move past basic questions and master advanced reasoning frameworks, chain-of-thought engineering, zero-shot/few-shot templates, and automated API enterprise workflows. Learn to design precise communication blueprints for corporate data environments.',
+      'Unlock the hidden layers of Large Language Models. Move past basic questions and master advanced reasoning frameworks, chain of thought engineering, zero shot/few shot templates, and automated API enterprise workflows. Learn to design precise communication blueprints for corporate data environments.',
     timelinePoints: [
       'Live weekend workshops with structured exercises',
       'Advanced reasoning templates and workflow design',
