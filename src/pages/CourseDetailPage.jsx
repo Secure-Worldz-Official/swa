@@ -130,7 +130,7 @@ export default function CourseDetailPage() {
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-col gap-3">
                 <FeatureChip text={course.duration} />
                 <FeatureChip text={course.timingTrack} />
                 <FeatureChip text="Experience Labs" />
