@@ -52,8 +52,8 @@ function HeroLaunchButton({ isHacked, onLaunch }) {
       className="group inline-flex items-center gap-3 rounded-full bg-cyber-red px-8 py-4 text-[0.95rem] font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] disabled:cursor-wait disabled:opacity-95"
     >
       <span>GET STARTED</span>
-      <span className="inline-block transition-transform duration-300 transform group-hover:translate-x-2">
-        →
+      <span className="inline-block translate-x-0 transition-transform duration-300 group-hover:translate-x-2">
+        &rarr;
       </span>
     </button>
   );
@@ -101,17 +101,14 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute right-[-10rem] top-44 h-[36rem] w-[36rem] rounded-full bg-red-900/10 blur-[120px]" />
 
       {isHacked ? (
-        <div className="fixed inset-0 bg-black z-[9999] pointer-events-none flex items-center justify-center">
-          <div className="w-full h-full animate-cyber-glitch relative flex flex-col justify-center items-center">
-            {/* Sweep a neon red scanline laser bar downwards very quickly */}
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black pointer-events-none">
+          <div className="relative flex h-full w-full flex-col items-center justify-center animate-cyber-glitch">
             <div className="animate-scan" />
-            
-            {/* Chromatic aberration text flashing "DECRYPTING BOOTCAMP..." */}
-            <div className="text-center font-mono select-none px-4 space-y-4">
-              <h2 className="text-3xl sm:text-5xl font-black text-cyber-red tracking-[0.18em] uppercase glitch-text mb-4">
+            <div className="space-y-4 px-4 text-center font-mono select-none">
+              <h2 className="glitch-text mb-4 text-3xl font-black uppercase tracking-[0.18em] text-cyber-red sm:text-5xl">
                 DECRYPTING BOOTCAMP...
               </h2>
-              <p className="text-[0.8rem] sm:text-[0.95rem] text-white/50 uppercase tracking-[0.25em]">
+              <p className="text-[0.8rem] uppercase tracking-[0.25em] text-white/50 sm:text-[0.95rem]">
                 ACCESS INTRUSION CONFIRMED
               </p>
             </div>
@@ -122,7 +119,7 @@ export default function LandingPage() {
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
         <SiteNavbar />
 
-        <section className="grid grid-cols-1 min-h-[calc(100vh-118px)] gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
+        <section className="grid min-h-[calc(100vh-118px)] grid-cols-1 gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
           <motion.div
             className="mx-auto w-full max-w-2xl space-y-8 text-center lg:mx-0 lg:text-left"
             initial="hidden"
@@ -139,7 +136,7 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase leading-[1.02] tracking-[-0.035em] text-white">
+              <h1 className="font-display text-4xl font-black uppercase leading-[1.02] tracking-[-0.035em] text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                 <span className="block">Master</span>
                 <span className="block text-cyber-red">Cybersecurity</span>
                 <span className="block">With AI</span>
@@ -153,23 +150,20 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <div className="flex flex-col items-center space-y-6 lg:items-start">
-                {/* GET STARTED button */}
+              <div className="flex flex-col items-center space-y-6 text-center">
                 <HeroLaunchButton isHacked={isHacked} onLaunch={handleLaunch} />
 
-                {/* Seats notice */}
-                <p className="text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 lg:text-left">
+                <p className="text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42">
                   Limited seats for the next live cohort
                 </p>
 
-                {/* Slogan chips — my-6 breathing room */}
-                <div className="my-6 flex w-full max-w-2xl flex-col items-center gap-3 lg:items-start">
+                <div className="my-6 flex w-full max-w-2xl flex-col items-center gap-3">
                   {slogans.map((item, index) => {
                     const parts = item.highlight ? item.text.split(item.highlight) : [item.text];
                     return (
                       <div
                         key={item.text}
-                        className={`w-full rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-center text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm lg:text-left ${
+                        className={`w-full rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-center text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm ${
                           index === 0 ? 'rotate-[-1deg]' : index === 1 ? 'rotate-[0.75deg]' : 'rotate-[-0.5deg]'
                         }`}
                       >
@@ -185,6 +179,7 @@ export default function LandingPage() {
                       </div>
                     );
                   })}
+                </div>
               </div>
             </Reveal>
           </motion.div>
