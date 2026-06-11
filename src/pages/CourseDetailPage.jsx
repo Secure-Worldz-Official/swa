@@ -173,6 +173,25 @@ export default function CourseDetailPage() {
                 <p className="text-xs text-gray-400 uppercase tracking-widest mt-1">
                   Cybersecurity Engineer &amp; AI Mentor
                 </p>
+
+                {/* ── Instructor Bio ── */}
+                <div className="mt-5 pt-5 border-t border-white/8 text-left w-full">
+                  <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-cyber-red mb-2">
+                    Meet Your Instructor
+                  </p>
+                  <p className="text-[0.8rem] leading-6 text-white/65">
+                    Founder &amp; CEO of SecureWorldz, Jaiganesh Lakshmanan is a certified
+                    Cybersecurity Specialist and AI pioneer renowned for{' '}
+                    <span className="text-white/85 font-semibold">Vibe Coding</span> and the
+                    acclaimed{' '}
+                    <span className="text-white/85 font-semibold">Drago</span> industry workshop.
+                    With a proven record of delivering elite technical training, he bridges
+                    real-world defense expertise with practical AI innovation.
+                  </p>
+                  <p className="mt-3 text-[0.72rem] font-semibold text-cyber-red/80 tracking-wide">
+                    Learn directly from the expert who built it. ↓
+                  </p>
+                </div>
               </div>
             </div>
           </aside>
