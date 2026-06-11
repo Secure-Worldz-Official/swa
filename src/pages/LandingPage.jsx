@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ClockIcon, CertificateIcon, GlobeIcon, ShieldLockIcon } from '../components/Icons';
-import { FooterBanner, HeroPreview } from '../components/PosterBlocks';
+import { ShieldLockIcon } from '../components/Icons';
+import { FooterBanner } from '../components/PosterBlocks';
 import Reveal from '../components/Reveal';
 import SiteNavbar from '../components/SiteNavbar';
 import ExperienceCarousel from '../components/ExperienceCarousel';
@@ -27,13 +27,11 @@ function SectionHeading({ eyebrow, title, description, center = false }) {
 
 function CTAButton({ children, variant = 'solid', to }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[0.95rem] font-bold uppercase tracking-[0.18em] transition-all duration-300';
+    'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[0.95rem] font-bold uppercase tracking-widest transition-all';
   const styles =
     variant === 'solid'
       ? 'bg-cyber-red text-white shadow-[0_14px_30px_rgba(212,18,18,0.22)] hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.32)] active:scale-[0.98]'
-      : variant === 'hero'
-        ? 'border border-black/10 bg-[#1f1f1f] text-white shadow-[0_18px_40px_rgba(0,0,0,0.12)] hover:border-cyber-red hover:bg-cyber-red hover:shadow-[0_20px_42px_rgba(212,18,18,0.2)] active:scale-[0.98]'
-        : 'border border-[#d7d7d7] bg-white text-[#111] hover:border-[#bbb] hover:bg-[#fafafa] active:scale-[0.98]';
+      : 'border border-[#d7d7d7] bg-white text-[#111] hover:border-[#bbb] hover:bg-[#fafafa] active:scale-[0.98]';
 
   return (
     <motion.div whileHover={{ y: -2 }} className="inline-block">
@@ -55,11 +53,11 @@ export default function LandingPage() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.045)_1px,transparent_1px)] bg-[size:72px_72px] opacity-45" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/90 to-transparent" />
       <div id="top" className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
-        <SiteNavbar theme="light" />
+        <SiteNavbar />
 
-        <section className="grid min-h-[calc(100vh-120px)] gap-14 py-14 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-10 lg:py-20">
+        <section className="flex min-h-[calc(100vh-120px)] items-center justify-center py-14 sm:py-16 lg:py-20">
           <motion.div
-            className="mx-auto flex max-w-2xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left"
+            className="mx-auto flex max-w-5xl flex-col items-center text-center"
             initial="hidden"
             animate="visible"
             variants={stagger}
@@ -104,28 +102,17 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <div className="mt-10 grid w-full max-w-3xl gap-3 sm:grid-cols-4">
-                {[
-                  { icon: ClockIcon, text: 'Live Labs' },
-                  { icon: GlobeIcon, text: 'AI Tools' },
-                  { icon: CertificateIcon, text: 'Certificate' },
-                  { icon: ShieldLockIcon, text: 'Mentor Led' },
-                ].map(({ icon: Icon, text }) => (
-                  <div
-                    key={text}
-                    className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-3 text-[0.72rem] font-black uppercase tracking-[0.18em] text-black/66 shadow-[0_10px_24px_rgba(0,0,0,0.04)]"
-                  >
-                    <Icon className="h-4 w-4 text-cyber-red" />
-                    <span>{text}</span>
+              <div className="grid gap-3 pt-2 text-left sm:grid-cols-3">
+                {['Hands on labs', 'AI security tools', 'Career ready basics'].map((item) => (
+                  <div key={item} className="border-l-2 border-cyber-red bg-white/[0.035] px-4 py-3">
+                    <p className="text-[0.76rem] font-black uppercase tracking-[0.14em] text-white/76">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
             </Reveal>
           </motion.div>
-
-          <Reveal delay={0.08} className="mx-auto w-full max-w-[640px] lg:mx-0 lg:justify-self-end">
-            <HeroPreview />
-          </Reveal>
         </section>
       </div>
 

@@ -32,11 +32,6 @@
     box-sizing: border-box;
   }
 
-  ::selection {
-    background: rgba(212, 18, 18, 0.18);
-    color: #111111;
-  }
-
   img {
     display: block;
     max-width: 100%;
