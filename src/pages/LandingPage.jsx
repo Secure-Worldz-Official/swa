@@ -75,9 +75,12 @@ export default function LandingPage() {
 
             <Reveal>
               <h1 className="font-display text-[clamp(3.55rem,9vw,7.8rem)] font-black uppercase leading-[0.88] tracking-[-0.07em] text-[#171717] sm:text-[clamp(3.8rem,8.6vw,8.8rem)]">
-                <span className="block">Cut the Clutter.</span>
+                <span className="block">Master the</span>
                 <span className="block text-[#2b2b2b]">
-                  Command. <span className="text-cyber-red">Defend.</span> Repeat.
+                  Cyber Security <span className="text-cyber-red">With AI.</span>
+                </span>
+                <span className="block text-[0.36em] font-black uppercase leading-[1.18] tracking-[0.24em] text-[#3f3f3f] sm:text-[0.22em]">
+                  Hunt threats. Automate defense. Stay one step ahead.
                 </span>
               </h1>
             </Reveal>
