@@ -144,8 +144,9 @@ export default function CourseDetailPage() {
                 ENROLL NOW
               </Link>
 
-              <div className="mt-6 rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.04))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
-                <div className="flex items-center justify-between gap-3">
+              <div className="mt-6 flex flex-col items-center text-center pt-6 border-t border-red-900/30">
+                {/* Section label + badge */}
+                <div className="flex items-center justify-center gap-3 mb-5">
                   <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">
                     Mentor Spotlight
                   </p>
@@ -154,52 +155,24 @@ export default function CourseDetailPage() {
                   </span>
                 </div>
 
-                <div className="mt-4 grid gap-5 sm:grid-cols-[150px_1fr] sm:items-center">
-                  <div className="relative mx-auto h-28 w-28 shrink-0 sm:h-36 sm:w-36 md:h-40 md:w-40 lg:mx-0">
-                    <div className="absolute inset-0 -m-2 rounded-[42%_58%_56%_44%/48%_40%_60%_52%] border-[5px] border-cyber-red shadow-[0_0_0_10px_rgba(212,18,18,0.08)]" />
-                    <div className="absolute inset-[8px] rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[radial-gradient(circle_at_30%_30%,rgba(212,18,18,0.12),rgba(255,255,255,0.03)_52%,rgba(0,0,0,0.06)_100%)]" />
-                    <div className="relative h-full w-full overflow-hidden rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[#12151d]">
-                      <img
-                        src={mentorPhoto}
-                        alt="Jaiganesh Lakshmanan"
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="min-w-0 space-y-3">
-                    <p className="text-[0.82rem] font-black uppercase tracking-[0.22em] text-white/55">
-                      Cybersecurity leadership mentor
-                    </p>
-                    <h3 className="text-[1.35rem] font-black leading-tight text-white sm:text-[1.6rem]">
-                      <span className="text-cyber-red">Jaiganesh Lakshmanan</span>
-                    </h3>
-                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/65">
-                      Cybersecurity Specialist
-                      <span className="px-2 text-cyber-red" aria-hidden="true">
-                        &middot;
-                      </span>
-                      CEO and Founder, Secure Worldz
-                    </p>
-                    <p className="max-w-[32rem] text-sm leading-7 text-white/70 sm:text-[0.96rem]">
-                      A hands on mentor focused on practical defense strategy,
-                      security leadership, and real world execution. He helps
-                      learners think like defenders and build with confidence.
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {['Security Strategy', 'Industry Perspective', 'Founder Led Mentorship'].map(
-                        (item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/72"
-                          >
-                            {item}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </div>
+                {/* Circular profile photo */}
+                <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-red-600 shadow-[0_0_15px_rgba(255,0,0,0.3)] shrink-0">
+                  <img
+                    src={mentorPhoto}
+                    alt="Jaiganesh Lakshmanan"
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
+
+                {/* Name */}
+                <h3 className="text-lg font-bold tracking-wide mt-3 text-white">
+                  Jaiganesh Lakshmanan
+                </h3>
+
+                {/* Role */}
+                <p className="text-xs text-gray-400 uppercase tracking-widest mt-1">
+                  Cybersecurity Engineer &amp; AI Mentor
+                </p>
               </div>
             </div>
           </aside>

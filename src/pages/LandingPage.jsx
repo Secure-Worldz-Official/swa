@@ -153,37 +153,38 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
+              <div className="flex flex-col items-center space-y-6 lg:items-start">
+                {/* GET STARTED button */}
                 <HeroLaunchButton isHacked={isHacked} onLaunch={handleLaunch} />
-                <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
+
+                {/* Seats notice */}
+                <p className="text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 lg:text-left">
                   Limited seats for the next live cohort
                 </p>
-              </div>
-            </Reveal>
 
-            <Reveal>
-              <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-3 lg:mx-0">
-                {slogans.map((item, index) => {
-                  const parts = item.highlight ? item.text.split(item.highlight) : [item.text];
-                  return (
-                    <div
-                      key={item.text}
-                      className={`rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-left text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm ${
-                        index === 0 ? 'rotate-[-1deg]' : index === 1 ? 'rotate-[0.75deg]' : 'rotate-[-0.5deg]'
-                      }`}
-                    >
-                      {item.highlight ? (
-                        <>
-                          {parts[0]}
-                          <span className="text-cyber-red">{item.highlight}</span>
-                          {parts[1]}
-                        </>
-                      ) : (
-                        item.text
-                      )}
-                    </div>
-                  );
-                })}
+                {/* Slogan chips — my-6 breathing room */}
+                <div className="my-6 flex w-full max-w-2xl flex-col items-center gap-3 lg:items-start">
+                  {slogans.map((item, index) => {
+                    const parts = item.highlight ? item.text.split(item.highlight) : [item.text];
+                    return (
+                      <div
+                        key={item.text}
+                        className={`w-full rounded-full border border-white/8 bg-white/[0.03] px-5 py-3 text-center text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm lg:text-left ${
+                          index === 0 ? 'rotate-[-1deg]' : index === 1 ? 'rotate-[0.75deg]' : 'rotate-[-0.5deg]'
+                        }`}
+                      >
+                        {item.highlight ? (
+                          <>
+                            {parts[0]}
+                            <span className="text-cyber-red">{item.highlight}</span>
+                            {parts[1]}
+                          </>
+                        ) : (
+                          item.text
+                        )}
+                      </div>
+                    );
+                  })}
               </div>
             </Reveal>
           </motion.div>
