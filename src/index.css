@@ -66,7 +66,7 @@
   display: inline-block;
 }
 
-@keyframes cyberGlitch {
+@keyframes cyberLaunchFade {
   0% {
     opacity: 0;
     transform: scale(1);
@@ -92,6 +92,24 @@
   }
 }
 
+@keyframes cyberGlitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-5px, 5px) }
+  40% { transform: translate(-5px, -5px) }
+  60% { transform: translate(5px, 5px) }
+  80% { transform: translate(5px, -5px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes cyberScan {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
 @keyframes cyberRipple {
   0% {
     opacity: 0;
@@ -111,7 +129,7 @@
     background:
       radial-gradient(circle at center, rgba(212, 18, 18, 0.24), transparent 34%),
       linear-gradient(180deg, rgba(5, 5, 8, 0.96), rgba(5, 5, 8, 0.98));
-    animation: cyberGlitch 500ms ease both;
+    animation: cyberLaunchFade 500ms ease both;
   }
 
   .cyber-launch-ripple {
@@ -121,5 +139,68 @@
     animation: cyberRipple 500ms ease both;
     mix-blend-mode: screen;
   }
+
+  .cyber-scanlines::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+  }
+
+  .cyber-scan-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(to bottom, transparent, #d41212, #ff3b30, #d41212, transparent);
+    box-shadow: 0 0 20px #d41212, 0 0 40px #d41212;
+    opacity: 0.85;
+    z-index: 3;
+    animation: cyberScan 0.8s linear infinite;
+  }
+
+  .animate-cyber-glitch {
+    animation: cyberGlitch 0.15s linear infinite;
+  }
+
+  .animate-scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(to bottom, transparent, #d41212, #ff3b30, #d41212, transparent);
+    box-shadow: 0 0 25px #d41212, 0 0 50px #d41212;
+    opacity: 0.9;
+    z-index: 3;
+    animation: cyberScan 0.5s linear infinite;
+  }
+
+  @keyframes glitchText {
+    0% {
+      text-shadow: 2px -2px 0px #ff0000, -2px 2px 0px #00ff00;
+    }
+    25% {
+      text-shadow: -2px 2px 0px #ff0000, 2px -2px 0px #00ff00;
+    }
+    50% {
+      text-shadow: 2px 2px 0px #ff0000, -2px -2px 0px #00ff00;
+    }
+    75% {
+      text-shadow: -2px -2px 0px #ff0000, 2px 2px 0px #00ff00;
+    }
+    100% {
+      text-shadow: 2px -2px 0px #ff0000, -2px 2px 0px #00ff00;
+    }
+  }
+
+  .glitch-text {
+    animation: glitchText 0.1s linear infinite;
+  }
 }
+
+
 

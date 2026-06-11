@@ -14,7 +14,7 @@ function SectionHeading({ eyebrow, title, description, center = false }) {
       <p className="text-[0.78rem] font-bold uppercase tracking-[0.24em] text-cyber-red">
         {eyebrow}
       </p>
-      <h2 className="mt-4 font-display text-[clamp(1.8rem,4vw,3.4rem)] font-black uppercase leading-[1.2] tracking-[-0.035em] text-[#111]">
+      <h2 className="mt-4 font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.2] tracking-[-0.035em] text-[#111]">
         {title}
       </h2>
       {description ? (
@@ -43,17 +43,17 @@ function CTAButton({ children, variant = 'solid', to }) {
   );
 }
 
-function HeroLaunchButton({ launching, onLaunch }) {
+function HeroLaunchButton({ isHacked, onLaunch }) {
   return (
     <button
       type="button"
       onClick={onLaunch}
-      disabled={launching}
+      disabled={isHacked}
       className="group inline-flex items-center gap-3 rounded-full bg-cyber-red px-8 py-4 text-[0.95rem] font-black uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.36)] active:scale-[0.98] disabled:cursor-wait disabled:opacity-95"
     >
       <span>GET STARTED</span>
-      <span className="inline-flex translate-x-0 transition-transform duration-300 group-hover:translate-x-1">
-        &rarr;
+      <span className="inline-block transition-transform duration-300 transform group-hover:translate-x-2">
+        →
       </span>
     </button>
   );
@@ -62,7 +62,7 @@ function HeroLaunchButton({ launching, onLaunch }) {
 export default function LandingPage() {
   const navigate = useNavigate();
   const prefersReducedMotion = useReducedMotion();
-  const [launching, setLaunching] = useState(false);
+  const [isHacked, setIsHacked] = useState(false);
   const stagger = prefersReducedMotion
     ? {}
     : { transition: { staggerChildren: 0.09, delayChildren: 0.05 } };
@@ -85,35 +85,46 @@ export default function LandingPage() {
   );
 
   function handleLaunch() {
-    if (launching) return;
-    setLaunching(true);
+    if (isHacked) return;
+    setIsHacked(true);
     window.setTimeout(() => {
       navigate('/courses');
-    }, 500);
+    }, 900);
   }
 
   return (
-    <div className="relative overflow-hidden bg-[#050508] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050508_100%)]" />
+    <div className="relative w-full overflow-x-hidden bg-[#050508] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050508_100%)] animate-pulse" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-35" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
       <div className="pointer-events-none absolute left-[-8rem] top-24 h-[32rem] w-[32rem] rounded-full bg-red-900/10 blur-[120px]" />
       <div className="pointer-events-none absolute right-[-10rem] top-44 h-[36rem] w-[36rem] rounded-full bg-red-900/10 blur-[120px]" />
 
-      {launching ? (
-        <div className="cyber-launch-overlay pointer-events-none fixed inset-0 z-[90]">
-          <div className="cyber-launch-ripple absolute inset-0" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:44px_44px] opacity-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,18,18,0.22),transparent_38%)]" />
+      {isHacked ? (
+        <div className="fixed inset-0 bg-black z-[9999] pointer-events-none flex items-center justify-center">
+          <div className="w-full h-full animate-cyber-glitch relative flex flex-col justify-center items-center">
+            {/* Sweep a neon red scanline laser bar downwards very quickly */}
+            <div className="animate-scan" />
+            
+            {/* Chromatic aberration text flashing "DECRYPTING BOOTCAMP..." */}
+            <div className="text-center font-mono select-none px-4 space-y-4">
+              <h2 className="text-3xl sm:text-5xl font-black text-cyber-red tracking-[0.18em] uppercase glitch-text mb-4">
+                DECRYPTING BOOTCAMP...
+              </h2>
+              <p className="text-[0.8rem] sm:text-[0.95rem] text-white/50 uppercase tracking-[0.25em]">
+                ACCESS INTRUSION CONFIRMED
+              </p>
+            </div>
+          </div>
         </div>
       ) : null}
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
         <SiteNavbar />
 
-        <section className="grid min-h-[calc(100vh-118px)] gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
+        <section className="grid grid-cols-1 min-h-[calc(100vh-118px)] gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
           <motion.div
-            className="mx-auto max-w-2xl space-y-8 text-center lg:mx-0 lg:text-left"
+            className="mx-auto w-full max-w-2xl space-y-8 text-center lg:mx-0 lg:text-left"
             initial="hidden"
             animate="visible"
             variants={stagger}
@@ -128,7 +139,7 @@ export default function LandingPage() {
             </Reveal>
 
             <Reveal>
-              <h1 className="font-display text-[clamp(2.65rem,6vw,5.9rem)] font-black uppercase leading-[1.02] tracking-[-0.035em] text-white">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase leading-[1.02] tracking-[-0.035em] text-white">
                 <span className="block">Master</span>
                 <span className="block text-cyber-red">Cybersecurity</span>
                 <span className="block">With AI</span>
@@ -143,7 +154,7 @@ export default function LandingPage() {
 
             <Reveal>
               <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-                <HeroLaunchButton launching={launching} onLaunch={handleLaunch} />
+                <HeroLaunchButton isHacked={isHacked} onLaunch={handleLaunch} />
                 <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
                   Limited seats for the next live cohort
                 </p>
@@ -177,7 +188,7 @@ export default function LandingPage() {
             </Reveal>
           </motion.div>
 
-          <Reveal delay={0.08} className="lg:pl-2">
+          <Reveal delay={0.08} className="w-full lg:pl-2">
             <HeroPreview />
           </Reveal>
         </section>

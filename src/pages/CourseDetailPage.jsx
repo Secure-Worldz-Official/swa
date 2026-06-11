@@ -42,14 +42,14 @@ export default function CourseDetailPage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0B0F19] text-white">
+    <div className="relative w-full min-h-screen overflow-x-hidden bg-[#0B0F19] text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(212,18,18,0.18),transparent_28%),radial-gradient(circle_at_88%_12%,rgba(212,18,18,0.11),transparent_30%),linear-gradient(180deg,#111827_0%,#0B0F19_52%,#0B0F19_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-30" />
 
-      <main className="relative mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+      <main className="relative mx-auto w-full max-w-7xl px-4 pb-20 pt-5 sm:px-6 lg:px-8 lg:pt-7">
         <SiteNavbar />
 
-        <section className="grid gap-10 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-14 lg:py-20">
+        <section className="grid grid-cols-1 gap-10 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-14 lg:py-20">
           <div className="space-y-8">
             <Link
               to="/courses"
@@ -65,7 +65,7 @@ export default function CourseDetailPage() {
               <p className="text-[0.75rem] font-black uppercase tracking-[0.22em] text-cyber-red">
                 {course.eyebrow}
               </p>
-              <h1 className="max-w-4xl font-display text-[clamp(2.8rem,6.5vw,6rem)] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white">
+              <h1 className="max-w-4xl font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase leading-[0.98] tracking-[-0.04em] text-white">
                 {course.title}
               </h1>
               <p className="max-w-3xl text-[1.05rem] leading-9 text-white/70 sm:text-[1.12rem]">
@@ -100,7 +100,7 @@ export default function CourseDetailPage() {
             </div>
           </div>
 
-          <aside className="lg:sticky lg:top-28">
+          <aside className="w-full lg:sticky lg:top-28">
             <div className="rounded-[34px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.38)] backdrop-blur-2xl">
               <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">
                 Pricing and Action
@@ -155,7 +155,7 @@ export default function CourseDetailPage() {
                 </div>
 
                 <div className="mt-4 grid gap-5 sm:grid-cols-[150px_1fr] sm:items-center">
-                  <div className="relative mx-auto h-36 w-36 shrink-0 sm:h-40 sm:w-40 lg:mx-0">
+                  <div className="relative mx-auto h-28 w-28 shrink-0 sm:h-36 sm:w-36 md:h-40 md:w-40 lg:mx-0">
                     <div className="absolute inset-0 -m-2 rounded-[42%_58%_56%_44%/48%_40%_60%_52%] border-[5px] border-cyber-red shadow-[0_0_0_10px_rgba(212,18,18,0.08)]" />
                     <div className="absolute inset-[8px] rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[radial-gradient(circle_at_30%_30%,rgba(212,18,18,0.12),rgba(255,255,255,0.03)_52%,rgba(0,0,0,0.06)_100%)]" />
                     <div className="relative h-full w-full overflow-hidden rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-[#12151d]">
