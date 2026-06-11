@@ -2,19 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { CheckIcon, ClockIcon } from '../components/Icons';
 import SiteNavbar from '../components/SiteNavbar';
 import { courseMap } from '../data/courses';
-
-function MetricRow({ title, value }) {
-  return (
-    <div className="rounded-2xl border border-white/8 bg-black/18 px-4 py-4">
-      <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/42">
-        {title}
-      </p>
-      <p className="mt-2 text-sm font-semibold leading-6 text-white/80">
-        {value}
-      </p>
-    </div>
-  );
-}
+import mentorPlaceholder from '../assets/mentor_placeholder.png';
 
 function ChecklistItem({ text }) {
   return (
@@ -23,6 +11,17 @@ function ChecklistItem({ text }) {
         <CheckIcon className="h-4 w-4" />
       </span>
       <p className="text-sm leading-7 text-white/72 sm:text-[0.98rem]">{text}</p>
+    </div>
+  );
+}
+
+function FeatureChip({ text }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[0.72rem] font-black uppercase tracking-[0.14em] text-white/75">
+      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-cyber-red text-white">
+        <CheckIcon className="h-2.5 w-2.5" />
+      </span>
+      <span className="whitespace-nowrap">{text}</span>
     </div>
   );
 }
@@ -131,13 +130,11 @@ export default function CourseDetailPage() {
                 </p>
               </div>
 
-              <div className="mt-6 grid gap-4">
-                <MetricRow title="Duration Metric" value={course.duration} />
-                <MetricRow title="Timing Track" value={course.timingTrack} />
-                <MetricRow
-                  title="Credentials"
-                  value={course.certificate}
-                />
+              <div className="mt-6 flex flex-wrap gap-3">
+                <FeatureChip text={course.duration} />
+                <FeatureChip text={course.timingTrack} />
+                <FeatureChip text="Experience Labs" />
+                <FeatureChip text="Credentials Validation" />
               </div>
 
               <Link
@@ -152,10 +149,15 @@ export default function CourseDetailPage() {
                   Your Mentor
                 </p>
                 <div className="mt-4 flex items-center gap-4">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-cyber-red/35 bg-[radial-gradient(circle_at_30%_30%,rgba(212,18,18,0.34),rgba(255,255,255,0.06)_55%,rgba(0,0,0,0.2)_100%)] shadow-[0_0_0_6px_rgba(212,18,18,0.08)]">
-                    <span className="text-lg font-black tracking-[0.12em] text-white">
-                      CJ
-                    </span>
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 -m-1.5 rounded-[42%_58%_56%_44%/48%_40%_60%_52%] border border-cyber-red/95 shadow-[0_0_0_6px_rgba(212,18,18,0.12)]" />
+                    <div className="relative h-20 w-20 overflow-hidden rounded-[42%_58%_56%_44%/48%_40%_60%_52%] bg-black/30">
+                      <img
+                        src={mentorPlaceholder}
+                        alt="Cyber Jai"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
                   </div>
                   <div className="min-w-0">
                     <p className="text-base font-black uppercase tracking-[0.1em] text-white">
