@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ShieldLockIcon } from '../components/Icons';
-import { HeroPreview, FooterBanner } from '../components/PosterBlocks';
+import { ClockIcon, CertificateIcon, GlobeIcon, ShieldLockIcon } from '../components/Icons';
+import { FooterBanner } from '../components/PosterBlocks';
 import Reveal from '../components/Reveal';
 import SiteNavbar from '../components/SiteNavbar';
 import ExperienceCarousel from '../components/ExperienceCarousel';
@@ -27,11 +27,13 @@ function SectionHeading({ eyebrow, title, description, center = false }) {
 
 function CTAButton({ children, variant = 'solid', to }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[0.95rem] font-bold uppercase tracking-widest transition-all';
+    'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[0.95rem] font-bold uppercase tracking-[0.18em] transition-all duration-300';
   const styles =
     variant === 'solid'
       ? 'bg-cyber-red text-white shadow-[0_14px_30px_rgba(212,18,18,0.22)] hover:bg-cyber-redDark hover:shadow-[0_20px_40px_rgba(212,18,18,0.32)] active:scale-[0.98]'
-      : 'border border-[#d7d7d7] bg-white text-[#111] hover:border-[#bbb] hover:bg-[#fafafa] active:scale-[0.98]';
+      : variant === 'hero'
+        ? 'border border-black/10 bg-[#1f1f1f] text-white shadow-[0_18px_40px_rgba(0,0,0,0.12)] hover:border-cyber-red hover:bg-cyber-red hover:shadow-[0_20px_42px_rgba(212,18,18,0.2)] active:scale-[0.98]'
+        : 'border border-[#d7d7d7] bg-white text-[#111] hover:border-[#bbb] hover:bg-[#fafafa] active:scale-[0.98]';
 
   return (
     <motion.div whileHover={{ y: -2 }} className="inline-block">
@@ -49,66 +51,74 @@ export default function LandingPage() {
     : { transition: { staggerChildren: 0.09, delayChildren: 0.05 } };
 
   return (
-    <div className="relative overflow-hidden bg-[#050505] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_34%,rgba(212,18,18,0.18),transparent_29%),radial-gradient(circle_at_82%_15%,rgba(212,18,18,0.11),transparent_28%),linear-gradient(180deg,#171717_0%,#070707_46%,#050505_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-35" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
+    <div className="relative overflow-hidden bg-[#f6f6f4] text-[#111]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.045)_1px,transparent_1px)] bg-[size:72px_72px] opacity-45" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/90 to-transparent" />
+      <div id="top" className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+        <SiteNavbar theme="light" />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-0 pt-5 sm:px-6 lg:px-8 lg:pt-7">
-        <SiteNavbar />
-
-        <section className="grid min-h-[calc(100vh-118px)] gap-12 py-16 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-24">
-          <motion.div className="mx-auto max-w-2xl space-y-8 text-center lg:mx-0 lg:text-left" initial="hidden" animate="visible" variants={stagger}>
+        <section className="flex min-h-[calc(100vh-120px)] items-center justify-center py-14 sm:py-16 lg:py-20">
+          <motion.div
+            className="mx-auto flex max-w-5xl flex-col items-center text-center"
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+          >
             <Reveal>
-              <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-cyber-red/25 bg-cyber-red/10 px-4 py-3 shadow-[0_12px_36px_rgba(212,18,18,0.12)] backdrop-blur">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-black/10 bg-white/80 px-5 py-3 shadow-[0_12px_34px_rgba(0,0,0,0.05)] backdrop-blur">
                 <ShieldLockIcon className="h-5 w-5 text-cyber-red" />
-                <span className="max-w-full text-[0.76rem] font-bold uppercase leading-[1.35] tracking-[0.16em] text-white/74">
-                  Beginner friendly cybersecurity training
+                <span className="max-w-full text-[0.76rem] font-bold uppercase leading-[1.35] tracking-[0.18em] text-black/60">
+                  Everything You Need
                 </span>
               </div>
             </Reveal>
 
             <Reveal>
-              <h1 className="font-display text-[clamp(2.65rem,6vw,5.9rem)] font-black uppercase leading-[1.02] tracking-[-0.035em] text-white">
-                <span className="block">Master</span>
-                <span className="block text-cyber-red">Cybersecurity</span>
-                <span className="block">With AI</span>
+              <h1 className="font-display text-[clamp(3.55rem,9vw,7.8rem)] font-black uppercase leading-[0.88] tracking-[-0.07em] text-[#171717] sm:text-[clamp(3.8rem,8.6vw,8.8rem)]">
+                <span className="block">Cut the Clutter.</span>
+                <span className="block text-[#2b2b2b]">
+                  Command. <span className="text-cyber-red">Defend.</span> Repeat.
+                </span>
               </h1>
             </Reveal>
 
             <Reveal>
-              <p className="mx-auto max-w-xl text-[1.02rem] leading-8 text-white/68 sm:text-[1.14rem] lg:mx-0">
-                Build real defensive skills, understand attack patterns, and move from zero to cyber hero with a sharp practical roadmap.
+              <p className="mx-auto mt-4 max-w-3xl text-[1.05rem] leading-8 text-black/52 sm:text-[1.18rem]">
+                Build practical cybersecurity confidence with AI assisted lessons,
+                live labs, and a clear route from beginner to certification ready.
               </p>
             </Reveal>
 
             <Reveal>
-              <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-                <CTAButton to="/courses" variant="solid">
+              <div className="mt-10 flex flex-col items-center gap-4">
+                <CTAButton to="/courses" variant="hero">
                   <span>GET STARTED</span>
                 </CTAButton>
-                <p className="max-w-[18rem] text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/42 sm:text-left">
+                <p className="max-w-[24rem] text-center text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-black/42">
                   Limited seats for the next live cohort
                 </p>
               </div>
             </Reveal>
 
             <Reveal>
-              <div className="grid gap-3 pt-2 text-left sm:grid-cols-3">
-                {['Hands on labs', 'AI security tools', 'Career ready basics'].map((item) => (
-                  <div key={item} className="border-l-2 border-cyber-red bg-white/[0.035] px-4 py-3">
-                    <p className="text-[0.76rem] font-black uppercase tracking-[0.14em] text-white/76">
-                      {item}
-                    </p>
+              <div className="mt-10 grid w-full max-w-3xl gap-3 sm:grid-cols-4">
+                {[
+                  { icon: ClockIcon, text: 'Live Labs' },
+                  { icon: GlobeIcon, text: 'AI Tools' },
+                  { icon: CertificateIcon, text: 'Certificate' },
+                  { icon: ShieldLockIcon, text: 'Mentor Led' },
+                ].map(({ icon: Icon, text }) => (
+                  <div
+                    key={text}
+                    className="flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-3 text-[0.72rem] font-black uppercase tracking-[0.18em] text-black/66 shadow-[0_10px_24px_rgba(0,0,0,0.04)]"
+                  >
+                    <Icon className="h-4 w-4 text-cyber-red" />
+                    <span>{text}</span>
                   </div>
                 ))}
               </div>
             </Reveal>
           </motion.div>
-
-          <Reveal delay={0.08} className="lg:pl-2">
-            <HeroPreview />
-          </Reveal>
         </section>
       </div>
 
