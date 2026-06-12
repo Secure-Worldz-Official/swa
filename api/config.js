@@ -1,9 +1,13 @@
-if (!process.env.VERCEL) {
-    try {
-        await import('dotenv/config');
-    } catch (e) {
-        // Dotenv not available or already loaded
-    }
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import dotenv from 'dotenv';
+
+try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    dotenv.config({ path: path.resolve(__dirname, '../.env') });
+} catch (e) {
+    // Dotenv not available or already loaded
 }
 
 export const APP_NAME = 'Cyber Jai';
