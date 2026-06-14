@@ -24,46 +24,52 @@ export default function CoursesCatalogPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
             {courses.map((course) => (
               <article
                 key={course.id}
-                className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyber-red/35 hover:bg-white/[0.06]"
+                className="group relative flex flex-col overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyber-red/35 hover:bg-white/[0.06]"
               >
                 <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-cyber-red/5 transition-transform duration-500 group-hover:scale-110" />
-                <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-cyber-red">
-                  {course.eyebrow}
-                </p>
-                <h2 className="mt-5 font-display text-2xl font-black uppercase leading-tight text-white">
-                  {course.title}
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-white/64">
-                  {course.preview}
-                </p>
-                <div className="mt-6 space-y-3 rounded-[24px] border border-white/8 bg-black/20 p-5">
-                  <div>
-                    <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
-                      Duration
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-white/80">
-                      {course.duration}
-                    </p>
+                {/* Card content grows to fill available space */}
+                <div className="flex flex-1 flex-col">
+                  <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-cyber-red">
+                    {course.eyebrow}
+                  </p>
+                  <h2 className="mt-5 font-display text-2xl font-black uppercase leading-tight text-white">
+                    {course.title}
+                  </h2>
+                  <p className="mt-4 text-sm leading-7 text-white/64">
+                    {course.preview}
+                  </p>
+                  <div className="mt-6 space-y-3 rounded-[24px] border border-white/8 bg-black/20 p-5">
+                    <div>
+                      <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                        Duration
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-white/80">
+                        {course.duration}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                        Offer
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-white/80">
+                        {course.offerTag} {course.offerPrice}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
-                      Offer
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-white/80">
-                      {course.offerTag} {course.offerPrice}
-                    </p>
+                  {/* mt-auto pushes button to bottom of every card equally */}
+                  <div className="mt-auto pt-6">
+                    <Link
+                      to={`/courses/${course.id}`}
+                      className="inline-flex w-full items-center justify-center rounded-2xl bg-cyber-red px-5 py-4 text-sm font-black uppercase tracking-widest text-white shadow-[0_18px_42px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark"
+                    >
+                      View Course Details
+                    </Link>
                   </div>
                 </div>
-                <Link
-                  to={`/courses/${course.id}`}
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-cyber-red px-5 py-4 text-sm font-black uppercase tracking-widest text-white shadow-[0_18px_42px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark"
-                >
-                  View Course Details
-                </Link>
               </article>
             ))}
           </div>

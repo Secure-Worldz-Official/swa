@@ -147,7 +147,7 @@ export default function LandingPage() {
                * micro-copy line. The noisy slogan pills are removed so the
                * hero breathes and the eye lands cleanly on the button.
                */}
-              <div className="flex flex-col items-center gap-4 text-center">
+              <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
                 <GetStartedButton />
 
                 {/* Subtle scroll hint — replaces the cluttered pill rows */}

@@ -120,10 +120,10 @@ export default function SiteNavbar({ theme = 'dark' }) {
           ) : (
             <>
               <Link
-                to="/courses"
-                className="rounded-full border border-cyber-red/50 bg-cyber-red px-[clamp(0.75rem,2vw,1.5rem)] py-3 text-[clamp(0.68rem,1.1vw,0.75rem)] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(212,18,18,0.38)] active:scale-[0.98]"
+                to="/"
+                className="relative py-1 text-[clamp(0.68rem,1.1vw,0.78rem)] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
               >
-                Explore Courses
+                Home
               </Link>
               <a
                 href="/#why"
@@ -143,6 +143,12 @@ export default function SiteNavbar({ theme = 'dark' }) {
               >
                 Certificates
               </a>
+              <Link
+                to="/courses"
+                className="rounded-full border border-cyber-red/50 bg-cyber-red px-[clamp(0.75rem,2vw,1.5rem)] py-3 text-[clamp(0.68rem,1.1vw,0.75rem)] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(212,18,18,0.38)] active:scale-[0.98]"
+              >
+                Explore Courses
+              </Link>
             </>
           )}
         </nav>
@@ -162,6 +168,13 @@ export default function SiteNavbar({ theme = 'dark' }) {
       {/* ── Mobile dropdown panel ── */}
       {!light && (
         <div className={`mobile-nav-panel${menuOpen ? ' open' : ''} px-4 pb-3 sm:hidden`}>
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            className="block rounded-xl border border-white/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/70 hover:border-cyber-red/30 hover:text-white transition-colors duration-200"
+          >
+            Home
+          </Link>
           <Link
             to="/courses"
             onClick={() => setMenuOpen(false)}
