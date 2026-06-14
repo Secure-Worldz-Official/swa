@@ -91,7 +91,7 @@ export default function SiteNavbar({ theme = 'dark' }) {
                 light ? 'text-[#111]' : 'text-white'
               }`}
             >
-              SECURE <span className="text-cyber-red">WORLDZ</span>
+              SECURE WORLDZ
             </p>
             <p
               className={`text-[clamp(0.55rem,1.1vw,0.66rem)] font-semibold uppercase leading-[1.35] tracking-[0.22em] ${
