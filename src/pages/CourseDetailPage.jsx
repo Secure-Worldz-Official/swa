@@ -146,7 +146,7 @@ export default function CourseDetailPage() {
 
             {/* Mentor card — image2.png full bleed */}
             <div className="group relative w-full overflow-hidden rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.55)]"
-                 style={{ aspectRatio: '4/5' }}>
+              style={{ aspectRatio: '4/5' }}>
               <img
                 src={cyberJaiImage}
                 alt="Jaiganesh Lakshmanan — Cyber Jai"

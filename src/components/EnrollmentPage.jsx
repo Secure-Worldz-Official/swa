@@ -23,9 +23,7 @@ export default function EnrollmentPage() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const upiId = 'cyberjai@upi'; // Supabase/Backend configured UPI ID
     const amount = '2000'; // Special cohorts fee
-    const upiLink = `upi://pay?pa=${upiId}&pn=Cyber%20Jai%20Academy&am=${amount}&cu=INR&tn=Summer%20Offer%20Enrollment`;
 
     const handleNext = (e) => {
         e.preventDefault();

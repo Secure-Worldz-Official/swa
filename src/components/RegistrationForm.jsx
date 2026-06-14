@@ -23,9 +23,7 @@ export default function RegistrationForm() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const upiId = 'cyberjai@upi'; // Default from config
     const amount = '2000'; // Summer offer
-    const upiLink = `upi://pay?pa=${upiId}&pn=Cyber%20Jai%20Academy&am=${amount}&cu=INR&tn=Summer%20Offer%20Enrollment`;
 
     const handleNext = (e) => {
         e.preventDefault();

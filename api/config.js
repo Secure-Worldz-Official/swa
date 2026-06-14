@@ -18,8 +18,7 @@ export const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.SU
 export const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 export const SUPABASE_KEY = SUPABASE_ANON_KEY;
 export const SUPABASE_WRITE_KEY = SUPABASE_SERVICE_ROLE_KEY || SUPABASE_ANON_KEY;
-export const UPI_ID = process.env.UPI_ID || 'cyberjai@upi';
-export const UPI_NAME = process.env.UPI_NAME || 'Cyber Jai Academy';
+
 export const COURSE_FEE = 5000;
 export const OFFER_AMOUNT = 2000;
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;

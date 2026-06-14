@@ -33,7 +33,6 @@ export default function ExperienceCarousel() {
             <p className="text-green-400">⚡ Port 22/tcp open  ssh   OpenSSH 8.2p1</p>
             <p className="font-bold text-cyber-red animate-pulse">⚠️ CRITICAL: Exploit vector found (CVE-2021-3156)</p>
             <p className="text-white/30"><span className="text-cyan-400 font-bold">cyberjai@root:~#</span> python exploit.py --target 192.168.1.105</p>
-            <p className="font-bold text-cyan-400 animate-pulse">🔥 Injecting payload... Reverse shell established!</p>
           </div>
         </div>
       ),
