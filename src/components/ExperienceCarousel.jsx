@@ -15,24 +15,41 @@ export default function ExperienceCarousel() {
       icon: LaptopCodeIcon,
       text: "Let's be honest, traditional coding theory classes are boring. Here, we do not just throw thick PDF textbooks at you. Our classes feel like solving a puzzle with a friend. We learn in an incredibly easy, structured, and fun way where you understand the why behind every single cyber attack. Zero stress, pure practical hacking, and interactive sessions that actually make you want to learn more every day.",
       visual: (
-        <div className="flex aspect-[4/3] w-full max-w-sm flex-col justify-between rounded-2xl border border-white/10 bg-[#0e0e13] p-5 text-left font-mono text-[11px] text-green-400 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyber-red/50 to-transparent" />
+        <div style={{
+          display: 'flex',
+          aspectRatio: '4/3',
+          width: '100%',
+          maxWidth: '24rem',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          border: '4px solid #000000',
+          background: '#000000',
+          padding: '1.25rem',
+          textAlign: 'left',
+          fontFamily: 'monospace',
+          fontSize: '11px',
+          color: '#00ff00',
+          boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          <div style={{ height: '2px', background: '#ffffff', position: 'absolute', top: 0, left: 0, right: 0 }} />
 
-          <div className="mb-4 flex items-center justify-between border-b border-white/5 pb-3">
-            <div className="flex gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-red-500/80" />
-              <div className="h-2 w-2 rounded-full bg-yellow-500/80" />
-              <div className="h-2 w-2 rounded-full bg-green-500/80" />
+          <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '2px solid rgba(255,255,255,0.15)', paddingBottom: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '6px' }}>
+              <div style={{ height: '8px', width: '8px', background: '#ffffff', border: '2px solid rgba(255,255,255,0.4)' }} />
+              <div style={{ height: '8px', width: '8px', background: '#888888', border: '2px solid rgba(255,255,255,0.2)' }} />
+              <div style={{ height: '8px', width: '8px', background: '#555555', border: '2px solid rgba(255,255,255,0.1)' }} />
             </div>
-            <span className="text-[9px] font-bold tracking-widest text-white/30 uppercase">Interactive Lab Terminal</span>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Interactive Lab Terminal</span>
           </div>
 
-          <div className="select-none space-y-2 font-mono leading-relaxed">
-            <p className="text-white/40"><span className="text-cyber-red font-bold">cyberjai@root:~#</span> nmap -sV -F 192.168.1.105</p>
-            <p className="text-green-400">⚡ Port 80/tcp open  http  Apache 2.4.41</p>
-            <p className="text-green-400">⚡ Port 22/tcp open  ssh   OpenSSH 8.2p1</p>
-            <p className="font-bold text-cyber-red animate-pulse">⚠️ CRITICAL: Exploit vector found (CVE-2021-3156)</p>
-            <p className="text-white/30"><span className="text-cyan-400 font-bold">cyberjai@root:~#</span> python exploit.py --target 192.168.1.105</p>
+          <div style={{ userSelect: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', lineHeight: 1.6 }}>
+            <p style={{ color: 'rgba(255,255,255,0.4)' }}><span style={{ color: '#ffffff', fontWeight: 700 }}>cyberjai@root:~#</span> nmap -sV -F 192.168.1.105</p>
+            <p style={{ color: '#00ff00' }}>⚡ Port 80/tcp open  http  Apache 2.4.41</p>
+            <p style={{ color: '#00ff00' }}>⚡ Port 22/tcp open  ssh   OpenSSH 8.2p1</p>
+            <p style={{ color: '#ffffff', fontWeight: 700 }}>⚠️ CRITICAL: Exploit vector found (CVE-2021-3156)</p>
+            <p style={{ color: 'rgba(255,255,255,0.3)' }}><span style={{ color: '#00ffff', fontWeight: 700 }}>cyberjai@root:~#</span> python exploit.py --target 192.168.1.105</p>
           </div>
         </div>
       ),
@@ -43,41 +60,56 @@ export default function ExperienceCarousel() {
       icon: GrowthIcon,
       text: 'We are not preparing you to just pass another exam. We are building your launchpad into a high paying tech career. The global demand for cyber skills is exploding, and we give you the exact insider blueprints, portfolio worthy real world labs, and community backing to stand out. From getting your resume noticed to cracking tough technical interviews confidently, we have got your back at every single step.',
       visual: (
-        <div className="flex aspect-[4/3] w-full max-w-sm flex-col justify-between rounded-2xl border border-white/10 bg-[#0e0e13] p-5 text-left text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-green-500/40 to-transparent" />
+        <div style={{
+          display: 'flex',
+          aspectRatio: '4/3',
+          width: '100%',
+          maxWidth: '24rem',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          border: '4px solid #000000',
+          background: '#000000',
+          padding: '1.25rem',
+          textAlign: 'left',
+          color: '#ffffff',
+          boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          <div style={{ height: '2px', background: '#00ff00', position: 'absolute', top: 0, left: 0, right: 0 }} />
 
-          <div className="mb-4 flex items-center justify-between border-b border-white/5 pb-3">
-            <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Market Statistics</span>
-            <span className="rounded-full border border-green-500/20 bg-green-500/10 px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-green-400">Global Demand</span>
+          <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '2px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
+            <span style={{ fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.5)' }}>Market Statistics</span>
+            <span style={{ border: '2px solid rgba(255,255,255,0.3)', padding: '2px 8px', fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#ffffff' }}>Global Demand</span>
           </div>
 
-          <div className="flex-1 flex flex-col justify-center space-y-4">
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}>
             <div>
-              <div className="mb-1.5 flex justify-between text-[11px] font-bold text-white/80 uppercase tracking-wider">
+              <div style={{ marginBottom: '6px', display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 <span>Unfilled Cyber Roles</span>
-                <span className="font-black text-cyber-red">3.5 Million+</span>
+                <span style={{ fontWeight: 800, color: '#ffffff' }}>3.5 Million+</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/5">
+              <div style={{ height: '8px', overflow: 'hidden', background: 'rgba(255,255,255,0.1)', border: '2px solid rgba(255,255,255,0.2)' }}>
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: '85%' }}
                   transition={{ duration: 1.2, ease: 'easeOut', delay: 0.1 }}
-                  className="h-full rounded-full bg-gradient-to-r from-cyber-red to-[#ff4d4d]"
+                  style={{ height: '100%', background: '#ffffff' }}
                 />
               </div>
             </div>
 
             <div>
-              <div className="mb-1.5 flex justify-between text-[11px] font-bold text-white/80 uppercase tracking-wider">
+              <div style={{ marginBottom: '6px', display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 <span>Graduate Salary Growth</span>
-                <span className="font-black text-green-400">+140% Avg</span>
+                <span style={{ fontWeight: 800, color: '#00ff00' }}>+140% Avg</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/5">
+              <div style={{ height: '8px', overflow: 'hidden', background: 'rgba(255,255,255,0.1)', border: '2px solid rgba(255,255,255,0.2)' }}>
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: '95%' }}
                   transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-                  className="h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-400"
+                  style={{ height: '100%', background: '#00ff00' }}
                 />
               </div>
             </div>
@@ -91,29 +123,30 @@ export default function ExperienceCarousel() {
       icon: ShieldLockIcon,
       text: 'You are not learning from an academic lecturer who only reads off slides. You are training directly under a battle tested elite cybersecurity consultant. Someone who deals with real world cyber threats, live red teaming simulations, and enterprise grade AI defense systems daily. You get raw industry experience, direct one on one mentorship, and the exact roadmap used by top tier global pros.',
       visual: (
-        <div className="group relative mx-auto w-full max-w-[250px] overflow-hidden rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.02]" style={{ aspectRatio: '3/4' }}>
+        <div style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '250px', overflow: 'hidden', border: '4px solid #000000', boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)', aspectRatio: '3/4', transition: 'transform 0.5s' }}
+          className="group"
+        >
           {/* Full-bleed background image */}
           <img
             src={cyberJaiImage}
             alt="Cyber Jai Lead Instructor"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]"
+            style={{ position: 'absolute', inset: 0, height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.7s' }}
           />
           {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.3)_40%,transparent_100%)]" />
-          {/* Red glow ring */}
-          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-cyber-red/20" />
-          {/* Top badge */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 40%, transparent 100%)' }} />
+          {/* White border overlay */}
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 0 3px rgba(255,255,255,0.15)' }} />
 
           {/* Bottom name block */}
-          <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
-            <div className="mb-2.5 h-[2px] w-6 bg-cyber-red" />
-            <h4 className="font-display text-lg font-black uppercase leading-none tracking-tight text-white drop-shadow-md">
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.25rem', textAlign: 'left' }}>
+            <div style={{ marginBottom: '0.625rem', height: '2px', width: '1.5rem', background: '#ffffff' }} />
+            <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1, letterSpacing: '-0.02em', color: '#ffffff' }}>
               CYBER JAI
             </h4>
-            <p className="mt-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/50">
+            <p style={{ marginTop: '0.375rem', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)' }}>
               Secure Worldz Official
             </p>
-            <p className="mt-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-cyber-red">
+            <p style={{ marginTop: '0.125rem', fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: 'rgba(255,255,255,0.7)' }}>
               Cybersecurity &amp; AI Mentor
             </p>
           </div>
@@ -165,18 +198,28 @@ export default function ExperienceCarousel() {
   };
 
   return (
-    <div className="mx-auto mt-12 max-w-5xl px-4 sm:px-6">
-      <div className="relative overflow-hidden rounded-[32px] border border-gray-100 bg-gradient-to-b from-white to-gray-50/50 p-6 sm:p-10 md:p-12 lg:p-14 shadow-[0_30px_70px_rgba(0,0,0,0.035)]">
-        {/* Subtle grid pattern background */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,17,17,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.012)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40" />
+    <div style={{ margin: '3rem auto 0', maxWidth: '64rem', padding: '0 1rem' }} className="sm:px-6">
+      <div style={{
+        position: 'relative',
+        overflow: 'hidden',
+        border: '4px solid #000000',
+        background: '#ffffff',
+        padding: '1.5rem',
+        boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+      }} className="sm:p-10 md:p-12 lg:p-14">
+        {/* Subtle grid pattern */}
+        <div style={{
+          pointerEvents: 'none',
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          opacity: 0.5,
+        }} />
 
-        <div className="pointer-events-none absolute -bottom-16 -right-16 p-8 opacity-[0.012]">
-          <ShieldLockIcon className="h-72 w-72 text-black" />
-        </div>
-
-        <div className="relative z-10 flex flex-col justify-between">
+        <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           {/* Main content slider area */}
-          <div className="relative overflow-hidden min-h-[460px] sm:min-h-[400px] md:min-h-[350px] lg:min-h-[300px] flex items-center">
+          <div style={{ position: 'relative', overflow: 'hidden', minHeight: '460px', display: 'flex', alignItems: 'center' }} className="sm:min-h-[400px] md:min-h-[350px] lg:min-h-[300px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={activeIndex}
@@ -186,31 +229,30 @@ export default function ExperienceCarousel() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-                className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center text-left w-full"
+                style={{ width: '100%' }}
+                className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center text-left"
               >
                 {/* Left Side: Content */}
-                <div className="md:col-span-7 flex flex-col justify-center space-y-4 md:space-y-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyber-red/10 text-cyber-red shadow-[0_4px_12px_rgba(212,18,18,0.1)]">
-                      {React.createElement(slides[activeIndex].icon, { className: 'h-5 w-5' })}
+                <div className="md:col-span-7" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1.25rem' }}>
+                  {/* Category label row */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', height: '2.5rem', width: '2.5rem', flexShrink: 0, alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', background: '#000000', color: '#ffffff' }}>
+                      {React.createElement(slides[activeIndex].icon, { style: { height: '1.25rem', width: '1.25rem' } })}
                     </div>
-                    <span className="text-[clamp(0.7rem,1.1vw,0.8rem)] font-bold uppercase tracking-[0.2em] text-cyber-red">
+                    <span style={{ fontSize: 'clamp(0.7rem,1.1vw,0.8rem)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000000', fontFamily: 'var(--font-heading)' }}>
                       {slides[activeIndex].category}
                     </span>
                   </div>
 
-                  <h3 className="font-display text-[clamp(1.5rem,2.5vw,2rem)] font-black uppercase leading-none tracking-tight text-black">
-                    {slides[activeIndex].category}
-                  </h3>
-
-                  <p className="text-[clamp(0.88rem,1.15vw,1rem)] font-medium leading-relaxed text-gray-500 max-w-xl">
+                  {/* Body text — directly below category, no duplicate h3 */}
+                  <p style={{ fontSize: 'clamp(0.9rem,1.2vw,1.05rem)', fontWeight: 500, lineHeight: 1.75, color: '#555555', maxWidth: '36rem' }}>
                     {slides[activeIndex].text}
                   </p>
                 </div>
 
                 {/* Right Side: Visual Element */}
-                <div className="md:col-span-5 flex items-center justify-center w-full">
-                  <div className="relative w-full flex justify-center items-center">
+                <div className="md:col-span-5" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     {slides[activeIndex].visual}
                   </div>
                 </div>
@@ -219,47 +261,57 @@ export default function ExperienceCarousel() {
           </div>
 
           {/* Footer Controls */}
-          <div className="mt-8 flex flex-col items-center justify-between gap-5 border-t border-gray-100 pt-6 sm:flex-row">
-            <div className="flex gap-3">
+          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', gap: '1.25rem', borderTop: '4px solid #000000', paddingTop: '1.5rem' }} className="sm:flex-row">
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
               <button
                 type="button"
                 onClick={handlePrev}
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-cyber-red hover:bg-cyber-red/5 hover:text-cyber-red active:scale-95"
+                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#000000', background: '#ffffff', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s' }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                <svg style={{ height: '1.25rem', width: '1.25rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
                 type="button"
                 onClick={handleNext}
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-cyber-red hover:bg-cyber-red/5 hover:text-cyber-red active:scale-95"
+                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#000000', background: '#ffffff', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s' }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                <svg style={{ height: '1.25rem', width: '1.25rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="square" strokeLinejoin="miter" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               {slides.map((slide, idx) => (
                 <button
                   type="button"
                   key={slide.id}
                   onClick={() => handleDotClick(idx)}
-                  className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-10 bg-cyber-red' : 'w-2.5 bg-gray-200 hover:bg-gray-400'
-                    }`}
+                  style={{
+                    height: '10px',
+                    cursor: 'pointer',
+                    border: '2px solid #000000',
+                    background: idx === activeIndex ? '#000000' : '#ffffff',
+                    width: idx === activeIndex ? '2.5rem' : '10px',
+                    transition: 'all 0.3s ease',
+                  }}
                 />
               ))}
             </div>
 
-            <div className="hidden h-1 w-36 overflow-hidden rounded-full bg-gray-100 sm:block">
+            <div style={{ display: 'none', height: '4px', width: '9rem', overflow: 'hidden', background: '#e0e0e0', border: '2px solid #000' }} className="sm:block">
               <motion.div
                 key={activeIndex}
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
                 transition={{ duration: 7.5, ease: 'linear' }}
-                className="h-full bg-cyber-red"
+                style={{ height: '100%', background: '#000000' }}
               />
             </div>
           </div>

@@ -109,33 +109,69 @@ export default function EnrollmentPage() {
         }
     };
 
+    /* ── Retro input style ── */
+    const inputStyle = {
+        width: '100%',
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+        borderRadius: '0px',
+        padding: '0.75rem 1rem',
+        fontSize: '0.92rem',
+        color: '#000000',
+        outline: 'none',
+        fontFamily: 'var(--font-main)',
+        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+    };
+
+    const labelStyle = {
+        display: 'block',
+        fontSize: '0.7rem',
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: '0.18em',
+        color: '#555555',
+        marginBottom: '0.5rem',
+        fontFamily: 'var(--font-heading)',
+    };
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-[#1f2937] font-sans flex flex-col justify-between">
+        <div style={{ minHeight: '100vh', background: '#ffffff', color: '#000000', fontFamily: 'var(--font-main)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             {/* Header / Brand Nav */}
-            <header className="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between z-10">
-                <Link to="/" className="flex items-center gap-3 group">
-                    <ShieldLockIcon className="h-9 w-9 text-cyber-red group-hover:rotate-6 transition-transform duration-300" />
-                    <span className="font-display font-black text-lg uppercase tracking-tight text-[#111]">
-                        CYBER J<span className="cyber-ai-glow">AI</span>
+            <header style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '1.5rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '4px solid #000000' }}>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+                    <ShieldLockIcon style={{ height: '2.25rem', width: '2.25rem', color: '#000000' }} />
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.125rem', textTransform: 'uppercase', letterSpacing: '-0.03em', color: '#000000' }}>
+                        CYBER JAI
                     </span>
                 </Link>
-                <Link 
-                    to="/" 
-                    className="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-black transition-colors flex items-center gap-1.5"
+                <Link
+                    to="/"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', textDecoration: 'none', fontFamily: 'var(--font-heading)', transition: 'color 0.15s' }}
+                    onMouseEnter={e => e.currentTarget.style.color = '#000'}
+                    onMouseLeave={e => e.currentTarget.style.color = '#888'}
                 >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    <svg style={{ height: '1rem', width: '1rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="square" strokeLinejoin="miter" d="M15 19l-7-7 7-7" />
                     </svg>
                     Back to Course
                 </Link>
             </header>
 
             {/* Split screen content layout */}
-            <main className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 py-8 md:py-12 flex items-center justify-center">
-                <div className="bg-white rounded-[32px] border border-gray-100 shadow-[0_25px_60px_rgba(0,0,0,0.04)] overflow-hidden w-full grid md:grid-cols-[1.1fr_0.9fr] min-h-[580px]">
-                    
-                    {/* Left Column (Light Background Checkout Form) */}
-                    <div className="p-8 sm:p-12 flex flex-col justify-between bg-white">
+            <main style={{ flex: 1, maxWidth: '72rem', width: '100%', margin: '0 auto', padding: '2rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{
+                    background: '#ffffff',
+                    border: '4px solid #000000',
+                    boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+                    overflow: 'hidden',
+                    width: '100%',
+                    display: 'grid',
+                    minHeight: '580px',
+                }} className="md:grid-cols-[1.1fr_0.9fr]">
+
+                    {/* Left Column — Form */}
+                    <div style={{ padding: '2rem', borderRight: '4px solid #000000', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#ffffff' }} className="sm:p-12">
                         <AnimatePresence mode="wait">
                             {success ? (
                                 <motion.div
@@ -143,40 +179,68 @@ export default function EnrollmentPage() {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="text-center py-8 flex flex-col justify-center items-center h-full"
+                                    style={{ textAlign: 'center', padding: '2rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}
                                 >
-                                    <div className="h-20 w-20 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-[0_15px_35px_rgba(34,197,94,0.25)] border border-green-400/20">
-                                        <CheckIcon className="h-10 w-10 text-white" />
+                                    <div style={{ height: '5rem', width: '5rem', background: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', border: '4px solid #000', boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)' }}>
+                                        <CheckIcon style={{ height: '2.5rem', width: '2.5rem', color: '#ffffff' }} />
                                     </div>
-                                    <h2 className="text-3xl font-display font-black uppercase tracking-tight mb-3 text-black">Application Submitted!</h2>
-                                    <p className="text-gray-500 leading-relaxed text-sm max-w-sm mx-auto mb-8">
+                                    <h2 style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.03em', marginBottom: '0.75rem', color: '#000000' }}>Application Submitted!</h2>
+                                    <p style={{ color: '#555555', lineHeight: 1.75, fontSize: '0.875rem', maxWidth: '24rem', margin: '0 auto 2rem' }}>
                                         Your payment confirmation is being verified. You will receive login details and course dashboard credentials via email within 2-4 hours.
                                     </p>
                                     <Link
                                         to="/"
-                                        className="inline-flex bg-black text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-900 transition-colors shadow-lg active:scale-95"
+                                        style={{
+                                            display: 'inline-flex',
+                                            background: '#000000',
+                                            color: '#ffffff',
+                                            border: '4px solid #000000',
+                                            boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                                            padding: '0.75rem 2rem',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 800,
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.15em',
+                                            textDecoration: 'none',
+                                            fontFamily: 'var(--font-heading)',
+                                            transition: 'box-shadow 0.12s, transform 0.12s',
+                                        }}
+                                        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                     >
                                         Return Home
                                     </Link>
                                 </motion.div>
                             ) : (
-                                <div className="h-full flex flex-col justify-between">
+                                <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                     {/* Step Header */}
-                                    <div className="mb-8">
-                                        <div className="flex justify-between items-center mb-3">
-                                            <h2 className="text-3xl font-display font-black uppercase tracking-tight text-black">
+                                    <div style={{ marginBottom: '2rem' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                            <h2 style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.03em', color: '#000000' }}>
                                                 Step {step} of 2
                                             </h2>
-                                            <span className="text-[0.7rem] font-black uppercase tracking-widest text-cyber-red bg-cyber-red/5 px-3 py-1 rounded-full border border-cyber-red/10">
+                                            <span style={{
+                                                fontSize: '0.65rem',
+                                                fontWeight: 800,
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.15em',
+                                                color: '#000000',
+                                                border: '4px solid #000000',
+                                                padding: '0.2rem 0.75rem',
+                                                fontFamily: 'var(--font-heading)',
+                                                background: '#ffffff',
+                                                boxShadow: '3px 3px 0px 0px rgba(0,0,0,1)',
+                                            }}>
                                                 {step === 1 ? 'Personal Info' : 'Payment Details'}
                                             </span>
                                         </div>
-                                        <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                                        {/* Progress bar — retro style */}
+                                        <div style={{ height: '6px', width: '100%', background: '#e0e0e0', border: '2px solid #000000', overflow: 'hidden' }}>
                                             <motion.div
-                                                className="h-full bg-cyber-red"
+                                                style={{ height: '100%', background: '#000000' }}
                                                 initial={{ width: '50%' }}
                                                 animate={{ width: step === 1 ? '50%' : '100%' }}
-                                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                                transition={{ duration: 0.4, ease: 'easeOut' }}
                                             />
                                         </div>
                                     </div>
@@ -189,54 +253,77 @@ export default function EnrollmentPage() {
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: 10 }}
                                             onSubmit={handleNext}
-                                            className="space-y-5 flex-1 flex flex-col justify-center"
+                                            style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1, justifyContent: 'center' }}
                                         >
                                             <div>
-                                                <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Full Name</label>
+                                                <label style={labelStyle}>Full Name</label>
                                                 <input
                                                     type="text"
                                                     required
-                                                    className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
+                                                    style={inputStyle}
                                                     placeholder="Enter your name"
                                                     value={formData.name}
-                                                onChange={(e) => {
-                                                    setError('');
-                                                    setFormData({ ...formData, name: e.target.value });
-                                                }}
-                                            />
-                                        </div>
+                                                    onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                                    onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                                                    onChange={(e) => {
+                                                        setError('');
+                                                        setFormData({ ...formData, name: e.target.value });
+                                                    }}
+                                                />
+                                            </div>
                                             <div>
-                                                <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Email Address</label>
+                                                <label style={labelStyle}>Email Address</label>
                                                 <input
                                                     type="email"
                                                     required
-                                                    className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
+                                                    style={inputStyle}
                                                     placeholder="name@example.com"
                                                     value={formData.email}
-                                                onChange={(e) => {
-                                                    setError('');
-                                                    setFormData({ ...formData, email: e.target.value });
-                                                }}
-                                            />
-                                        </div>
+                                                    onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                                    onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                                                    onChange={(e) => {
+                                                        setError('');
+                                                        setFormData({ ...formData, email: e.target.value });
+                                                    }}
+                                                />
+                                            </div>
                                             <div>
-                                                <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Phone Number</label>
+                                                <label style={labelStyle}>Phone Number</label>
                                                 <input
                                                     type="tel"
                                                     required
-                                                    className="w-full bg-gray-50 border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all duration-200"
+                                                    style={inputStyle}
                                                     placeholder="+91 00000 00000"
                                                     value={formData.phone}
-                                                onChange={(e) => {
-                                                    setError('');
-                                                    setFormData({ ...formData, phone: e.target.value });
-                                                }}
-                                            />
-                                        </div>
-                                            {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
+                                                    onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                                    onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                                                    onChange={(e) => {
+                                                        setError('');
+                                                        setFormData({ ...formData, phone: e.target.value });
+                                                    }}
+                                                />
+                                            </div>
+                                            {error && <p style={{ color: '#000000', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', background: '#f0f0f0', border: '4px solid #000', padding: '0.5rem 0.75rem' }}>{error}</p>}
                                             <button
                                                 type="submit"
-                                                className="w-full bg-black text-white font-black py-4.5 rounded-2xl uppercase tracking-widest shadow-lg hover:bg-gray-900 transition-all active:scale-[0.98] mt-2"
+                                                style={{
+                                                    width: '100%',
+                                                    background: '#000000',
+                                                    color: '#ffffff',
+                                                    border: '4px solid #000000',
+                                                    boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                                                    padding: '1rem',
+                                                    fontSize: '0.82rem',
+                                                    fontWeight: 800,
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '0.15em',
+                                                    fontFamily: 'var(--font-heading)',
+                                                    cursor: 'pointer',
+                                                    marginTop: '0.5rem',
+                                                    transition: 'box-shadow 0.12s, transform 0.12s',
+                                                }}
+                                                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                                                onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                             >
                                                 Continue to Payment
                                             </button>
@@ -247,51 +334,93 @@ export default function EnrollmentPage() {
                                             initial={{ opacity: 0, x: -10 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             onSubmit={handleSubmit}
-                                            className="space-y-5 flex-1 flex flex-col justify-center"
+                                            style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1, justifyContent: 'center' }}
                                         >
-                                            <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 text-center shadow-inner">
-                                                <p className="text-[0.65rem] font-black text-cyber-red uppercase tracking-widest mb-3">Scan QR to pay ₹{amount}</p>
-                                                <div className="bg-white p-4 inline-block rounded-2xl shadow-sm mb-3">
-                                                    <img src={customQrCodeImage} alt="Scan QR to pay" className="w-[150px] h-[150px] object-contain mx-auto" />
+                                            <div style={{ border: '4px solid #000000', background: '#f8f8f8', padding: '1.5rem', textAlign: 'center', boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)' }}>
+                                                <p style={{ fontSize: '0.65rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Scan QR to pay ₹{amount}</p>
+                                                <div style={{ background: '#ffffff', padding: '0.75rem', display: 'inline-block', border: '4px solid #000', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', marginBottom: '0.75rem' }}>
+                                                    <img src={customQrCodeImage} alt="Scan QR to pay" style={{ width: '150px', height: '150px', objectFit: 'contain', display: 'block' }} />
                                                 </div>
-                                                <p className="text-[0.85rem] font-black text-gray-600 tracking-wide">MS SECURE WORLDZ</p>
+                                                <p style={{ fontSize: '0.85rem', fontWeight: 800, color: '#000000', letterSpacing: '0.08em', fontFamily: 'var(--font-heading)' }}>MS SECURE WORLDZ</p>
                                             </div>
 
                                             <div>
-                                                <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Upload Receipt (Screenshot)</label>
-                                                <label className="flex flex-col items-center justify-center w-full h-28 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-white hover:border-cyber-red transition-all duration-200">
+                                                <label style={labelStyle}>Upload Receipt (Screenshot)</label>
+                                                <label style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    width: '100%',
+                                                    height: '7rem',
+                                                    background: '#f8f8f8',
+                                                    border: '4px dashed #000000',
+                                                    cursor: 'pointer',
+                                                    transition: 'background 0.15s',
+                                                }}
+                                                    onMouseEnter={e => e.currentTarget.style.background = '#eeeeee'}
+                                                    onMouseLeave={e => e.currentTarget.style.background = '#f8f8f8'}
+                                                >
                                                     {formData.receipt ? (
-                                                        <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
-                                                            <CheckIcon className="h-5 w-5" />
-                                                            <span className="truncate max-w-[200px]">{formData.receipt.name}</span>
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#000000', fontWeight: 700, fontSize: '0.875rem' }}>
+                                                            <CheckIcon style={{ height: '1.25rem', width: '1.25rem' }} />
+                                                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '200px', whiteSpace: 'nowrap' }}>{formData.receipt.name}</span>
                                                         </div>
                                                     ) : (
-                                                        <div className="flex flex-col items-center gap-1.5">
-                                                            <CloudUploadIcon className="h-7 w-7 text-gray-400" />
-                                                            <span className="text-[0.65rem] font-black text-gray-400 uppercase tracking-widest">Click to upload screenshot</span>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.375rem' }}>
+                                                            <CloudUploadIcon style={{ height: '1.75rem', width: '1.75rem', color: '#888888' }} />
+                                                            <span style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Click to upload screenshot</span>
                                                         </div>
                                                     )}
-                                                    <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+                                                    <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFileChange} />
                                                 </label>
                                             </div>
 
-                                            {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
+                                            {error && <p style={{ color: '#000000', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', background: '#f0f0f0', border: '4px solid #000', padding: '0.5rem 0.75rem' }}>{error}</p>}
 
-                                            <div className="grid grid-cols-2 gap-4 mt-2">
+                                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '0.5rem' }}>
                                                 <button
                                                     type="button"
-                                                    onClick={() => {
-                                                        setError('');
-                                                        setStep(1);
+                                                    onClick={() => { setError(''); setStep(1); }}
+                                                    style={{
+                                                        background: '#ffffff',
+                                                        color: '#000000',
+                                                        border: '4px solid #000000',
+                                                        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                                        padding: '0.875rem',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 800,
+                                                        textTransform: 'uppercase',
+                                                        letterSpacing: '0.12em',
+                                                        fontFamily: 'var(--font-heading)',
+                                                        cursor: 'pointer',
+                                                        transition: 'box-shadow 0.12s, transform 0.12s',
                                                     }}
-                                                    className="bg-gray-100 text-gray-600 font-bold py-4 rounded-2xl uppercase tracking-widest hover:bg-gray-200 transition-colors active:scale-[0.98]"
+                                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
+                                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
                                                 >
                                                     Back
                                                 </button>
                                                 <button
                                                     type="submit"
                                                     disabled={loading}
-                                                    className="bg-cyber-red text-white font-black py-4 rounded-2xl uppercase tracking-widest shadow-lg hover:bg-cyber-redDark transition-all active:scale-[0.98] disabled:opacity-50"
+                                                    style={{
+                                                        background: '#000000',
+                                                        color: '#ffffff',
+                                                        border: '4px solid #000000',
+                                                        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                                        padding: '0.875rem',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 800,
+                                                        textTransform: 'uppercase',
+                                                        letterSpacing: '0.12em',
+                                                        fontFamily: 'var(--font-heading)',
+                                                        cursor: loading ? 'not-allowed' : 'pointer',
+                                                        opacity: loading ? 0.5 : 1,
+                                                        transition: 'box-shadow 0.12s, transform 0.12s',
+                                                    }}
+                                                    onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; } }}
+                                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                                 >
                                                     {loading ? 'Submitting...' : 'Finish Enroll'}
                                                 </button>
@@ -303,45 +432,54 @@ export default function EnrollmentPage() {
                         </AnimatePresence>
                     </div>
 
-                    {/* Right Column (Dark Background Summary Sidebar) */}
-                    <div className="bg-gradient-to-br from-[#1c1c1c] to-[#0a0a0a] p-8 sm:p-12 text-white relative overflow-hidden flex flex-col justify-between">
-                        <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                            <ShieldLockIcon className="h-56 w-56 text-white" />
+                    {/* Right Column — Dark Summary Sidebar */}
+                    <div style={{ background: '#000000', padding: '2rem', color: '#ffffff', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} className="sm:p-12">
+                        <div style={{ position: 'absolute', top: 0, right: 0, padding: '2rem', opacity: 0.04, pointerEvents: 'none' }}>
+                            <ShieldLockIcon style={{ height: '14rem', width: '14rem', color: '#ffffff' }} />
                         </div>
-                        
-                        <div className="relative z-10 flex-1 flex flex-col justify-between">
+
+                        <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                             <div>
-                                <span className="text-[0.6rem] font-black text-cyber-red uppercase tracking-widest border border-cyber-red/30 px-3 py-1 rounded-full bg-cyber-red/5">
+                                <span style={{
+                                    fontSize: '0.6rem',
+                                    fontWeight: 800,
+                                    color: '#ffffff',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.15em',
+                                    border: '4px solid rgba(255,255,255,0.4)',
+                                    padding: '0.2rem 0.75rem',
+                                    fontFamily: 'var(--font-heading)',
+                                }}>
                                     ACADEMY CHECKOUT
                                 </span>
-                                <h3 className="text-3xl font-display font-black uppercase mt-6 mb-8 leading-tight tracking-tight text-white">
+                                <h3 style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', marginTop: '1.5rem', marginBottom: '2rem', lineHeight: 1.1, letterSpacing: '-0.03em', color: '#ffffff' }}>
                                     Secure Your Cyber Future
                                 </h3>
-                                
-                                <ul className="space-y-6">
+
+                                <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                     {[
                                         { icon: LockSealIcon, text: 'Instant Access to Hands-On Labs' },
                                         { icon: ClockIcon, text: 'Lifetime Cohort Support & Updates' },
                                         { icon: CheckIcon, text: 'Verifiable Certificate of Completion' }
                                     ].map((item, idx) => (
-                                        <li key={idx} className="flex items-center gap-4">
-                                            <div className="h-9 w-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                                                <item.icon className="h-5 w-5 text-cyber-red" />
+                                        <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                            <div style={{ height: '2.25rem', width: '2.25rem', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                                <item.icon style={{ height: '1.25rem', width: '1.25rem', color: '#ffffff' }} />
                                             </div>
-                                            <span className="text-xs font-bold uppercase tracking-wider text-white/80">{item.text}</span>
+                                            <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.8)', fontFamily: 'var(--font-heading)' }}>{item.text}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
-                            <div className="mt-12 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-inner relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-16 h-16 bg-cyber-red/5 rounded-bl-full pointer-events-none" />
-                                <p className="text-[0.6rem] font-black uppercase tracking-widest text-white/40 mb-1">COHORT SUMMERS SPECIAL</p>
-                                <div className="flex items-baseline gap-2">
-                                    <p className="text-4xl font-display font-black text-cyber-red">&#8377;{amount}</p>
-                                    <span className="text-xs text-white/45 line-through font-bold">&#8377;5,000</span>
+                            <div style={{ marginTop: '3rem', padding: '1.5rem', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)', position: 'relative', overflow: 'hidden' }}>
+                                <div style={{ position: 'absolute', top: 0, right: 0, width: '4rem', height: '4rem', background: 'rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
+                                <p style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)', marginBottom: '0.25rem', fontFamily: 'var(--font-heading)' }}>COHORT SUMMERS SPECIAL</p>
+                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
+                                    <p style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', fontWeight: 800, color: '#ffffff' }}>&#8377;{amount}</p>
+                                    <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through', fontWeight: 700 }}>&#8377;5,000</span>
                                 </div>
-                                <p className="text-[0.55rem] font-black uppercase tracking-widest text-green-400 mt-2">● Save 60% with limited offer coupon</p>
+                                <p style={{ fontSize: '0.55rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.6)', marginTop: '0.5rem', fontFamily: 'var(--font-heading)' }}>● Save 60% with limited offer coupon</p>
                             </div>
                         </div>
                     </div>
@@ -350,7 +488,7 @@ export default function EnrollmentPage() {
             </main>
 
             {/* Footer lockup */}
-            <footer className="w-full text-center py-6 border-t border-gray-100 text-gray-400 text-[0.68rem] tracking-wider uppercase font-medium">
+            <footer style={{ width: '100%', textAlign: 'center', padding: '1.5rem', borderTop: '4px solid #000000', color: '#888888', fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600, fontFamily: 'var(--font-heading)' }}>
                 © {new Date().getFullYear()} Cyber Jai Academy. All Rights Reserved. SSL Secured Checkout.
             </footer>
         </div>

@@ -1,70 +1,142 @@
 import { Link } from 'react-router-dom';
 import { courses } from '../data/courses';
 import SiteNavbar from '../components/SiteNavbar';
+import Footer from '../components/Footer';
 
 export default function CoursesCatalogPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0B0F19] text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(212,18,18,0.18),transparent_28%),radial-gradient(circle_at_88%_12%,rgba(212,18,18,0.11),transparent_30%),linear-gradient(180deg,#121826_0%,#0B0F19_52%,#0B0F19_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:68px_68px] opacity-30" />
+    <div style={{ position: 'relative', minHeight: '100vh', background: '#ffffff', color: '#000000' }}>
 
-      <main className="relative mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+      {/* ── Navbar — same fluid-container as the home page ── */}
+      <div className="fluid-container" style={{ paddingTop: '1.25rem' }}>
         <SiteNavbar />
+      </div>
 
-        <section className="py-14 sm:py-16 lg:py-20">
-          <div className="max-w-4xl">
-            <p className="text-[0.75rem] font-black uppercase tracking-[0.22em] text-cyber-red">
-              Course Catalog
-            </p>
-            <h1 className="mt-4 font-display text-[clamp(2.6rem,6vw,5.6rem)] font-black uppercase leading-[1.02] text-white">
-              Three tracks. One clean path.
-            </h1>
-            <p className="mt-6 max-w-3xl text-[1.05rem] leading-9 text-white/68">
-              Browse the available tracks, compare the previews, and open the detail page for pricing, scheduling, and certificate information.
-            </p>
-          </div>
+      {/* ── Page content — same fluid-container ── */}
+      <main className="fluid-container" style={{ paddingBottom: '5rem' }}>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
+        {/* ── Hero heading band ── */}
+        <section style={{ paddingTop: 'clamp(3rem,6vw,5rem)' }}>
+          {/* Eyebrow */}
+          <p style={{
+            fontSize: '0.75rem',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            letterSpacing: '0.22em',
+            color: '#000000',
+            fontFamily: 'var(--font-heading)',
+          }}>
+            Course Catalog
+          </p>
+
+          {/* Big heading — left-aligned, full available width */}
+          <h1 style={{
+            marginTop: '1rem',
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(2.8rem, 7vw, 6rem)',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            lineHeight: 1.0,
+            color: '#000000',
+            letterSpacing: '-0.04em',
+            maxWidth: '18ch',
+          }}>
+            Three tracks. One clean path.
+          </h1>
+
+          {/* Description — same left edge as heading */}
+          <p style={{
+            marginTop: '1.5rem',
+            maxWidth: '52rem',
+            fontSize: '1.05rem',
+            lineHeight: 1.75,
+            color: '#555555',
+          }}>
+            Browse the available tracks, compare the previews, and open the detail page for pricing,
+            scheduling, and certificate information.
+          </p>
+
+          {/* Short retro divider */}
+          <div style={{ height: '4px', background: '#000000', margin: '2.5rem 0 3rem', width: '5rem' }} />
+
+          {/* ── 3-column card grid ── */}
+          <div style={{ display: 'grid', gap: '1.5rem' }} className="lg:grid-cols-3 lg:items-stretch">
             {courses.map((course) => (
               <article
                 key={course.id}
-                className="group relative flex flex-col overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyber-red/35 hover:bg-white/[0.06]"
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                  border: '4px solid #000000',
+                  background: '#ffffff',
+                  padding: '1.75rem',
+                  boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+                  transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = '12px 12px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'translate(-2px,-2px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '8px 8px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
               >
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-cyber-red/5 transition-transform duration-500 group-hover:scale-110" />
+                {/* Corner accent */}
+                <div style={{ position: 'absolute', right: 0, top: 0, height: '4rem', width: '4rem', background: '#000000', opacity: 0.05 }} />
+
                 {/* Card content grows to fill available space */}
-                <div className="flex flex-1 flex-col">
-                  <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-cyber-red">
+                <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+                  <p style={{ fontSize: '0.66rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#000000', fontFamily: 'var(--font-heading)' }}>
                     {course.eyebrow}
                   </p>
-                  <h2 className="mt-5 font-display text-2xl font-black uppercase leading-tight text-white">
+                  <h2 style={{ marginTop: '1.25rem', fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1.2, color: '#000000' }}>
                     {course.title}
                   </h2>
-                  <p className="mt-4 text-sm leading-7 text-white/64">
+                  <p style={{ marginTop: '1rem', fontSize: '0.88rem', lineHeight: 1.75, color: '#555555' }}>
                     {course.preview}
                   </p>
-                  <div className="mt-6 space-y-3 rounded-[24px] border border-white/8 bg-black/20 p-5">
+
+                  {/* Stats box */}
+                  <div style={{ marginTop: '1.5rem', border: '4px solid #000000', background: '#f8f8f8', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     <div>
-                      <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                      <p style={{ fontSize: '0.66rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#888888', fontFamily: 'var(--font-heading)' }}>
                         Duration
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-white/80">
+                      <p style={{ marginTop: '0.25rem', fontSize: '0.88rem', fontWeight: 600, color: '#000000' }}>
                         {course.duration}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[0.66rem] font-black uppercase tracking-[0.18em] text-white/38">
+                      <p style={{ fontSize: '0.66rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#888888', fontFamily: 'var(--font-heading)' }}>
                         Offer
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-white/80">
+                      <p style={{ marginTop: '0.25rem', fontSize: '0.88rem', fontWeight: 600, color: '#000000' }}>
                         {course.offerTag} {course.offerPrice}
                       </p>
                     </div>
                   </div>
-                  {/* mt-auto pushes button to bottom of every card equally */}
-                  <div className="mt-auto pt-6">
+
+                  {/* mt-auto pushes button to the bottom of every card equally */}
+                  <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
                     <Link
                       to={`/courses/${course.id}`}
-                      className="inline-flex w-full items-center justify-center rounded-2xl bg-cyber-red px-5 py-4 text-sm font-black uppercase tracking-widest text-white shadow-[0_18px_42px_rgba(212,18,18,0.28)] transition-all duration-300 hover:bg-cyber-redDark"
+                      style={{
+                        display: 'inline-flex',
+                        width: '100%',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: '#000000',
+                        color: '#ffffff',
+                        border: '4px solid #000000',
+                        boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                        padding: '0.875rem 1.25rem',
+                        fontSize: '0.82rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.12em',
+                        textDecoration: 'none',
+                        fontFamily: 'var(--font-heading)',
+                        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                     >
                       View Course Details
                     </Link>
@@ -75,6 +147,9 @@ export default function CoursesCatalogPage() {
           </div>
         </section>
       </main>
+
+      {/* ── Footer ── */}
+      <Footer />
     </div>
   );
 }

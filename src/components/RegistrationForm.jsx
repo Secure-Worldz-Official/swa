@@ -110,23 +110,71 @@ export default function RegistrationForm() {
         }
     };
 
+    const inputStyle = {
+        width: '100%',
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+        borderRadius: '0px',
+        padding: '0.75rem 1rem',
+        fontSize: '0.92rem',
+        color: '#000000',
+        outline: 'none',
+        fontFamily: 'var(--font-main)',
+        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+    };
+
+    const labelStyle = {
+        display: 'block',
+        fontSize: '0.7rem',
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: '0.18em',
+        color: '#555555',
+        marginBottom: '0.5rem',
+        fontFamily: 'var(--font-heading)',
+    };
+
     if (success) {
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.05)]"
+                style={{
+                    background: '#ffffff',
+                    border: '4px solid #000000',
+                    boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+                    padding: '2rem',
+                    textAlign: 'center',
+                    maxWidth: '36rem',
+                    margin: '5rem auto',
+                }}
             >
-                <div className="h-24 w-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_15px_35px_rgba(34,197,94,0.25)]">
-                    <CheckIcon className="h-14 w-14 text-white" />
+                <div style={{ height: '5rem', width: '5rem', background: '#000000', border: '4px solid #000', boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <CheckIcon style={{ height: '2.5rem', width: '2.5rem', color: '#ffffff' }} />
                 </div>
-                <h2 className="text-4xl font-display font-black uppercase mb-4 tracking-tighter">Application Submitted!</h2>
-                <p className="text-gray-600 leading-relaxed max-w-md mx-auto mb-10">
+                <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '-0.03em', color: '#000000' }}>Application Submitted!</h2>
+                <p style={{ color: '#555555', lineHeight: 1.75, maxWidth: '24rem', margin: '0 auto 2rem', fontSize: '0.9rem' }}>
                     Your payment is being verified. You will receive an email confirmation within 2 to 4 hours with your login credentials.
                 </p>
                 <button
                     onClick={() => window.location.reload()}
-                    className="bg-black text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                    style={{
+                        background: '#000000',
+                        color: '#ffffff',
+                        border: '4px solid #000000',
+                        boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                        padding: '0.75rem 2rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.15em',
+                        fontFamily: 'var(--font-heading)',
+                        cursor: 'pointer',
+                        transition: 'box-shadow 0.12s, transform 0.12s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                 >
                     Back to home
                 </button>
@@ -135,18 +183,24 @@ export default function RegistrationForm() {
     }
 
     return (
-        <div id="registration" className="max-w-4xl mx-auto px-4 py-20">
-            <div className="bg-white rounded-[32px] border border-gray-100 shadow-[0_25px_60px_rgba(0,0,0,0.06)] overflow-hidden grid md:grid-cols-[1fr_0.8fr]">
+        <div id="registration" style={{ maxWidth: '56rem', margin: '0 auto', padding: '5rem 1rem' }}>
+            <div style={{
+                background: '#ffffff',
+                border: '4px solid #000000',
+                boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+                overflow: 'hidden',
+                display: 'grid',
+            }} className="md:grid-cols-[1fr_0.8fr]">
 
                 {/* Left Side: Form */}
-                <div className="p-8 sm:p-12">
-                    <div className="mb-10">
-                        <h2 className="text-4xl font-display font-black uppercase tracking-tight mb-2">
+                <div style={{ padding: '2rem' }} className="sm:p-12">
+                    <div style={{ marginBottom: '2.5rem' }}>
+                        <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.03em', marginBottom: '0.5rem', color: '#000000' }}>
                             Step {step} of 2
                         </h2>
-                        <div className="h-2 w-32 bg-[#eee] rounded-full overflow-hidden">
+                        <div style={{ height: '6px', width: '8rem', background: '#e0e0e0', border: '2px solid #000000', overflow: 'hidden' }}>
                             <motion.div
-                                className="h-full bg-cyber-red"
+                                style={{ height: '100%', background: '#000000' }}
                                 initial={{ width: '50%' }}
                                 animate={{ width: step === 1 ? '50%' : '100%' }}
                             />
@@ -161,16 +215,18 @@ export default function RegistrationForm() {
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 onSubmit={handleNext}
-                                className="space-y-6"
+                                style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
                             >
                                 <div>
-                                    <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Full Name</label>
+                                    <label style={labelStyle}>Full Name</label>
                                     <input
                                         type="text"
                                         required
-                                        className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
+                                        style={inputStyle}
                                         placeholder="Enter your name"
                                         value={formData.name}
+                                        onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                        onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                         onChange={(e) => {
                                             setError('');
                                             setFormData({ ...formData, name: e.target.value });
@@ -178,13 +234,15 @@ export default function RegistrationForm() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Email Address</label>
+                                    <label style={labelStyle}>Email Address</label>
                                     <input
                                         type="email"
                                         required
-                                        className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
+                                        style={inputStyle}
                                         placeholder="name@example.com"
                                         value={formData.email}
+                                        onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                        onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                         onChange={(e) => {
                                             setError('');
                                             setFormData({ ...formData, email: e.target.value });
@@ -192,23 +250,41 @@ export default function RegistrationForm() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Phone Number</label>
+                                    <label style={labelStyle}>Phone Number</label>
                                     <input
                                         type="tel"
                                         required
-                                        className="w-full bg-[#f8f8f8] border border-transparent rounded-2xl px-6 py-4 text-black focus:outline-none focus:bg-white focus:border-cyber-red transition-all"
+                                        style={inputStyle}
                                         placeholder="+91 00000 00000"
                                         value={formData.phone}
+                                        onFocus={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                                        onBlur={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                         onChange={(e) => {
                                             setError('');
                                             setFormData({ ...formData, phone: e.target.value });
                                         }}
                                     />
                                 </div>
-                                {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
+                                {error && <p style={{ color: '#000000', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', background: '#f0f0f0', border: '4px solid #000', padding: '0.5rem 0.75rem' }}>{error}</p>}
                                 <button
                                     type="submit"
-                                    className="w-full bg-black text-white font-black py-5 rounded-2xl uppercase tracking-widest shadow-xl hover:bg-gray-900 transition-all active:scale-[0.98]"
+                                    style={{
+                                        width: '100%',
+                                        background: '#000000',
+                                        color: '#ffffff',
+                                        border: '4px solid #000000',
+                                        boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                                        padding: '1rem',
+                                        fontSize: '0.82rem',
+                                        fontWeight: 800,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.15em',
+                                        fontFamily: 'var(--font-heading)',
+                                        cursor: 'pointer',
+                                        transition: 'box-shadow 0.12s, transform 0.12s',
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                 >
                                     Continue to Payment
                                 </button>
@@ -219,51 +295,93 @@ export default function RegistrationForm() {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 onSubmit={handleSubmit}
-                                className="space-y-6"
+                                style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
                             >
-                                <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 text-center">
-                                    <p className="text-[0.65rem] font-black text-cyber-red uppercase tracking-widest mb-4">Scan QR to pay ₹{amount}</p>
-                                    <div className="bg-white p-4 inline-block rounded-2xl shadow-sm mb-4">
-                                        <img src={customQrCodeImage} alt="Scan QR to pay" className="w-[160px] h-[160px] object-contain mx-auto" />
+                                <div style={{ border: '4px solid #000000', background: '#f8f8f8', padding: '1.5rem', textAlign: 'center', boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)' }}>
+                                    <p style={{ fontSize: '0.65rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Scan QR to pay ₹{amount}</p>
+                                    <div style={{ background: '#ffffff', padding: '0.75rem', display: 'inline-block', border: '4px solid #000', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', marginBottom: '0.75rem' }}>
+                                        <img src={customQrCodeImage} alt="Scan QR to pay" style={{ width: '160px', height: '160px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
                                     </div>
-                                    <p className="text-[0.85rem] font-black text-gray-600 tracking-wide">MS SECURE WORLDZ</p>
+                                    <p style={{ fontSize: '0.85rem', fontWeight: 800, color: '#000000', letterSpacing: '0.08em', fontFamily: 'var(--font-heading)' }}>MS SECURE WORLDZ</p>
                                 </div>
 
-                                <div className="relative">
-                                    <label className="block text-[0.7rem] font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Upload Receipt (Screenshot)</label>
-                                    <label className="flex flex-col items-center justify-center w-full h-32 bg-gray-50 border-2 border-dashed border-gray-250 rounded-2xl cursor-pointer hover:bg-white hover:border-cyber-red transition-all">
+                                <div>
+                                    <label style={labelStyle}>Upload Receipt (Screenshot)</label>
+                                    <label style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '100%',
+                                        height: '8rem',
+                                        background: '#f8f8f8',
+                                        border: '4px dashed #000000',
+                                        cursor: 'pointer',
+                                        transition: 'background 0.15s',
+                                    }}
+                                        onMouseEnter={e => e.currentTarget.style.background = '#eeeeee'}
+                                        onMouseLeave={e => e.currentTarget.style.background = '#f8f8f8'}
+                                    >
                                         {formData.receipt ? (
-                                            <div className="flex items-center gap-3 text-green-600 font-bold">
-                                                <CheckIcon className="h-6 w-6" />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#000000', fontWeight: 700 }}>
+                                                <CheckIcon style={{ height: '1.5rem', width: '1.5rem' }} />
                                                 <span>{formData.receipt.name}</span>
                                             </div>
                                         ) : (
-                                            <div className="flex flex-col items-center gap-2">
-                                                <CloudUploadIcon className="h-8 w-8 text-gray-400" />
-                                                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Click to upload</span>
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                                                <CloudUploadIcon style={{ height: '2rem', width: '2rem', color: '#888888' }} />
+                                                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Click to upload</span>
                                             </div>
                                         )}
-                                        <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+                                        <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFileChange} />
                                     </label>
                                 </div>
 
-                                {error && <p className="text-cyber-red font-bold text-sm tracking-wide">{error}</p>}
+                                {error && <p style={{ color: '#000000', fontWeight: 700, fontSize: '0.875rem', letterSpacing: '0.05em', background: '#f0f0f0', border: '4px solid #000', padding: '0.5rem 0.75rem' }}>{error}</p>}
 
-                                <div className="grid grid-cols-2 gap-4">
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                     <button
                                         type="button"
-                                        onClick={() => {
-                                            setError('');
-                                            setStep(1);
+                                        onClick={() => { setError(''); setStep(1); }}
+                                        style={{
+                                            background: '#ffffff',
+                                            color: '#000000',
+                                            border: '4px solid #000000',
+                                            boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                            padding: '1rem',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 800,
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.12em',
+                                            fontFamily: 'var(--font-heading)',
+                                            cursor: 'pointer',
+                                            transition: 'box-shadow 0.12s, transform 0.12s',
                                         }}
-                                        className="bg-[#eee] text-gray-600 font-bold py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e5e5e5] transition-all"
+                                        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
+                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
                                     >
                                         Back
                                     </button>
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="bg-cyber-red text-white font-black py-5 rounded-2xl uppercase tracking-widest shadow-xl hover:bg-cyber-redDark transition-all disabled:opacity-50"
+                                        style={{
+                                            background: '#000000',
+                                            color: '#ffffff',
+                                            border: '4px solid #000000',
+                                            boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                            padding: '1rem',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 800,
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.12em',
+                                            fontFamily: 'var(--font-heading)',
+                                            cursor: loading ? 'not-allowed' : 'pointer',
+                                            opacity: loading ? 0.5 : 1,
+                                            transition: 'box-shadow 0.12s, transform 0.12s',
+                                        }}
+                                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; } }}
+                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                                     >
                                         {loading ? 'SUBMITTING...' : 'FINISH ENROLL'}
                                     </button>
@@ -274,30 +392,30 @@ export default function RegistrationForm() {
                 </div>
 
                 {/* Right Side: Info/Premium side */}
-                <div className="hidden md:block bg-[#111] p-12 text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-8 opacity-20">
-                        <ShieldLockIcon className="h-40 w-40 text-cyber-red" />
+                <div style={{ background: '#000000', padding: '3rem', color: '#ffffff', position: 'relative', overflow: 'hidden', borderLeft: '4px solid #000000' }} className="hidden md:block">
+                    <div style={{ position: 'absolute', top: 0, right: 0, padding: '2rem', opacity: 0.1, pointerEvents: 'none' }}>
+                        <ShieldLockIcon style={{ height: '10rem', width: '10rem', color: '#ffffff' }} />
                     </div>
-                    <div className="relative z-10">
-                        <h3 className="text-3xl font-display font-black uppercase mb-6 leading-tight">Secure Your Cyber Future</h3>
-                        <ul className="space-y-6">
+                    <div style={{ position: 'relative', zIndex: 10 }}>
+                        <h3 style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1.5rem', lineHeight: 1.1, color: '#ffffff' }}>Secure Your Cyber Future</h3>
+                        <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
                                 { icon: LockSealIcon, text: 'Instant Access to Labs' },
                                 { icon: ClockIcon, text: 'Lifetime Course Support' },
                                 { icon: CheckIcon, text: 'Certified Completion' }
                             ].map((item, idx) => (
-                                <li key={idx} className="flex items-center gap-4">
-                                    <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                                        <item.icon className="h-5 w-5 text-cyber-red" />
+                                <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <div style={{ height: '2.5rem', width: '2.5rem', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                        <item.icon style={{ height: '1.25rem', width: '1.25rem', color: '#ffffff' }} />
                                     </div>
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white/80">{item.text}</span>
+                                    <span style={{ fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.8)', fontFamily: 'var(--font-heading)' }}>{item.text}</span>
                                 </li>
                             ))}
                         </ul>
 
-                        <div className="mt-20 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                            <p className="text-3xl font-display font-black text-cyber-red">&#8377;{amount}</p>
-                            <p className="text-[0.6rem] font-black uppercase tracking-widest text-white/40 mt-1">Limited summer offer</p>
+                        <div style={{ marginTop: '5rem', padding: '1.5rem', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)' }}>
+                            <p style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, color: '#ffffff' }}>&#8377;{amount}</p>
+                            <p style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)', marginTop: '0.25rem', fontFamily: 'var(--font-heading)' }}>Limited summer offer</p>
                         </div>
                     </div>
                 </div>

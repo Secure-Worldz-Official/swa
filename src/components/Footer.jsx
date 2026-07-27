@@ -37,33 +37,56 @@ const socialLinks = [
 
 function FooterHeading({ children }) {
   return (
-    <h3 className="mb-5 flex items-center gap-2 text-[0.68rem] font-black uppercase tracking-[0.22em] text-black">
-      <span className="h-3 w-[2px] rounded-full bg-cyber-red" />
+    <h3 style={{
+      marginBottom: '1.25rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      fontSize: '0.68rem',
+      fontWeight: 800,
+      textTransform: 'uppercase',
+      letterSpacing: '0.22em',
+      color: '#000000',
+      fontFamily: 'var(--font-heading)',
+    }}>
+      <span style={{ height: '0.75rem', width: '4px', background: '#000000', display: 'inline-block' }} />
       {children}
     </h3>
   );
 }
 
 function FooterLink({ href, to, children }) {
-  const cls =
-    'group flex items-center gap-2 text-[0.88rem] text-gray-500 transition-all duration-200 hover:text-cyber-red';
+  const baseStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    fontSize: '0.88rem',
+    color: '#555555',
+    textDecoration: 'none',
+    transition: 'color 0.15s',
+    fontFamily: 'var(--font-main)',
+  };
   const dot = (
-    <span className="h-1 w-1 shrink-0 rounded-full bg-gray-300 transition-colors duration-200 group-hover:bg-cyber-red" />
+    <span style={{ height: '4px', width: '4px', background: '#000000', display: 'inline-block', flexShrink: 0 }} />
   );
   if (to)
     return (
       <li>
-        <Link to={to} className={cls}>
-          {dot}
-          {children}
+        <Link to={to} style={baseStyle}
+          onMouseEnter={e => e.currentTarget.style.color = '#000'}
+          onMouseLeave={e => e.currentTarget.style.color = '#555555'}
+        >
+          {dot}{children}
         </Link>
       </li>
     );
   return (
     <li>
-      <a href={href} className={cls}>
-        {dot}
-        {children}
+      <a href={href} style={baseStyle}
+        onMouseEnter={e => e.currentTarget.style.color = '#000'}
+        onMouseLeave={e => e.currentTarget.style.color = '#555555'}
+      >
+        {dot}{children}
       </a>
     </li>
   );
@@ -71,40 +94,36 @@ function FooterLink({ href, to, children }) {
 
 export default function Footer() {
   return (
-    <footer className="relative mt-20 overflow-hidden bg-white text-gray-600">
-      {/* Red top accent */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-cyber-red/60 to-transparent" />
-
+    <footer style={{ position: 'relative', marginTop: '5rem', overflow: 'hidden', background: '#ffffff', color: '#555555', borderTop: '4px solid #000000' }}>
       {/* ── Main content area ── */}
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1fr]">
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '4rem 2rem', paddingBottom: '4rem' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1fr] gap-12">
 
           {/* ── Brand column ── */}
-          <div className="flex flex-col gap-6">
-            {/* Logo + name */}
-            <Link to="/" className="flex items-center gap-3 w-fit">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
               <img
                 src={brandLogo}
-                alt="Secure Worldz Logo"
-                className="h-11 w-11 shrink-0 rounded-xl border border-gray-100 object-contain shadow-sm"
+                alt="Cyber Jai Logo"
+                style={{ height: '2.75rem', width: '2.75rem', flexShrink: 0, objectFit: 'contain', border: '4px solid #000' }}
               />
               <div>
-                <p className="font-display text-base font-black uppercase tracking-[0.1em] text-black leading-none">
-                  SECURE WORLDZ
+                <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#000000', lineHeight: 1 }}>
+                  CYBER JAI
                 </p>
-                <p className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gray-400">
+                <p style={{ marginTop: '0.25rem', fontSize: '0.62rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#888888' }}>
                   Cyber Security Training
                 </p>
               </div>
             </Link>
 
             {/* Tagline */}
-            <p className="max-w-[260px] text-sm leading-7 text-gray-500">
+            <p style={{ maxWidth: '260px', fontSize: '0.88rem', lineHeight: 1.75, color: '#555555' }}>
               Smart solutions for a smarter digital world. Train with the best, defend with confidence.
             </p>
 
             {/* Social icons */}
-            <div className="flex gap-2.5">
+            <div style={{ display: 'flex', gap: '0.625rem' }}>
               {socialLinks.map(({ label, href, icon }) => (
                 <a
                   key={label}
@@ -112,7 +131,21 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-gray-500 transition-all duration-300 hover:border-cyber-red/30 hover:bg-cyber-red/5 hover:text-cyber-red active:scale-95"
+                  style={{
+                    display: 'flex',
+                    height: '2.25rem',
+                    width: '2.25rem',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '4px solid #000000',
+                    background: '#ffffff',
+                    color: '#000000',
+                    boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                    transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                 >
                   {icon}
                 </a>
@@ -123,7 +156,7 @@ export default function Footer() {
           {/* ── Quick Links ── */}
           <div>
             <FooterHeading>Quick Links</FooterHeading>
-            <ul className="space-y-3">
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <FooterLink to="/">Home</FooterLink>
               <FooterLink href="#features">Services Overview</FooterLink>
               <FooterLink to="/enroll">Proworldz Academy</FooterLink>
@@ -134,7 +167,7 @@ export default function Footer() {
           {/* ── Services ── */}
           <div>
             <FooterHeading>Services</FooterHeading>
-            <ul className="space-y-3">
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <FooterLink href="#features">Cyber Security Services</FooterLink>
               <FooterLink href="#features">Website Development</FooterLink>
               <FooterLink href="#features">AI Development</FooterLink>
@@ -145,7 +178,7 @@ export default function Footer() {
           {/* ── Legal ── */}
           <div>
             <FooterHeading>Legal</FooterHeading>
-            <ul className="space-y-3">
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <FooterLink href="#privacy">Privacy Policy</FooterLink>
               <FooterLink href="#terms">Terms of Service</FooterLink>
               <FooterLink href="#cookies">Cookie Policy</FooterLink>
@@ -157,15 +190,35 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="border-t border-gray-100 bg-gray-50/60">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-xs text-gray-400 sm:flex-row lg:px-8">
-          <p className="font-medium">© 2026 Secure Worldz. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-            <a href="#privacy" className="transition-colors duration-200 hover:text-cyber-red">Privacy Policy</a>
-            <span className="hidden text-gray-200 sm:inline">·</span>
-            <a href="#terms" className="transition-colors duration-200 hover:text-cyber-red">Terms of Service</a>
-            <span className="hidden text-gray-200 sm:inline">·</span>
-            <a href="#cookies" className="transition-colors duration-200 hover:text-cyber-red">Cookie Policy</a>
+      <div style={{ borderTop: '4px solid #000000', background: '#f8f8f8' }}>
+        <div style={{
+          maxWidth: '80rem',
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem',
+          padding: '1.25rem 2rem',
+          fontSize: '0.75rem',
+          color: '#666666',
+        }} className="sm:flex-row">
+          <p style={{ fontWeight: 600 }}>© 2026 Cyber Jai. All rights reserved.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1rem 1.25rem' }}>
+            <a href="#privacy" style={{ color: '#666', textDecoration: 'none', fontWeight: 600, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#000'}
+              onMouseLeave={e => e.currentTarget.style.color = '#666'}
+            >Privacy Policy</a>
+            <span style={{ color: '#ccc' }}>·</span>
+            <a href="#terms" style={{ color: '#666', textDecoration: 'none', fontWeight: 600, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#000'}
+              onMouseLeave={e => e.currentTarget.style.color = '#666'}
+            >Terms of Service</a>
+            <span style={{ color: '#ccc' }}>·</span>
+            <a href="#cookies" style={{ color: '#666', textDecoration: 'none', fontWeight: 600, transition: 'color 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#000'}
+              onMouseLeave={e => e.currentTarget.style.color = '#666'}
+            >Cookie Policy</a>
           </div>
         </div>
       </div>

@@ -1,27 +1,65 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { CheckIcon, ClockIcon, ShieldLockIcon } from '../components/Icons';
 import SiteNavbar from '../components/SiteNavbar';
+import Footer from '../components/Footer';
 import { courseMap } from '../data/courses';
 import cyberJaiImage from '../assets/image2.png';
 
-/* ── Checklist row ─────────────────────────────────────────────────────── */
-function ChecklistItem({ text }) {
+/* ── Timeline checklist item ──────────────────────────────────────────────── */
+function TimelineItem({ text }) {
   return (
-    <div className="flex items-start gap-3 py-3 border-b border-white/6 last:border-0">
-      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyber-red/90">
-        <CheckIcon className="h-3 w-3 text-white" />
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem',
+      padding: '1rem 1.25rem',
+      borderBottom: '1px solid #e8e8e8',
+    }} className="last:border-0">
+      <span style={{
+        display: 'flex',
+        height: '1.5rem',
+        width: '1.5rem',
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#000000',
+        borderRadius: '50%',
+      }}>
+        <CheckIcon style={{ height: '0.75rem', width: '0.75rem', color: '#ffffff' }} />
       </span>
-      <p className="text-[0.92rem] leading-7 text-white/68">{text}</p>
+      <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: '#444444' }}>{text}</p>
     </div>
   );
 }
 
-/* ── Stat pill ─────────────────────────────────────────────────────────── */
+/* ── Stat pill ─────────────────────────────────────────────────────────────── */
 function StatPill({ label, value }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-white/8 bg-white/[0.04] p-4 text-center">
-      <p className="text-[0.6rem] font-black uppercase tracking-[0.2em] text-cyber-red mb-1">{label}</p>
-      <p className="text-[0.88rem] font-black text-white leading-snug">{value}</p>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '4px solid #000000',
+      background: '#ffffff',
+      padding: '1.1rem 0.75rem',
+      textAlign: 'center',
+      boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+    }}>
+      <p style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000000', marginBottom: '0.4rem', fontFamily: 'var(--font-heading)' }}>{label}</p>
+      <p style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000', lineHeight: 1.25, fontFamily: 'var(--font-heading)', textAlign: 'center' }}>{value}</p>
+    </div>
+  );
+}
+
+/* ── Section label ─────────────────────────────────────────────────────────── */
+function SectionLabel({ icon: Icon, children }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+      <span style={{ height: '1.25rem', width: '4px', background: '#000000', display: 'inline-block', flexShrink: 0 }} />
+      <h2 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#888888', fontFamily: 'var(--font-heading)' }}>
+        {children}
+      </h2>
     </div>
   );
 }
@@ -40,177 +78,207 @@ export default function CourseDetailPage() {
   ];
 
   return (
-    <div className="relative w-full min-h-screen overflow-x-hidden bg-[#08090f] text-white">
-      {/* ── Background ── */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_10%,rgba(212,18,18,0.14),transparent_42%),radial-gradient(ellipse_at_80%_80%,rgba(212,18,18,0.08),transparent_40%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.028)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25" />
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden', background: '#ffffff', color: '#000000' }}>
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pt-7">
+      {/* ── Navbar ── */}
+      <div className="fluid-container" style={{ paddingTop: '1.25rem' }}>
         <SiteNavbar />
+      </div>
+
+      {/* ── Page content ── */}
+      <div className="fluid-container" style={{ paddingBottom: '7rem' }}>
 
         {/* ── Back crumb ── */}
-        <div className="mt-8 mb-12">
+        <div style={{ margin: '2rem 0' }}>
           <Link
             to="/courses"
-            className="group inline-flex items-center gap-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white/40 transition-colors duration-200 hover:text-white"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#888888', textDecoration: 'none', transition: 'color 0.15s', fontFamily: 'var(--font-heading)' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#000'}
+            onMouseLeave={e => e.currentTarget.style.color = '#888'}
           >
-            <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+            <span>←</span>
             Back to Courses
           </Link>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════════════
-            HERO BAND  — full-width eyebrow + title, then 2-col below
-        ══════════════════════════════════════════════════════════════════ */}
-        <div className="mb-12 space-y-3 border-b border-white/8 pb-12">
-          <p className="text-[0.68rem] font-black uppercase tracking-[0.3em] text-cyber-red">
+        {/* ── HERO BAND ── */}
+        <div style={{ paddingBottom: '2.5rem', borderBottom: '4px solid #000000', marginBottom: '3rem' }}>
+          <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.3em', color: '#000000', fontFamily: 'var(--font-heading)' }}>
             {course.eyebrow}
           </p>
-          <h1
-            className="font-display font-black uppercase leading-[0.95] tracking-[-0.03em] text-white"
-            style={{ fontSize: 'clamp(2.8rem, 7vw, 6rem)' }}
-          >
+          <h1 style={{
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            lineHeight: 0.95,
+            letterSpacing: '-0.03em',
+            color: '#000000',
+            marginTop: '0.75rem',
+            fontSize: 'clamp(2.8rem, 7vw, 6rem)',
+          }}>
             {course.title}
           </h1>
-          <p className="max-w-3xl pt-2 text-[1.05rem] leading-8 text-white/55">
+          <p style={{ maxWidth: '52rem', marginTop: '1.25rem', fontSize: '1.05rem', lineHeight: 1.75, color: '#555555' }}>
             {course.hook}
           </p>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════════════
-            MAIN 2-COL  [left: content | right: mentor + action card]
-        ══════════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
+        {/* ── MAIN 2-COL GRID ── */}
+        <div className="course-detail-grid">
 
-          {/* ── LEFT ── */}
-          <div className="space-y-12">
+          {/* ── LEFT COLUMN ── */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
 
-            {/* Course Summary */}
+            {/* Course Overview */}
             <section>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-5 w-[3px] rounded-full bg-cyber-red" />
-                <h2 className="text-[0.68rem] font-black uppercase tracking-[0.25em] text-white/50">
-                  Course Overview
-                </h2>
-              </div>
-              <p className="text-[1rem] leading-[1.85] text-white/65">
+              <SectionLabel>Course Overview</SectionLabel>
+              <p style={{ fontSize: '1rem', lineHeight: 1.85, color: '#444444' }}>
                 {course.summary}
               </p>
             </section>
 
-            {/* Stats row */}
-            <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {/* Stats pills — 4-col row */}
+            <section className="course-stats-grid">
               <StatPill label="Duration" value={course.duration} />
               <StatPill label="Schedule" value={course.timingTrack} />
               <StatPill label="Format" value="Live + Recorded" />
               <StatPill label="Certificate" value="On Completion" />
             </section>
 
-            {/* What you will get */}
+            {/* Timeline & What You Get */}
             <section>
-              <div className="mb-6 flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-cyber-red/30 bg-cyber-red/10 text-cyber-red">
-                  <ClockIcon className="h-4 w-4" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                <span style={{
+                  display: 'flex', height: '1.75rem', width: '1.75rem', flexShrink: 0,
+                  alignItems: 'center', justifyContent: 'center',
+                  border: '4px solid #000000', background: '#ffffff', color: '#000000',
+                }}>
+                  <ClockIcon style={{ height: '0.9rem', width: '0.9rem' }} />
                 </span>
-                <h2 className="text-[0.68rem] font-black uppercase tracking-[0.25em] text-white/50">
+                <h2 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#888888', fontFamily: 'var(--font-heading)' }}>
                   Timeline &amp; What You Get
                 </h2>
               </div>
-              <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-6 py-2">
+              {/* Checklist box — retro bordered */}
+              <div style={{ border: '4px solid #000000', background: '#ffffff', boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)' }}>
                 {timelineItems.map((item) => (
-                  <ChecklistItem key={item} text={item} />
+                  <TimelineItem key={item} text={item} />
                 ))}
               </div>
             </section>
 
-            {/* Offer tag highlight */}
-            <section className="flex items-center gap-4 rounded-2xl border border-cyber-red/20 bg-cyber-red/[0.06] px-6 py-5">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyber-red/15 text-cyber-red">
-                <ShieldLockIcon className="h-5 w-5" />
+            {/* Active Offer bar */}
+            <section style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              border: '4px solid #000000',
+              background: '#f8f8f8',
+              padding: '1.25rem 1.5rem',
+              boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+            }}>
+              <div style={{ display: 'flex', height: '2.5rem', width: '2.5rem', flexShrink: 0, alignItems: 'center', justifyContent: 'center', border: '4px solid #000', background: '#000', color: '#fff' }}>
+                <ShieldLockIcon style={{ height: '1.25rem', width: '1.25rem' }} />
               </div>
               <div>
-                <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-cyber-red mb-0.5">
+                <p style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000000', marginBottom: '0.2rem', fontFamily: 'var(--font-heading)' }}>
                   Active Offer
                 </p>
-                <p className="text-sm font-bold text-white/80">
+                <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#333333' }}>
                   {course.offerTag} — Enroll now at{' '}
-                  <span className="text-white font-black">{course.offerPrice}</span>{' '}
-                  <span className="text-white/38 line-through font-normal">{course.originalPrice}</span>
+                  <span style={{ color: '#000000', fontWeight: 800 }}>{course.offerPrice}</span>{' '}
+                  <span style={{ color: '#999999', textDecoration: 'line-through', fontWeight: 400 }}>{course.originalPrice}</span>
                 </p>
               </div>
             </section>
+
           </div>
 
-          {/* ── RIGHT: sticky panel ── */}
-          <aside className="flex flex-col gap-6 lg:sticky lg:top-28">
+          {/* ── RIGHT COLUMN: sticky sidebar ── */}
+          <aside className="course-detail-sidebar">
 
-            {/* Mentor card — image2.png full bleed */}
-            <div className="group relative w-full overflow-hidden rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.55)]"
-              style={{ aspectRatio: '4/5' }}>
+            {/* Mentor photo card */}
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              overflow: 'hidden',
+              border: '4px solid #000000',
+              boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+              aspectRatio: '4/5',
+            }}>
               <img
                 src={cyberJaiImage}
                 alt="Jaiganesh Lakshmanan — Cyber Jai"
-                className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                style={{ position: 'absolute', inset: 0, height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 0.7s' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/10" />
-              {/* Red ring */}
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-cyber-red/20" />
+              {/* Dark gradient overlay */}
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 45%, transparent 100%)' }} />
 
-              {/* Live badge */}
-              <div className="absolute right-4 top-4">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyber-red/40 bg-black/70 px-3 py-1.5 text-[0.6rem] font-black uppercase tracking-widest text-cyber-red backdrop-blur-sm">
-                  <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-cyber-red" />
+              {/* LIVE MENTOR badge top-right */}
+              <div style={{ position: 'absolute', right: '1rem', top: '1rem' }}>
+                <span style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '6px',
+                  border: '4px solid #ffffff', background: 'rgba(0,0,0,0.75)',
+                  padding: '0.25rem 0.75rem', fontSize: '0.6rem', fontWeight: 800,
+                  textTransform: 'uppercase', letterSpacing: '0.15em', color: '#ffffff',
+                  fontFamily: 'var(--font-heading)',
+                }}>
+                  <span style={{ height: '6px', width: '6px', flexShrink: 0, background: '#ffffff', display: 'inline-block', borderRadius: '50%' }} />
                   Live Mentor
                 </span>
               </div>
 
-              {/* Bottom info */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="mb-3 h-px w-10 bg-cyber-red/60" />
-                <h3 className="font-display text-2xl font-black uppercase leading-none tracking-tight text-white">
-                  Jaiganesh
-                  <span className="block text-cyber-red">Lakshmanan</span>
+              {/* Name & role overlay at bottom */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem' }}>
+                <h3 style={{
+                  fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800,
+                  textTransform: 'uppercase', lineHeight: 1, letterSpacing: '-0.02em', color: '#ffffff',
+                }}>
+                  JAIGANESH
+                  <span style={{ display: 'block' }}>LAKSHMANAN</span>
                 </h3>
-                <p className="mt-2 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-white/50">
+                <p style={{ marginTop: '0.5rem', fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-heading)' }}>
                   Cybersecurity Engineer &amp; AI Mentor
                 </p>
-                <p className="mt-3 text-[0.78rem] leading-6 text-white/55">
+                <p style={{ marginTop: '0.75rem', fontSize: '0.8rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.6)' }}>
                   Founder &amp; CEO of SecureWorldz. Certified Cybersecurity
                   Specialist and AI pioneer behind{' '}
-                  <span className="font-semibold text-white/80">Vibe Coding</span>{' '}
-                  and the{' '}
-                  <span className="font-semibold text-white/80">Drago</span>{' '}
-                  industry workshop.
+                  <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>Vibe Coding</span>
+                  {' '}and the{' '}
+                  <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>Drago</span>
+                  {' '}industry workshop.
                 </p>
               </div>
             </div>
 
-            {/* Action card */}
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur-xl">
+            {/* Pricing action card */}
+            <div style={{ overflow: 'hidden', border: '4px solid #000000', background: '#ffffff', boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)' }}>
+
               {/* Price block */}
-              <div className="px-6 pt-6 pb-5 border-b border-white/8">
-                <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-cyber-red mb-3">
+              <div style={{ padding: '1.5rem', borderBottom: '4px solid #000000' }}>
+                <p style={{ fontSize: '0.62rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.22em', color: '#000000', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>
                   Pricing
                 </p>
-                <div className="flex items-end gap-4">
+                <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1.25rem' }}>
                   <div>
-                    <p className="text-[0.6rem] text-white/35 uppercase tracking-widest font-bold mb-0.5">Was</p>
-                    <p className="text-xl font-black text-white/35 line-through">{course.originalPrice}</p>
+                    <p style={{ fontSize: '0.6rem', color: '#888888', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 700, marginBottom: '0.2rem', fontFamily: 'var(--font-heading)' }}>Was</p>
+                    <p style={{ fontSize: '1.3rem', fontWeight: 800, color: '#aaaaaa', textDecoration: 'line-through', fontFamily: 'var(--font-heading)' }}>{course.originalPrice}</p>
                   </div>
                   <div>
-                    <p className="text-[0.6rem] text-cyber-red uppercase tracking-widest font-bold mb-0.5">{course.offerTag}</p>
-                    <p className="text-4xl font-black text-white leading-none">{course.offerPrice}</p>
+                    <p style={{ fontSize: '0.6rem', color: '#000000', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 700, marginBottom: '0.2rem', fontFamily: 'var(--font-heading)' }}>{course.offerTag}</p>
+                    <p style={{ fontSize: '2.75rem', fontWeight: 800, color: '#000000', lineHeight: 1, fontFamily: 'var(--font-heading)' }}>{course.offerPrice}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Highlights */}
-              <div className="px-6 py-5 space-y-2.5 border-b border-white/8">
+              {/* Highlights checklist */}
+              <div style={{ padding: '1.25rem 1.5rem', borderBottom: '4px solid #000000', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[course.duration, course.timingTrack, 'Experience Labs', 'Credentials Validation'].map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-[0.82rem] text-white/65">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyber-red/90">
-                      <CheckIcon className="h-3 w-3 text-white" />
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.85rem', color: '#444444' }}>
+                    <span style={{ display: 'flex', height: '1.25rem', width: '1.25rem', flexShrink: 0, alignItems: 'center', justifyContent: 'center', background: '#000000', borderRadius: '50%' }}>
+                      <CheckIcon style={{ height: '0.7rem', width: '0.7rem', color: '#ffffff' }} />
                     </span>
                     {item}
                   </div>
@@ -218,22 +286,44 @@ export default function CourseDetailPage() {
               </div>
 
               {/* Enroll CTA */}
-              <div className="px-6 py-6">
+              <div style={{ padding: '1.5rem' }}>
                 <Link
                   to="/enroll"
-                  className="flex w-full items-center justify-center rounded-2xl bg-cyber-red py-4 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_18px_48px_rgba(212,18,18,0.32)] transition-all duration-300 hover:bg-cyber-redDark hover:shadow-[0_24px_60px_rgba(212,18,18,0.4)] active:scale-[0.98]"
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: '#000000',
+                    color: '#ffffff',
+                    border: '4px solid #000000',
+                    boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                    padding: '1rem',
+                    fontSize: '0.88rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.2em',
+                    textDecoration: 'none',
+                    fontFamily: 'var(--font-heading)',
+                    transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                 >
                   Enroll Now →
                 </Link>
-                <p className="mt-3 text-center text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/30">
+                <p style={{ marginTop: '0.75rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#888888', fontFamily: 'var(--font-heading)' }}>
                   Limited seats available
                 </p>
               </div>
-            </div>
 
+            </div>
           </aside>
         </div>
       </div>
+
+      {/* ── Footer ── */}
+      <Footer />
     </div>
   );
 }

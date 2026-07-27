@@ -14,37 +14,28 @@ function HamburgerIcon({ open }) {
       style={{ transition: 'transform 0.25s' }}
     >
       {open ? (
-        /* X icon */
         <>
-          <line x1="2" y1="2" x2="16" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <line x1="16" y1="2" x2="2" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="2" y1="2" x2="16" y2="16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+          <line x1="16" y1="2" x2="2" y2="16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
         </>
       ) : (
-        /* Hamburger lines */
         <>
-          <line x1="2" y1="4.5"  x2="16" y2="4.5"  stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <line x1="2" y1="9"    x2="16" y2="9"    stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <line x1="2" y1="13.5" x2="16" y2="13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="2" y1="4.5"  x2="16" y2="4.5"  stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+          <line x1="2" y1="9"    x2="16" y2="9"    stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+          <line x1="2" y1="13.5" x2="16" y2="13.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
         </>
       )}
     </svg>
   );
 }
 
-/* ─── Small icon-badge nav button (light variant) ───────────────────────── */
-function NavIcon({ label, light }) {
-  return (
-    <span
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border text-[0.72rem] font-black uppercase tracking-[0.14em] transition-all duration-300 ${
-        light
-          ? 'border-black/10 bg-white text-[#111] shadow-[0_10px_24px_rgba(0,0,0,0.06)] hover:border-cyber-red hover:text-cyber-red'
-          : 'border-white/10 bg-white/5 text-white hover:border-cyber-red hover:text-cyber-red'
-      }`}
-      aria-hidden="true"
-    >
-      {label}
-    </span>
-  );
+/* ─── Nav Link ──────────────────────────────────────────────────────────── */
+function NavLink({ href, to, children, light }) {
+  const cls = `relative py-1 text-[clamp(0.68rem,1.1vw,0.78rem)] font-bold uppercase tracking-[0.14em] transition-all duration-150 ${
+    light ? 'text-[#000]' : 'text-[#000]'
+  } hover:underline decoration-4 underline-offset-4`;
+  if (to) return <Link to={to} className={cls}>{children}</Link>;
+  return <a href={href} className={cls}>{children}</a>;
 }
 
 /* ─── Main Navbar ────────────────────────────────────────────────────────── */
@@ -53,93 +44,93 @@ export default function SiteNavbar({ theme = 'dark' }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    /*
-     * Outer header: sticky pill, backdrop-blur.
-     * fluid-container caps the inner content at --container-max (90rem = 1440 px)
-     * with clamp()-based side padding, so it looks perfect on 4K without stretching
-     * wall-to-wall.
-     */
     <header
-      className={`sticky top-4 z-50 transition-all duration-300 ${
-        light
-          ? 'rounded-[28px] border border-black/10 bg-white/90 shadow-[0_18px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl lg:rounded-[32px]'
-          : 'rounded-[28px] border border-white/10 bg-[#151515]/88 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:rounded-full'
-      }`}
+      style={{
+        position: 'sticky',
+        top: '1rem',
+        zIndex: 50,
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+        transition: 'box-shadow 0.15s ease',
+      }}
     >
-      {/*
-       * fluid-navbar-inner:  flex-wrap + justify-content: space-between
-       * → logo stays left, nav stays right, items wrap gracefully if needed.
-       * Gap uses clamp() so it scales with viewport width.
-       */}
-      <div
-        className="fluid-navbar-inner px-4 py-3 sm:px-6"
-      >
+      <div className="fluid-navbar-inner px-4 py-3 sm:px-6">
         {/* ── Brand logo + wordmark ── */}
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img
             src={brandLogo}
-            alt="Secure Worldz Brand Logo"
-            className={`h-11 w-11 shrink-0 rounded-xl object-contain ${
-              light
-                ? 'border border-black/10 shadow-[0_10px_28px_rgba(0,0,0,0.08)]'
-                : 'border border-white/10 shadow-[0_10px_28px_rgba(0,0,0,0.35)]'
-            }`}
+            alt="Cyber Jai Brand Logo"
+            style={{
+              height: '2.75rem',
+              width: '2.75rem',
+              objectFit: 'contain',
+              border: '4px solid #000000',
+              flexShrink: 0,
+            }}
           />
-          <div className="space-y-0.5 text-left">
+          <div style={{ textAlign: 'left' }}>
             <p
-              className={`font-display text-[clamp(0.78rem,1.5vw,0.95rem)] font-black uppercase leading-[1.18] tracking-[0.12em] ${
-                light ? 'text-[#111]' : 'text-white'
-              }`}
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(0.78rem,1.5vw,0.95rem)',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                lineHeight: 1.18,
+                color: '#000000',
+              }}
             >
-              SECURE WORLDZ
+              CYBER JAI
             </p>
             <p
-              className={`text-[clamp(0.55rem,1.1vw,0.66rem)] font-semibold uppercase leading-[1.35] tracking-[0.22em] ${
-                light ? 'text-black/55' : 'text-white/52'
-              }`}
+              style={{
+                fontSize: 'clamp(0.55rem,1.1vw,0.66rem)',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.22em',
+                lineHeight: 1.35,
+                color: '#555555',
+              }}
             >
               CYBER SECURITY TRAINING
             </p>
           </div>
         </Link>
 
-        {/* ── Desktop navigation (hidden on mobile via .desktop-nav) ── */}
-        <nav className="desktop-nav flex items-center gap-2 sm:gap-3" aria-label="Primary navigation">
+        {/* ── Desktop navigation ── */}
+        <nav className="desktop-nav flex items-center gap-3 sm:gap-4" aria-label="Primary navigation">
           {light ? (
             <>
-              <a href="#why" aria-label="About" className="hidden sm:inline-flex">
-                <NavIcon label="G" light />
-              </a>
-              <a href="#footer" aria-label="Contact" className="hidden sm:inline-flex">
-                <NavIcon label="X" light />
-              </a>
-              <a href="#top" aria-label="Theme" className="inline-flex">
-                <NavIcon label="T" light />
-              </a>
+              <NavLink href="#why" light>About</NavLink>
+              <NavLink href="#footer" light>Contact</NavLink>
             </>
           ) : (
             <>
-              <Link
-                to="/"
-                className="relative py-1 text-[clamp(0.68rem,1.1vw,0.78rem)] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
-              >
-                Home
-              </Link>
-              <a
-                href="/#why"
-                className="relative py-1 text-[clamp(0.68rem,1.1vw,0.78rem)] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
-              >
-                About Us
-              </a>
-              <a
-                href="/#footer"
-                className="relative py-1 text-[clamp(0.68rem,1.1vw,0.78rem)] font-bold uppercase tracking-[0.14em] text-white/58 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-cyber-red after:transition-all after:duration-300 hover:text-white hover:after:w-full"
-              >
-                Contact
-              </a>
+              <NavLink to="/">Home</NavLink>
+              <NavLink href="/#why">About Us</NavLink>
+              <NavLink href="/#footer">Contact</NavLink>
               <Link
                 to="/courses"
-                className="rounded-full border border-cyber-red/50 bg-cyber-red px-[clamp(0.75rem,2vw,1.5rem)] py-3 text-[clamp(0.68rem,1.1vw,0.75rem)] font-black uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(212,18,18,0.38)] active:scale-[0.98]"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: '#000000',
+                  color: '#ffffff',
+                  border: '4px solid #000000',
+                  boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 800,
+                  fontSize: 'clamp(0.65rem,1.05vw,0.75rem)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  padding: '0.5rem 1.25rem',
+                  transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
               >
                 Explore Courses
               </Link>
@@ -147,7 +138,7 @@ export default function SiteNavbar({ theme = 'dark' }) {
           )}
         </nav>
 
-        {/* ── Hamburger toggle — only visible on mobile (≤640px via CSS) ── */}
+        {/* ── Hamburger toggle ── */}
         <button
           type="button"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -165,28 +156,28 @@ export default function SiteNavbar({ theme = 'dark' }) {
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="block rounded-xl border border-white/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/70 hover:border-cyber-red/30 hover:text-white transition-colors duration-200"
+            style={{ display: 'block', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#000', textDecoration: 'none', marginBottom: '0.5rem' }}
           >
             Home
           </Link>
           <a
             href="/#why"
             onClick={() => setMenuOpen(false)}
-            className="block rounded-xl border border-white/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/70 hover:border-cyber-red/30 hover:text-white transition-colors duration-200"
+            style={{ display: 'block', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#000', textDecoration: 'none', marginBottom: '0.5rem' }}
           >
             About Us
           </a>
           <a
             href="/#footer"
             onClick={() => setMenuOpen(false)}
-            className="block rounded-xl border border-white/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white/70 hover:border-cyber-red/30 hover:text-white transition-colors duration-200"
+            style={{ display: 'block', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#000', textDecoration: 'none', marginBottom: '0.5rem' }}
           >
             Contact
           </a>
           <Link
             to="/courses"
             onClick={() => setMenuOpen(false)}
-            className="block rounded-xl bg-cyber-red px-4 py-3 text-center text-[0.78rem] font-black uppercase tracking-widest text-white shadow-[0_8px_24px_rgba(212,18,18,0.32)] transition-all duration-200 hover:bg-[#b91010] active:scale-[0.98]"
+            style={{ display: 'block', background: '#000', color: '#fff', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', textDecoration: 'none' }}
           >
             Explore Courses
           </Link>
@@ -195,9 +186,8 @@ export default function SiteNavbar({ theme = 'dark' }) {
 
       {light && (
         <div className={`mobile-nav-panel light${menuOpen ? ' open' : ''} px-4 pb-3 sm:hidden`}>
-          <a href="#why"    onClick={() => setMenuOpen(false)} className="block rounded-xl border border-black/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#111] hover:border-cyber-red/30 hover:text-cyber-red transition-colors duration-200">About</a>
-          <a href="#footer" onClick={() => setMenuOpen(false)} className="block rounded-xl border border-black/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#111] hover:border-cyber-red/30 hover:text-cyber-red transition-colors duration-200">Contact</a>
-          <a href="#top"    onClick={() => setMenuOpen(false)} className="block rounded-xl border border-black/8 px-4 py-3 text-center text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#111] hover:border-cyber-red/30 hover:text-cyber-red transition-colors duration-200">Top</a>
+          <a href="#why" onClick={() => setMenuOpen(false)} style={{ display: 'block', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#000', textDecoration: 'none', marginBottom: '0.5rem' }}>About</a>
+          <a href="#footer" onClick={() => setMenuOpen(false)} style={{ display: 'block', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#000', textDecoration: 'none' }}>Contact</a>
         </div>
       )}
     </header>

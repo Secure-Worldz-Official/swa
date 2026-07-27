@@ -15,51 +15,57 @@ import heroImage from '../assets/hero-hacker.png';
 
 function CyberHeroArtwork() {
   return (
-    /*
-     * max-width uses clamp() so the card expands proportionally on wider screens
-     * but never exceeds 640px. On narrow phones (<400px) it fills 100% width.
-     * The terminal frame rounds gracefully at any size.
-     */
-    <div className="relative mx-auto w-full" style={{ maxWidth: 'clamp(300px, 90vw, 640px)' }}>
-      {/* Terminal chrome frame */}
-      <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#080808] shadow-[0_32px_90px_rgba(0,0,0,0.55)]">
+    <div style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: 'clamp(300px, 90vw, 640px)' }}>
+      {/* Retro terminal chrome frame */}
+      <div style={{
+        position: 'relative',
+        overflow: 'hidden',
+        border: '4px solid #000000',
+        background: '#000000',
+        boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+      }}>
         {/* Title bar */}
-        <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.035] px-5 py-4">
-          <span className="h-3 w-3 rounded-full bg-cyber-red shadow-[0_0_18px_rgba(212,18,18,0.8)]" />
-          <span className="h-3 w-3 rounded-full bg-white/25" />
-          <span className="h-3 w-3 rounded-full bg-white/12" />
-          <span className="ml-auto font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/38">
-            secure worldz exe
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          borderBottom: '4px solid #000000',
+          background: '#ffffff',
+          padding: '0.75rem 1.25rem',
+        }}>
+          <span style={{ height: '12px', width: '12px', background: '#000000', display: 'inline-block', border: '2px solid #000' }} />
+          <span style={{ height: '12px', width: '12px', background: '#888888', display: 'inline-block', border: '2px solid #000' }} />
+          <span style={{ height: '12px', width: '12px', background: '#cccccc', display: 'inline-block', border: '2px solid #000' }} />
+          <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-heading)', fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.18em', color: '#000000', fontWeight: 700 }}>
+            cyber jai exe
           </span>
         </div>
 
-        {/*
-         * Image container:
-         *   - aspect-ratio scales the height proportionally at any width
-         *   - object-fit: cover ensures the image fills the box without clipping text
-         *   - No hardcoded height—fully fluid
-         */}
-        <div
-          className="relative overflow-hidden"
-          style={{ aspectRatio: '1 / 1' }}
-        >
+        {/* Image container */}
+        <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1 / 1' }}>
           <img
             src={heroImage}
             alt="Cybersecurity terminal hacker graphic"
-            className="h-full w-full transition-all duration-700 hover:scale-[1.025]"
-            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+            style={{ height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'center top', transition: 'transform 0.7s', display: 'block' }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.025)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-45" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(212,18,18,0.16),transparent_58%)]" />
-          {/* Overlay text badge — uses clamp() for font size */}
-          <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-cyber-red/25 bg-black/62 px-5 py-4 backdrop-blur-md">
-            <p className="font-mono uppercase tracking-[0.16em] text-cyber-red" style={{ fontSize: 'var(--text-xs)' }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent 55%)' }} />
+          {/* Overlay text badge */}
+          <div style={{
+            position: 'absolute',
+            bottom: '1.25rem',
+            left: '1.25rem',
+            right: '1.25rem',
+            border: '4px solid #000000',
+            background: 'rgba(255,255,255,0.92)',
+            padding: '0.75rem 1.25rem',
+            boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+          }}>
+            <p style={{ fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '0.16em', color: '#000000', fontSize: 'var(--text-xs)', fontWeight: 800 }}>
               cyber security initiated
             </p>
-            <p
-              className="mt-1 font-display font-black uppercase leading-tight text-white"
-              style={{ fontSize: 'clamp(1.05rem, 2.2vw, 1.45rem)' }}
-            >
+            <p style={{ marginTop: '0.25rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1.2, color: '#000000', fontSize: 'clamp(1.05rem, 2.2vw, 1.45rem)' }}>
               Learn. Defend. Dominate.
             </p>
           </div>
@@ -71,14 +77,14 @@ function CyberHeroArtwork() {
 
 export function BrandHeader() {
   return (
-    <div className="flex items-start gap-3 sm:gap-4">
-      <ShieldLockIcon className="mt-0.5 h-10 w-10 shrink-0 text-cyber-red sm:h-11 sm:w-11" />
-      <p className="font-display text-[clamp(0.9rem,1.55vw,1.3rem)] leading-[1.18] font-black uppercase tracking-[0.04em] text-black">
-        <span className="block">
-          LEARN WITH <span className="text-cyber-red">CYBER J</span><span className="cyber-ai-glow">AI</span>
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+      <ShieldLockIcon style={{ marginTop: '0.125rem', height: '2.5rem', width: '2.5rem', flexShrink: 0, color: '#000000' }} />
+      <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(0.9rem,1.55vw,1.3rem)', lineHeight: 1.18, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#000000' }}>
+        <span style={{ display: 'block' }}>
+          LEARN WITH <span style={{ background: '#000', color: '#fff', padding: '0 0.1em' }}>CYBER J</span><span className="cyber-ai-glow">AI</span>
         </span>
-        <span className="block">
-          FROM ZERO TO <span className="text-cyber-red">CYBER HERO</span>
+        <span style={{ display: 'block' }}>
+          FROM ZERO TO <span style={{ background: '#000', color: '#fff', padding: '0 0.1em' }}>CYBER HERO</span>
         </span>
       </p>
     </div>
@@ -89,42 +95,29 @@ export function HeroPreview() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    /*
-     * fluid figure:
-     *   max-width uses clamp() → never exceeds 640px, scales down on mobile.
-     *   lg:ml-auto keeps it right-aligned in the 2-column grid.
-     *   isolate creates a new stacking context so decorative blobs stay behind artwork.
-     */
     <motion.figure
-      className="relative isolate mx-auto lg:ml-auto"
-      style={{ width: '100%', maxWidth: 'clamp(300px, 88vw, 640px)' }}
+      style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: 'clamp(300px, 88vw, 640px)' }}
+      className="lg:ml-auto"
       initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.96, y: 18 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       whileHover={prefersReducedMotion ? undefined : { rotate: 0.4, scale: 1.01 }}
     >
-      {/* Glow blob — percentage-based sizing scales with the container */}
-      <div
-        className="absolute -z-10 rounded-[48px] blur-2xl"
-        style={{
-          inset: 'clamp(-1.5rem, -3vw, -2rem)',
-          background: 'radial-gradient(circle at 62% 22%, rgba(212,18,18,0.28), transparent 42%), radial-gradient(circle at 50% 72%, rgba(212,18,18,0.12), transparent 48%)',
-        }}
-      />
-      {/* Decorative ring — scales with em so it stays proportional */}
-      <div className="absolute -right-2 top-10 -z-10 h-[7%] w-[7%] rounded-full border border-cyber-red/25" style={{ aspectRatio: '1/1' }} />
-      <div className="absolute -bottom-3 -left-2 -z-10 h-[5%] w-[5%] rounded-full border border-white/10" style={{ aspectRatio: '1/1' }} />
+      {/* Decorative elements */}
+      <div style={{ position: 'absolute', right: '-0.5rem', top: '2.5rem', zIndex: -1, height: '2rem', width: '2rem', border: '4px solid #000', background: '#ffffff' }} />
+      <div style={{ position: 'absolute', bottom: '-0.75rem', left: '-0.5rem', zIndex: -1, height: '1.5rem', width: '1.5rem', border: '4px solid #000', background: '#ffffff' }} />
       <CyberHeroArtwork />
     </motion.figure>
   );
 }
 
-function MotionCard({ children, className = '', ...props }) {
+function MotionCard({ children, className = '', style = {}, ...props }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.article
       className={className}
+      style={style}
       whileHover={
         prefersReducedMotion
           ? undefined
@@ -143,21 +136,31 @@ function MotionCard({ children, className = '', ...props }) {
 
 export function BeginnersCard() {
   return (
-    <MotionCard className="soft-card flex h-full flex-col rounded-3xl p-6">
-      <div className="flex items-start gap-4">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-cyber-red/10 border border-cyber-red/20 text-cyber-red">
-          <UserOutlineIcon className="h-9 w-9" />
+    <MotionCard
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        padding: '1.5rem',
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+        <div style={{ display: 'flex', height: '4rem', width: '4rem', flexShrink: 0, alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', background: '#f0f0f0', color: '#000000' }}>
+          <UserOutlineIcon style={{ height: '2.25rem', width: '2.25rem' }} />
         </div>
-        <p className="pt-0.5 font-display text-[clamp(1rem,1.55vw,1.3rem)] leading-[1.22] font-black uppercase tracking-[0.02em] text-black">
-          THIS COURSE IS FOR <span className="text-cyber-red">PURE BEGINNERS</span>
-          <span className="block font-sans font-extrabold text-[#1a1a1a]">TO MASTER GUIDE.</span>
+        <p style={{ paddingTop: '0.125rem', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem,1.55vw,1.3rem)', lineHeight: 1.22, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.02em', color: '#000000' }}>
+          THIS COURSE IS FOR <span style={{ background: '#000', color: '#fff', padding: '0 0.1em' }}>PURE BEGINNERS</span>
+          <span style={{ display: 'block', fontFamily: 'var(--font-main)', fontWeight: 800, color: '#000000' }}>TO MASTER GUIDE.</span>
         </p>
       </div>
 
-      <div className="ribbon-cut mt-6 rounded-2xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-5 py-4 text-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] border border-white/5">
-        <div className="flex items-start gap-3">
-          <span className="mt-1.5 h-8 w-[3px] shrink-0 rounded-full bg-cyber-red" />
-          <p className="text-[0.92rem] leading-[1.45] text-white/90">
+      <div style={{ marginTop: '1.5rem', background: '#000000', padding: '1rem 1.25rem', color: '#ffffff', clipPath: 'polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%)' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+          <span style={{ marginTop: '0.375rem', height: '2rem', width: '4px', flexShrink: 0, background: '#ffffff', display: 'inline-block' }} />
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.45, color: 'rgba(255,255,255,0.9)' }}>
             No prior knowledge needed.
             <br />
             We take you from scratch to success.
@@ -168,16 +171,24 @@ export function BeginnersCard() {
   );
 }
 
-export function PriceCard({ label, amount, amountClassName = 'text-black', labelClassName = 'bg-cyber-red text-white' }) {
+export function PriceCard({ label, amount, amountClassName = '', labelClassName = '' }) {
   return (
-    <MotionCard className="soft-card flex h-full flex-col overflow-hidden rounded-3xl">
-      <div
-        className={`px-4 py-2.5 text-center text-[0.72rem] font-black uppercase tracking-[0.1em] border-b border-gray-100 ${labelClassName}`}
-      >
+    <MotionCard
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        overflow: 'hidden',
+        border: '4px solid #000000',
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+        background: '#ffffff',
+      }}
+    >
+      <div style={{ padding: '0.5rem 1rem', textAlign: 'center', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '4px solid #000', background: '#000000', color: '#ffffff', fontFamily: 'var(--font-heading)' }}>
         {label}
       </div>
-      <div className="flex flex-1 items-center justify-center px-4 py-6 text-center">
-        <div className={`font-display text-[clamp(2.5rem,5.5vw,4.2rem)] leading-none font-black tracking-tight ${amountClassName}`}>
+      <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center', padding: '1.5rem 1rem', textAlign: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem,5.5vw,4.2rem)', lineHeight: 1, fontWeight: 800, letterSpacing: '-0.02em', color: '#000000' }}>
           &#8377;{amount}
         </div>
       </div>
@@ -187,15 +198,25 @@ export function PriceCard({ label, amount, amountClassName = 'text-black', label
 
 export function StudentsCard() {
   return (
-    <MotionCard className="h-full rounded-3xl bg-gradient-to-br from-[#1e1e1e] to-[#0d0d0d] px-5 py-6 text-center text-white border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.18)] hover:border-cyber-red/20 transition-all duration-300">
-      <div className="flex h-full flex-col justify-between">
-        <div className="h-12 w-12 rounded-xl bg-white/5 flex items-center justify-center text-cyber-red mx-auto mb-2">
-          <GroupIcon className="h-6 w-6" />
+    <MotionCard
+      style={{
+        height: '100%',
+        padding: '1.25rem',
+        textAlign: 'center',
+        background: '#000000',
+        color: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+      }}
+    >
+      <div style={{ display: 'flex', height: '100%', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ height: '3rem', width: '3rem', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', margin: '0 auto', marginBottom: '0.5rem', border: '2px solid rgba(255,255,255,0.3)' }}>
+          <GroupIcon style={{ height: '1.5rem', width: '1.5rem' }} />
         </div>
-        <div className="font-display text-[clamp(2.95rem,5.8vw,4.4rem)] leading-none font-black text-white">
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.95rem,5.8vw,4.4rem)', lineHeight: 1, fontWeight: 800, color: '#ffffff' }}>
           60
         </div>
-        <div className="mt-2 text-[0.72rem] font-black uppercase leading-[1.3] tracking-[0.1em] text-white/60">
+        <div style={{ marginTop: '0.5rem', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1.3, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-heading)' }}>
           STUDENTS ONLY
           <br />
           AVAILABLE.
@@ -207,10 +228,22 @@ export function StudentsCard() {
 
 export function SeatsPill() {
   return (
-    <MotionCard className="mx-auto inline-flex items-center gap-2.5 rounded-full border border-gray-100 bg-white px-6 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:border-cyber-red/25 hover:shadow-[0_12px_35px_rgba(212,18,18,0.06)] transition-all duration-300">
-      <ClockIcon className="h-5 w-5 text-cyber-red" />
-      <p className="text-[0.8rem] font-black uppercase tracking-[0.1em] text-black">
-        LIMITED SEATS. <span className="text-cyber-red">MAXIMUM IMPACT.</span>
+    <MotionCard
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.625rem',
+        border: '4px solid #000000',
+        background: '#ffffff',
+        padding: '0.75rem 1.5rem',
+        boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+        margin: '0 auto',
+        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+      }}
+    >
+      <ClockIcon style={{ height: '1.25rem', width: '1.25rem', color: '#000000' }} />
+      <p style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#000000', fontFamily: 'var(--font-heading)' }}>
+        LIMITED SEATS. <span style={{ background: '#000', color: '#fff', padding: '0 0.1em' }}>MAXIMUM IMPACT.</span>
       </p>
     </MotionCard>
   );
@@ -218,42 +251,68 @@ export function SeatsPill() {
 
 export function SectionRuleHeading() {
   return (
-    <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center">
-      <span className="hidden h-px flex-1 bg-[#cfcfcf] sm:block" />
-      <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-center font-display text-[clamp(1.1rem,2vw,1.7rem)] leading-[1.22] font-black uppercase tracking-[0.1em] text-black">
-        <span className="h-1.5 w-1.5 rotate-45 bg-cyber-red" />
-        <span className="max-w-full">
-          WHY <span className="text-cyber-red">YOU</span> SHOULD JOIN?
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '1rem', paddingTop: '0.5rem' }} className="sm:flex-row sm:items-center">
+      <span style={{ display: 'none', height: '4px', flex: 1, background: '#000000' }} className="sm:block" />
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.5rem 0.5rem', textAlign: 'center', fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.1rem,2vw,1.7rem)', lineHeight: 1.22, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#000000' }}>
+        <span style={{ height: '0.375rem', width: '0.375rem', transform: 'rotate(45deg)', background: '#000000', display: 'inline-block' }} />
+        <span style={{ maxWidth: '100%' }}>
+          WHY <span style={{ background: '#000', color: '#fff', padding: '0 0.1em' }}>YOU</span> SHOULD JOIN?
         </span>
-        <span className="h-1.5 w-1.5 rotate-45 bg-cyber-red" />
+        <span style={{ height: '0.375rem', width: '0.375rem', transform: 'rotate(45deg)', background: '#000000', display: 'inline-block' }} />
       </div>
-      <span className="hidden h-px flex-1 bg-[#cfcfcf] sm:block" />
+      <span style={{ display: 'none', height: '4px', flex: 1, background: '#000000' }} className="sm:block" />
     </div>
   );
 }
 
 export function ReasonCard({ number, icon: Icon, title, description }) {
   return (
-    <MotionCard className="soft-card relative flex h-full px-6 py-8">
-      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-cyber-red text-[0.85rem] font-black text-white shadow-[0_8px_20px_rgba(212,18,18,0.3)] border-2 border-white">
+    <MotionCard
+      style={{
+        position: 'relative',
+        display: 'flex',
+        height: '100%',
+        padding: '2rem 1.5rem',
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+      }}
+    >
+      <div style={{
+        position: 'absolute',
+        top: '-0.75rem',
+        left: '1.5rem',
+        display: 'flex',
+        height: '2rem',
+        width: '2rem',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#000000',
+        color: '#ffffff',
+        fontSize: '0.85rem',
+        fontWeight: 800,
+        border: '4px solid #ffffff',
+        boxShadow: '2px 2px 0px 0px rgba(0,0,0,1)',
+        fontFamily: 'var(--font-heading)',
+      }}>
         {number}
       </div>
 
-      <div className="flex min-h-[230px] flex-1 flex-col items-center justify-center text-center">
-        <Icon className="h-12 w-12 text-cyber-red" />
-        <h3 className="mt-4 font-display text-[1.05rem] font-black uppercase leading-[1.32] tracking-[0.02em]">
+      <div style={{ display: 'flex', minHeight: '230px', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+        <Icon style={{ height: '3rem', width: '3rem', color: '#000000' }} />
+        <h3 style={{ marginTop: '1rem', fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1.32, letterSpacing: '0.02em' }}>
           {title.map((part, index) => (
             <span
               key={`${part.text}-${index}`}
-              className={`block ${part.tone === 'red' ? 'text-cyber-red' : 'text-black'}`}
+              style={{ display: 'block', color: part.tone === 'red' ? '#000000' : '#000000', ...(part.tone === 'red' ? { background: '#000', color: '#fff', padding: '0 0.1em' } : {}) }}
             >
               {part.text}
             </span>
           ))}
         </h3>
-        <p className="mt-5 text-[0.86rem] leading-[1.52] text-gray-500">
+        <p style={{ marginTop: '1.25rem', fontSize: '0.86rem', lineHeight: 1.52, color: '#555555' }}>
           {description.map((line, index) => (
-            <span key={`${line}-${index}`} className="block">
+            <span key={`${line}-${index}`} style={{ display: 'block' }}>
               {line}
             </span>
           ))}
@@ -266,32 +325,42 @@ export function ReasonCard({ number, icon: Icon, title, description }) {
 export function FooterBanner() {
   return (
     <motion.footer
-      className="mt-12 rounded-[36px] border border-white/5 bg-gradient-to-br from-[#0F111A] to-[#07080d] p-8 md:p-12 text-white shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative overflow-hidden"
+      style={{
+        marginTop: '3rem',
+        border: '4px solid #000000',
+        background: '#000000',
+        padding: '2rem',
+        color: '#ffffff',
+        boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      className="md:p-12"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Background Accent Grid or Glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-cyber-red/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* White corner decorative element */}
+      <div style={{ position: 'absolute', top: 0, right: 0, width: '5rem', height: '5rem', background: '#ffffff', opacity: 0.06, zIndex: 0 }} />
 
-      <div className="grid gap-8 lg:grid-cols-[1.2fr_1.8fr_1.1fr] lg:items-center">
+      <div style={{ display: 'grid', gap: '2rem', position: 'relative', zIndex: 1 }} className="lg:grid-cols-[1.2fr_1.8fr_1.1fr] lg:items-center">
         {/* Left Branding Statement */}
-        <div className="flex items-center gap-4 border-b border-white/5 pb-6 lg:border-b-0 lg:border-r lg:border-white/5 lg:pb-0 lg:pr-8">
-          <div className="h-16 w-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-            <LockSealIcon className="h-8 w-8 text-white" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '4px solid rgba(255,255,255,0.15)', paddingBottom: '1.5rem' }} className="lg:border-b-0 lg:border-r lg:border-white/20 lg:pb-0 lg:pr-8">
+          <div style={{ height: '4rem', width: '4rem', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <LockSealIcon style={{ height: '2rem', width: '2rem', color: '#ffffff' }} />
           </div>
-          <div className="text-left space-y-1">
-            <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-cyber-red">Secure Worldz Official</p>
-            <h3 className="font-display text-[clamp(1.2rem,2.2vw,1.9rem)] leading-[1.15] font-black uppercase tracking-tight">
+          <div style={{ textAlign: 'left' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-heading)' }}>Cyber Jai Official</p>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.2rem,2.2vw,1.9rem)', lineHeight: 1.15, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.03em', marginTop: '0.25rem' }}>
               DON&apos;T JUST LEARN.
-              <span className="block text-cyber-red">DEFEND THE DIGITAL WORLD.</span>
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.6)' }}>DEFEND THE DIGITAL WORLD.</span>
             </h3>
           </div>
         </div>
 
         {/* Middle Feature Highlights */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:px-4">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1rem' }} className="sm:grid-cols-4 lg:px-4">
           {[
             { icon: BrainIcon, label: 'AI POWERED\nTOOLS' },
             { icon: GlobeIcon, label: 'REAL WORLD\nSCENARIOS' },
@@ -300,12 +369,14 @@ export function FooterBanner() {
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}
-              className="flex flex-col items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-4 text-center hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '4px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', padding: '1rem', textAlign: 'center', transition: 'background 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.12)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
             >
-              <div className="h-10 w-10 rounded-xl bg-white/5 flex items-center justify-center mb-3 text-white">
-                <Icon className="h-5 w-5" />
+              <div style={{ height: '2.5rem', width: '2.5rem', border: '2px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: '#ffffff' }}>
+                <Icon style={{ height: '1.25rem', width: '1.25rem' }} />
               </div>
-              <p className="whitespace-pre-line text-[0.68rem] leading-[1.3] font-bold uppercase tracking-wider text-white/70">
+              <p style={{ whiteSpace: 'pre-line', fontSize: '0.68rem', lineHeight: 1.3, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-heading)' }}>
                 {label}
               </p>
             </div>
@@ -313,22 +384,22 @@ export function FooterBanner() {
         </div>
 
         {/* Right Seat Checkout Ticket */}
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#151722] to-[#0c0d14] p-6 text-center shadow-2xl flex flex-col justify-center items-center">
-          <span className="inline-block bg-cyber-red/10 border border-cyber-red/35 text-cyber-red text-[0.65rem] font-black uppercase tracking-[0.15em] px-3 py-1 rounded-md mb-4">
+        <div style={{ position: 'relative', overflow: 'hidden', border: '4px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '6px 6px 0px 0px rgba(255,255,255,0.2)' }}>
+          <span style={{ display: 'inline-block', border: '2px solid rgba(255,255,255,0.4)', color: 'rgba(255,255,255,0.8)', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', padding: '0.25rem 0.75rem', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>
             SECURE YOUR SEAT
           </span>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="font-display text-[clamp(2.4rem,4.5vw,3.2rem)] leading-none font-black uppercase tracking-tight text-white">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.4rem,4.5vw,3.2rem)', lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.02em', color: '#ffffff' }}>
               NOW!
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-cyber-red/40 text-cyber-red bg-cyber-red/10 shadow-[0_0_15px_rgba(212,18,18,0.25)]">
-              <LockSealIcon className="h-4.5 w-4.5 text-cyber-red" />
+            <div style={{ display: 'flex', height: '2.25rem', width: '2.25rem', alignItems: 'center', justifyContent: 'center', border: '4px solid rgba(255,255,255,0.4)', color: '#ffffff', background: 'rgba(255,255,255,0.1)' }}>
+              <LockSealIcon style={{ height: '1.125rem', width: '1.125rem', color: '#ffffff' }} />
             </div>
           </div>
-          <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-white/55">
+          <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-heading)' }}>
             YOUR CYBER JOURNEY
           </p>
-          <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-cyber-red mt-0.5">
+          <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.8)', marginTop: '0.125rem', fontFamily: 'var(--font-heading)' }}>
             STARTS WITH ONE STEP.
           </p>
         </div>

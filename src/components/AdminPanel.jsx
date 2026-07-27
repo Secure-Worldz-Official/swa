@@ -108,50 +108,86 @@ export default function AdminPanel() {
         setToken(null);
     };
 
+    const inputStyle = {
+        width: '100%',
+        background: '#ffffff',
+        border: '4px solid #000000',
+        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+        padding: '0.75rem 1rem',
+        fontSize: '0.9rem',
+        color: '#000000',
+        outline: 'none',
+        fontFamily: 'var(--font-main)',
+    };
+
     if (!token) {
         return (
-            <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4">
+            <div style={{ minHeight: '100vh', background: '#ffffff', color: '#000000', display: 'flex', itemsCenter: 'center', justifyContent: 'center', padding: '1rem' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="max-w-md w-full bg-[#111] border border-white/10 p-8 rounded-[32px] shadow-2xl"
+                    style={{
+                        maxWidth: '28rem',
+                        width: '100%',
+                        background: '#ffffff',
+                        border: '4px solid #000000',
+                        boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+                        padding: '2rem',
+                    }}
                 >
-                    <div className="flex justify-center mb-8">
-                        <div className="h-16 w-16 bg-cyber-red rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(212,18,18,0.3)]">
-                            <ShieldLockIcon className="h-10 w-10 text-white" />
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+                        <div style={{ height: '4rem', width: '4rem', background: '#000000', border: '4px solid #000000', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <ShieldLockIcon style={{ height: '2.5rem', width: '2.5rem', color: '#ffffff' }} />
                         </div>
                     </div>
-                    <h2 className="text-3xl font-display font-black text-white text-center mb-2 uppercase tracking-tight">Admin Login</h2>
-                    <p className="text-white/50 text-center mb-8 text-sm uppercase tracking-widest">Secure World Access</p>
+                    <h2 style={{ fontSize: '1.875rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', textAlign: 'center', marginBottom: '0.5rem', color: '#000000' }}>Admin Login</h2>
+                    <p style={{ color: '#555555', textAlign: 'center', marginBottom: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Secure World Access</p>
 
-                    <form onSubmit={handleLogin} className="space-y-4">
+                    <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                         <div>
-                            <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-1.5 ml-1">Email Address</label>
+                            <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#555555', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Email Address</label>
                             <input
                                 type="email"
                                 required
-                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 text-white placeholder:text-white/20 focus:outline-none focus:border-cyber-red transition-colors"
+                                style={inputStyle}
                                 placeholder="admin@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
-                            <label className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-1.5 ml-1">Password</label>
+                            <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#555555', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Password</label>
                             <input
                                 type="password"
                                 required
-                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 text-white placeholder:text-white/20 focus:outline-none focus:border-cyber-red transition-colors"
+                                style={inputStyle}
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        {error && <p className="text-cyber-red text-sm font-bold text-center">{error}</p>}
+                        {error && <p style={{ color: '#000000', background: '#f0f0f0', border: '4px solid #000', padding: '0.5rem', fontWeight: 700, fontSize: '0.875rem', textAlign: 'center' }}>{error}</p>}
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-cyber-red text-white font-bold py-4 rounded-2xl shadow-[0_10px_25px_rgba(212,18,18,0.3)] hover:bg-cyber-redDark transition-all active:scale-[0.98] disabled:opacity-50"
+                            style={{
+                                width: '100%',
+                                background: '#000000',
+                                color: '#ffffff',
+                                border: '4px solid #000000',
+                                boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
+                                padding: '1rem',
+                                fontSize: '0.82rem',
+                                fontWeight: 800,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.15em',
+                                fontFamily: 'var(--font-heading)',
+                                cursor: loading ? 'not-allowed' : 'pointer',
+                                opacity: loading ? 0.5 : 1,
+                                transition: 'box-shadow 0.12s, transform 0.12s',
+                            }}
+                            onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; } }}
+                            onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
                         >
                             {loading ? 'AUTHENTICATING...' : 'SECURE LOGIN'}
                         </button>
@@ -162,50 +198,65 @@ export default function AdminPanel() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-white">
-            <nav className="fixed top-0 left-0 right-0 h-20 bg-[#121212]/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-8 z-50">
-                <div className="flex items-center gap-3">
-                    <ShieldLockIcon className="h-8 w-8 text-cyber-red" />
-                    <span className="font-display font-black text-xl uppercase tracking-tight text-white">Cyber J<span className="cyber-ai-glow">AI</span> <span className="text-cyber-red">Admin</span></span>
+        <div style={{ minHeight: '100vh', background: '#ffffff', color: '#000000', fontFamily: 'var(--font-main)' }}>
+            <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '5rem', background: '#ffffff', borderBottom: '4px solid #000000', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem', zIndex: 50 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <ShieldLockIcon style={{ height: '2rem', width: '2rem', color: '#000000' }} />
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '-0.02em', color: '#000000' }}>Cyber Jai Admin</span>
                 </div>
                 <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white/60 hover:text-cyber-red transition-colors"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        background: '#000000',
+                        color: '#ffffff',
+                        border: '4px solid #000000',
+                        boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                        padding: '0.5rem 1rem',
+                        fontSize: '0.75rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.12em',
+                        fontFamily: 'var(--font-heading)',
+                        cursor: 'pointer',
+                    }}
                 >
-                    <LogoutIcon className="h-5 w-5" />
+                    <LogoutIcon style={{ height: '1.25rem', width: '1.25rem' }} />
                     Logout
                 </button>
             </nav>
 
-            <main className="pt-28 px-4 sm:px-8 max-w-7xl mx-auto pb-20">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <main style={{ paddingTop: '7rem', paddingBottom: '5rem', maxWidth: '80rem', margin: '0 auto', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '1.5rem', marginBottom: '3rem' }} className="md:grid-cols-3">
                     <StatCard label="Total Students" value={stats?.totalUsers || 0} icon={UserOutlineIcon} />
                     <StatCard label="Pending Approval" value={stats?.pendingOrders || 0} icon={ClockIcon} tone="red" />
                     <StatCard label="Total Orders" value={stats?.totalOrders || 0} icon={ShieldLockIcon} />
                 </div>
 
-                <section className="bg-[#141414] rounded-[32px] border border-white/10 shadow-lg overflow-hidden">
-                    <div className="p-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <section style={{ background: '#ffffff', border: '4px solid #000000', boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)', overflow: 'hidden' }}>
+                    <div style={{ padding: '1.5rem 2rem', borderBottom: '4px solid #000000', display: 'flex', flexDirection: 'column', gap: '0.5rem' }} className="sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <h3 className="text-2xl font-display font-black uppercase tracking-tight text-white">Recent Enrollments</h3>
-                            <p className="text-sm text-white/40 uppercase font-bold tracking-widest">Verify and approve student access</p>
+                            <h3 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-heading)', fontWeight: 800, textTransform: 'uppercase', color: '#000000' }}>Recent Enrollments</h3>
+                            <p style={{ fontSize: '0.75rem', color: '#555555', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Verify and approve student access</p>
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
+                    <div style={{ overflowX: 'auto' }}>
+                        <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
                             <thead>
-                                <tr className="bg-white/5 border-b border-white/10">
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Student</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Order ID</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Status</th>
-                                    <th className="px-8 py-4 text-xs font-black uppercase tracking-widest text-white/40">Action</th>
+                                <tr style={{ background: '#000000', color: '#ffffff', borderBottom: '4px solid #000000' }}>
+                                    <th style={{ padding: '1rem 2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Student</th>
+                                    <th style={{ padding: '1rem 2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Order ID</th>
+                                    <th style={{ padding: '1rem 2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Status</th>
+                                    <th style={{ padding: '1rem 2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'var(--font-heading)' }}>Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5">
+                            <tbody>
                                 {users.length === 0 ? (
                                     <tr>
-                                        <td colSpan="4" className="px-8 py-20 text-center text-white/30 italic">No students yet</td>
+                                        <td colSpan="4" style={{ padding: '5rem 2rem', textAlign: 'center', color: '#888888', fontStyle: 'italic' }}>No students yet</td>
                                     </tr>
                                 ) : (
                                     users.map(user => {
@@ -214,149 +265,164 @@ export default function AdminPanel() {
                                             <React.Fragment key={user.user_id}>
                                                 <tr
                                                     onClick={() => toggleRow(user.user_id)}
-                                                    className={`hover:bg-white/5 transition-colors cursor-pointer ${isExpanded ? 'bg-white/5' : ''}`}
+                                                    style={{ borderBottom: '2px solid #000000', background: isExpanded ? '#f0f0f0' : '#ffffff', cursor: 'pointer' }}
                                                 >
-                                                    <td className="px-8 py-6">
-                                                        <div className="flex items-center gap-3">
-                                                            <div className="font-bold text-white">{user.name}</div>
+                                                    <td style={{ padding: '1.25rem 2rem' }}>
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                                            <div style={{ fontWeight: 800, color: '#000000' }}>{user.name}</div>
                                                             <button
                                                                 onClick={(e) => {
                                                                     e.stopPropagation();
                                                                     toggleRow(user.user_id);
                                                                 }}
-                                                                className="text-[10px] text-cyber-red/80 hover:text-cyber-red font-bold uppercase tracking-widest flex items-center gap-1.5 bg-cyber-red/10 hover:bg-cyber-red/20 px-3 py-1.5 rounded-xl border border-cyber-red/20 transition-all active:scale-[0.97]"
+                                                                style={{
+                                                                    fontSize: '0.65rem',
+                                                                    fontWeight: 800,
+                                                                    textTransform: 'uppercase',
+                                                                    letterSpacing: '0.1em',
+                                                                    display: 'flex',
+                                                                    alignItems: 'center',
+                                                                    gap: '0.375rem',
+                                                                    background: '#000000',
+                                                                    color: '#ffffff',
+                                                                    border: '2px solid #000',
+                                                                    padding: '0.25rem 0.625rem',
+                                                                    cursor: 'pointer',
+                                                                    fontFamily: 'var(--font-heading)',
+                                                                }}
                                                             >
                                                                 View Details
-                                                                <motion.svg
-                                                                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                                                                    className="h-3.5 w-3.5"
-                                                                    fill="none"
-                                                                    stroke="currentColor"
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                                                                </motion.svg>
                                                             </button>
                                                         </div>
                                                     </td>
-                                                    <td className="px-8 py-6 font-mono text-xs text-white/60">
+                                                    <td style={{ padding: '1.25rem 2rem', fontFamily: 'monospace', fontSize: '0.75rem', color: '#555555' }}>
                                                         {user.order?.order_id || 'N/A'}
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td style={{ padding: '1.25rem 2rem' }}>
                                                         {user.order?.status === 'approved' ? (
-                                                            <span className="px-3 py-1 bg-green-500/15 text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
+                                                            <span style={{ padding: '0.25rem 0.75rem', background: '#000000', color: '#ffffff', border: '2px solid #000', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'var(--font-heading)' }}>Approved</span>
                                                         ) : (
-                                                            <span className="px-3 py-1 bg-yellow-500/15 text-yellow-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
+                                                            <span style={{ padding: '0.25rem 0.75rem', background: '#ffffff', color: '#000000', border: '2px solid #000', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'var(--font-heading)' }}>Pending</span>
                                                         )}
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td style={{ padding: '1.25rem 2rem' }}>
                                                         {user.order?.status !== 'approved' && user.order?.order_id && (
-                                                            <div className="flex gap-2">
-                                                                <button
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        approveUser(user.user_id, user.order.order_id);
-                                                                    }}
-                                                                    className="px-4 py-2 bg-cyber-red text-white rounded-lg text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
-                                                                >
-                                                                    Approve
-                                                                </button>
-                                                            </div>
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    approveUser(user.user_id, user.order.order_id);
+                                                                }}
+                                                                style={{
+                                                                    padding: '0.5rem 1rem',
+                                                                    background: '#000000',
+                                                                    color: '#ffffff',
+                                                                    border: '2px solid #000000',
+                                                                    boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                                                    fontSize: '0.7rem',
+                                                                    fontWeight: 800,
+                                                                    textTransform: 'uppercase',
+                                                                    letterSpacing: '0.12em',
+                                                                    fontFamily: 'var(--font-heading)',
+                                                                    cursor: 'pointer',
+                                                                }}
+                                                            >
+                                                                Approve
+                                                            </button>
                                                         )}
                                                     </td>
                                                 </tr>
                                                 <AnimatePresence initial={false}>
                                                     {isExpanded && (
-                                                        <tr className="bg-white/[0.01] border-b border-white/5">
-                                                            <td colSpan="4" className="px-8 py-0">
-                                                                <motion.div
-                                                                    initial={{ height: 0, opacity: 0 }}
-                                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                                    exit={{ height: 0, opacity: 0 }}
-                                                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                                                                    className="overflow-hidden"
-                                                                >
-                                                                    <div className="pb-8 pt-4">
-                                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/5 mt-4 pt-6">
-                                                                            {/* Left side: Details */}
-                                                                            <div className="space-y-6">
+                                                        <tr style={{ borderBottom: '4px solid #000000', background: '#f8f8f8' }}>
+                                                            <td colSpan="4" style={{ padding: '1.5rem 2rem' }}>
+                                                                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }} className="md:grid-cols-2">
+                                                                    {/* Left side: Details */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                                                        <div>
+                                                                            <h4 style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#555555', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Applicant Details</h4>
+                                                                            <div style={{ border: '4px solid #000000', background: '#ffffff', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)' }}>
                                                                                 <div>
-                                                                                    <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Applicant Details</h4>
-                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
-                                                                                        <div>
-                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Full Name</span>
-                                                                                            <span className="text-sm font-bold text-white">{user.name}</span>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Email Address</span>
-                                                                                            <a href={`mailto:${user.email}`} className="text-sm font-bold text-cyber-red hover:underline" onClick={(e) => e.stopPropagation()}>{user.email}</a>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Phone Number</span>
-                                                                                            <a href={`tel:${user.phone}`} className="text-sm font-bold text-white/80 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>{user.phone || 'N/A'}</a>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', display: 'block', fontFamily: 'var(--font-heading)' }}>Full Name</span>
+                                                                                    <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000' }}>{user.name}</span>
                                                                                 </div>
-
                                                                                 <div>
-                                                                                    <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Order Information</h4>
-                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
-                                                                                        <div className="flex justify-between items-center">
-                                                                                            <div>
-                                                                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Order ID</span>
-                                                                                                <span className="text-xs font-mono text-white/80">{user.order?.order_id || 'N/A'}</span>
-                                                                                            </div>
-                                                                                            <div>
-                                                                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/30 block">Status</span>
-                                                                                                {user.order?.status === 'approved' ? (
-                                                                                                    <span className="px-2.5 py-0.5 bg-green-500/15 text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-500/20">Approved</span>
-                                                                                                ) : (
-                                                                                                    <span className="px-2.5 py-0.5 bg-yellow-500/15 text-yellow-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-yellow-500/20">Pending</span>
-                                                                                                )}
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        {user.order?.status !== 'approved' && user.order?.order_id && (
-                                                                                            <button
-                                                                                                onClick={(e) => {
-                                                                                                    e.stopPropagation();
-                                                                                                    approveUser(user.user_id, user.order.order_id);
-                                                                                                }}
-                                                                                                className="w-full py-3 bg-cyber-red text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-cyber-redDark shadow-[0_4px_12px_rgba(212,18,18,0.3)] transition-all active:scale-[0.97]"
-                                                                                            >
-                                                                                                Approve enrollment
-                                                                                            </button>
+                                                                                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', display: 'block', fontFamily: 'var(--font-heading)' }}>Email Address</span>
+                                                                                    <a href={`mailto:${user.email}`} style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000', textDecoration: 'underline' }} onClick={(e) => e.stopPropagation()}>{user.email}</a>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', display: 'block', fontFamily: 'var(--font-heading)' }}>Phone Number</span>
+                                                                                    <a href={`tel:${user.phone}`} style={{ fontSize: '0.88rem', fontWeight: 800, color: '#000000', textDecoration: 'none' }} onClick={(e) => e.stopPropagation()}>{user.phone || 'N/A'}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div>
+                                                                            <h4 style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#555555', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Order Information</h4>
+                                                                            <div style={{ border: '4px solid #000000', background: '#ffffff', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)' }}>
+                                                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                                                    <div>
+                                                                                        <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', display: 'block', fontFamily: 'var(--font-heading)' }}>Order ID</span>
+                                                                                        <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#000000' }}>{user.order?.order_id || 'N/A'}</span>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888888', display: 'block', fontFamily: 'var(--font-heading)' }}>Status</span>
+                                                                                        {user.order?.status === 'approved' ? (
+                                                                                            <span style={{ padding: '0.2rem 0.5rem', background: '#000000', color: '#ffffff', border: '2px solid #000', fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', fontFamily: 'var(--font-heading)' }}>Approved</span>
+                                                                                        ) : (
+                                                                                            <span style={{ padding: '0.2rem 0.5rem', background: '#ffffff', color: '#000000', border: '2px solid #000', fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', fontFamily: 'var(--font-heading)' }}>Pending</span>
                                                                                         )}
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-
-                                                                            {/* Right side: Proof Image */}
-                                                                            <div className="flex flex-col justify-start">
-                                                                                <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-2">Payment Receipt / Proof of Upload</h4>
-                                                                                {user.order?.filename ? (
-                                                                                    <div className="relative group bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center p-2 min-h-[220px]">
-                                                                                        <img
-                                                                                            src={getImageUrl(user.order.filename)}
-                                                                                            alt="Payment Receipt"
-                                                                                            className="max-h-[320px] w-auto object-contain rounded-lg shadow-lg hover:scale-[1.02] transition-transform duration-300 cursor-zoom-in"
-                                                                                            onClick={(e) => {
-                                                                                                e.stopPropagation();
-                                                                                                window.open(getImageUrl(user.order.filename), '_blank');
-                                                                                            }}
-                                                                                        />
-                                                                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                                                                                            <span className="text-[10px] font-black uppercase tracking-widest text-white bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">Click to expand</span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                ) : (
-                                                                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[220px] text-white/30 italic">
-                                                                                        No proof uploaded
-                                                                                    </div>
+                                                                                {user.order?.status !== 'approved' && user.order?.order_id && (
+                                                                                    <button
+                                                                                        onClick={(e) => {
+                                                                                            e.stopPropagation();
+                                                                                            approveUser(user.user_id, user.order.order_id);
+                                                                                        }}
+                                                                                        style={{
+                                                                                            width: '100%',
+                                                                                            padding: '0.75rem',
+                                                                                            background: '#000000',
+                                                                                            color: '#ffffff',
+                                                                                            border: '4px solid #000000',
+                                                                                            boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
+                                                                                            fontSize: '0.75rem',
+                                                                                            fontWeight: 800,
+                                                                                            textTransform: 'uppercase',
+                                                                                            letterSpacing: '0.12em',
+                                                                                            fontFamily: 'var(--font-heading)',
+                                                                                            cursor: 'pointer',
+                                                                                        }}
+                                                                                    >
+                                                                                        Approve enrollment
+                                                                                    </button>
                                                                                 )}
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </motion.div>
+
+                                                                    {/* Right side: Proof Image */}
+                                                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                                        <h4 style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#555555', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Payment Receipt / Proof of Upload</h4>
+                                                                        {user.order?.filename ? (
+                                                                            <div style={{ border: '4px solid #000000', background: '#ffffff', padding: '0.75rem', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '220px' }}>
+                                                                                <img
+                                                                                    src={getImageUrl(user.order.filename)}
+                                                                                    alt="Payment Receipt"
+                                                                                    style={{ maxHeight: '320px', width: 'auto', objectFit: 'contain', border: '2px solid #000', cursor: 'zoom-in' }}
+                                                                                    onClick={(e) => {
+                                                                                        e.stopPropagation();
+                                                                                        window.open(getImageUrl(user.order.filename), '_blank');
+                                                                                    }}
+                                                                                />
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div style={{ border: '4px dashed #000000', background: '#ffffff', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '220px', color: '#888888', fontStyle: 'italic' }}>
+                                                                                No proof uploaded
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     )}
@@ -375,20 +441,21 @@ export default function AdminPanel() {
 }
 
 function StatCard({ label, value, icon: Icon, tone = 'neutral' }) {
-    const styles = {
-        neutral: 'bg-[#141414] border-white/10 text-white',
-        red: 'bg-[#141414] border-cyber-red/40 text-cyber-red'
-    };
-
     return (
-        <div className={`p-6 rounded-[32px] border shadow-lg ${styles[tone]}`}>
-            <div className="flex items-center justify-between mb-4">
-                <div className={`h-12 w-12 rounded-2xl flex items-center justify-center ${tone === 'red' ? 'bg-cyber-red/15' : 'bg-white/5'}`}>
-                    <Icon className="h-6 w-6" />
+        <div style={{
+            padding: '1.5rem',
+            border: '4px solid #000000',
+            background: tone === 'red' ? '#000000' : '#ffffff',
+            color: tone === 'red' ? '#ffffff' : '#000000',
+            boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+        }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div style={{ height: '3rem', width: '3rem', border: '3px solid', borderColor: tone === 'red' ? '#ffffff' : '#000000', background: tone === 'red' ? '#ffffff' : '#000000', color: tone === 'red' ? '#000000' : '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon style={{ height: '1.5rem', width: '1.5rem' }} />
                 </div>
             </div>
-            <p className="text-xs font-black uppercase tracking-widest text-white/40">{label}</p>
-            <h4 className="text-4xl font-display font-black mt-1">{value}</h4>
+            <p style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', opacity: 0.8, fontFamily: 'var(--font-heading)' }}>{label}</p>
+            <h4 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', fontWeight: 800, marginTop: '0.25rem' }}>{value}</h4>
         </div>
     );
 }

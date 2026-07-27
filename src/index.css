@@ -6,24 +6,50 @@
    * All clamp() values scale linearly between:
    *   min  → 320 px  (small mobile)
    *   max  → 2560 px (4K ultra-wide)
-   * Formula used: clamp(min, preferred-vw, max)
-   * This eliminates every hardcoded breakpoint jump for typography & spacing.
    * ──────────────────────────────────────────────────────────────────────── */
   :root {
-    color-scheme: light;
+    /* ── Retro Brutalist Theme (dragotool.shop style) ── */
+    --retro-bg: #ffffff;
+    --retro-fg: #000000;
+    --retro-accent: #000000;
+    --retro-border-width: 4px;
+    --retro-border-color: #000000;
+    --retro-shadow-offset: 8px;
+    --retro-shadow: var(--retro-shadow-offset) var(--retro-shadow-offset) 0px 0px rgba(0, 0, 0, 1);
+    --retro-shadow-sm: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+    --font-main: "Plus Jakarta Sans", sans-serif;
+    --font-heading: "Space Grotesk", sans-serif;
+
+    /* ── CSS color system ── */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
+    --radius: 0px;
 
     /* ── Typography scale (fluid) ── */
-    --text-xs:   clamp(0.65rem,  0.62rem + 0.14vw, 0.78rem);  /* ~10–12.5 px  */
-    --text-sm:   clamp(0.75rem,  0.70rem + 0.22vw, 0.95rem);  /* ~12–15.2 px  */
-    --text-base: clamp(0.92rem,  0.85rem + 0.30vw, 1.10rem);  /* ~14.7–17.6 px*/
-    --text-lg:   clamp(1.05rem,  0.95rem + 0.44vw, 1.30rem);  /* ~16.8–20.8 px*/
-    --text-xl:   clamp(1.15rem,  1.00rem + 0.64vw, 1.50rem);  /* ~18.4–24 px  */
-    --text-2xl:  clamp(1.30rem,  1.10rem + 0.88vw, 1.80rem);  /* ~20.8–28.8 px*/
-    --text-3xl:  clamp(1.50rem,  1.20rem + 1.30vw, 2.20rem);  /* ~24–35.2 px  */
-    --text-4xl:  clamp(1.80rem,  1.40rem + 1.74vw, 2.75rem);  /* ~28.8–44 px  */
-    --text-5xl:  clamp(2.10rem,  1.55rem + 2.40vw, 3.50rem);  /* ~33.6–56 px  */
-    --text-6xl:  clamp(2.60rem,  1.80rem + 3.46vw, 4.50rem);  /* ~41.6–72 px  */
-    --text-hero: clamp(2.80rem,  1.70rem + 4.80vw, 5.50rem);  /* ~44.8–88 px  */
+    --text-xs:   clamp(0.65rem,  0.62rem + 0.14vw, 0.78rem);
+    --text-sm:   clamp(0.75rem,  0.70rem + 0.22vw, 0.95rem);
+    --text-base: clamp(0.92rem,  0.85rem + 0.30vw, 1.10rem);
+    --text-lg:   clamp(1.05rem,  0.95rem + 0.44vw, 1.30rem);
+    --text-xl:   clamp(1.15rem,  1.00rem + 0.64vw, 1.50rem);
+    --text-2xl:  clamp(1.30rem,  1.10rem + 0.88vw, 1.80rem);
+    --text-3xl:  clamp(1.50rem,  1.20rem + 1.30vw, 2.20rem);
+    --text-4xl:  clamp(1.80rem,  1.40rem + 1.74vw, 2.75rem);
+    --text-5xl:  clamp(2.10rem,  1.55rem + 2.40vw, 3.50rem);
+    --text-6xl:  clamp(2.60rem,  1.80rem + 3.46vw, 4.50rem);
+    --text-hero: clamp(2.80rem,  1.70rem + 4.80vw, 5.50rem);
 
     /* ── Fluid spacing scale ── */
     --space-1:  clamp(0.25rem, 0.20rem + 0.22vw, 0.50rem);
@@ -37,32 +63,37 @@
     --space-20: clamp(5.00rem, 3.40rem + 6.96vw, 9.50rem);
 
     /* ── Layout constraints ── */
-    --container-max: 90rem;   /* 1440 px — content never stretches edge-to-edge on 4K */
-    --container-px:  clamp(1rem, 4vw, 5rem); /* fluid side-padding */
+    --container-max: 90rem;
+    --container-px:  clamp(1rem, 4vw, 5rem);
   }
 
   html {
-    @apply bg-white antialiased;
+    background-color: var(--retro-bg);
+    color: var(--retro-fg);
     scroll-behavior: smooth;
-    /* Prevent horizontal scroll from rogue overflow */
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    font-family: var(--font-main);
   }
 
   body {
-    @apply min-h-screen bg-white text-[#1f2937];
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--retro-bg);
+    color: var(--retro-fg);
+    font-family: var(--font-main);
     line-height: 1.65;
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', 'Syne', sans-serif;
-    letter-spacing: -0.025em;
+    font-family: var(--font-heading);
+    letter-spacing: -0.05em;
   }
 
-  p,
-  li {
+  p, li {
     line-height: 1.75;
   }
 
@@ -78,30 +109,131 @@
 }
 
 @layer components {
-  .poster-shell {
-    @apply relative overflow-hidden bg-white;
+  /* ─── Retro Brutalist Card ─────────────────────────────────────────────── */
+  .retro-card {
+    background: #ffffff;
+    border: var(--retro-border-width) solid var(--retro-border-color);
+    box-shadow: var(--retro-shadow);
+    border-radius: var(--radius);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .retro-card:hover {
+    box-shadow: calc(var(--retro-shadow-offset) + 4px) calc(var(--retro-shadow-offset) + 4px) 0px 0px rgba(0,0,0,1);
+    transform: translate(-2px, -2px);
   }
 
+  /* ─── Retro Button ─────────────────────────────────────────────────────── */
+  .retro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #000000;
+    color: #ffffff;
+    border: var(--retro-border-width) solid #000000;
+    box-shadow: var(--retro-shadow-sm);
+    border-radius: var(--radius);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.75rem;
+    cursor: pointer;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+    text-decoration: none;
+  }
+  .retro-btn:hover {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+  .retro-btn:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  /* ─── Retro Button Outline ─────────────────────────────────────────────── */
+  .retro-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: #000000;
+    border: var(--retro-border-width) solid #000000;
+    box-shadow: var(--retro-shadow-sm);
+    border-radius: var(--radius);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.75rem;
+    cursor: pointer;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+    text-decoration: none;
+  }
+  .retro-btn-outline:hover {
+    background: #000000;
+    color: #ffffff;
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  /* ─── Soft card (legacy, re-mapped to retro) ────────────────────────────── */
   .soft-card {
-    @apply border border-gray-100 bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:border-gray-200;
+    background: #ffffff;
+    border: var(--retro-border-width) solid var(--retro-border-color);
+    box-shadow: var(--retro-shadow);
+    border-radius: 0px;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .soft-card:hover {
+    box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+    transform: translate(-2px, -2px);
   }
 
-  .red-accent {
-    color: #d41212;
+  /* ─── Retro Badge/Tag ──────────────────────────────────────────────────── */
+  .retro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 0px;
   }
 
-  .ribbon-cut {
-    clip-path: polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%);
+  .retro-badge-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 0px;
   }
 
-  .text-poster {
-    letter-spacing: -0.03em;
+  /* ─── poster-shell ────────────────────────────────────────────────────── */
+  .poster-shell {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
   }
 
-  /* ─── Fluid Container ────────────────────────────────────────────────────────
-   * Replaces rigid max-w-7xl + hardcoded px-4/px-6/px-8 ladder.
-   * The single clamp() for padding handles 320 px → 4K fluidly.
-   * ──────────────────────────────────────────────────────────────────────── */
+  /* ─── Fluid Container ────────────────────────────────────────────────── */
   .fluid-container {
     width: 100%;
     max-width: var(--container-max);
@@ -109,21 +241,23 @@
     padding-inline: var(--container-px);
   }
 
-  /* ─── Fluid Hero Typography ─────────────────────────────────────────────── */
+  /* ─── Fluid Hero Typography ─────────────────────────────────────────── */
   .hero-title {
     font-size: var(--text-hero);
     line-height: 1.02;
-    letter-spacing: -0.035em;
-    font-weight: 900;
+    letter-spacing: -0.04em;
+    font-weight: 800;
     text-transform: uppercase;
+    font-family: var(--font-heading);
   }
 
   .section-title {
     font-size: var(--text-4xl);
     line-height: 1.15;
-    letter-spacing: -0.035em;
-    font-weight: 900;
+    letter-spacing: -0.04em;
+    font-weight: 800;
     text-transform: uppercase;
+    font-family: var(--font-heading);
   }
 
   .body-fluid {
@@ -131,10 +265,7 @@
     line-height: 1.75;
   }
 
-  /* ─── Fluid Navbar ───────────────────────────────────────────────────────────
-   * Uses flexbox wrap so nav items gracefully reflow on very narrow screens.
-   * The pill shape auto-widens to container max-width on 4K.
-   * ──────────────────────────────────────────────────────────────────────── */
+  /* ─── Fluid Navbar ────────────────────────────────────────────────────── */
   .fluid-navbar-inner {
     display: flex;
     flex-wrap: wrap;
@@ -143,30 +274,30 @@
     gap: clamp(0.5rem, 2vw, 1.5rem);
   }
 
-  /* Mobile hamburger toggle (hidden by default, shown ≤ 640 px) */
+  /* Mobile hamburger toggle */
   .nav-hamburger {
     display: none;
     align-items: center;
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.05);
-    color: #fff;
+    border-radius: 0px;
+    border: var(--retro-border-width) solid #000000;
+    background: #ffffff;
+    color: #000000;
     cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.15s, color 0.15s;
+    box-shadow: var(--retro-shadow-sm);
     flex-shrink: 0;
   }
   .nav-hamburger:hover {
-    background: rgba(212,18,18,0.12);
-    border-color: rgba(212,18,18,0.4);
-    color: #d41212;
+    background: #000000;
+    color: #ffffff;
   }
   .nav-hamburger.light {
-    border-color: rgba(0,0,0,0.10);
-    background: #fff;
-    color: #111;
+    border-color: #000000;
+    background: #ffffff;
+    color: #000000;
   }
 
   /* Mobile dropdown nav panel */
@@ -176,163 +307,198 @@
     gap: 0.5rem;
     width: 100%;
     padding: 1rem 0 0.25rem;
-    border-top: 1px solid rgba(255,255,255,0.07);
+    border-top: var(--retro-border-width) solid #000000;
     margin-top: 0.5rem;
   }
   .mobile-nav-panel.open {
     display: flex;
   }
   .mobile-nav-panel.light {
-    border-top-color: rgba(0,0,0,0.07);
+    border-top-color: #000000;
   }
 
   @media (max-width: 640px) {
     .nav-hamburger { display: flex; }
     .desktop-nav   { display: none !important; }
   }
+
+  /* ─── Retro Section Divider ─────────────────────────────────────────── */
+  .retro-divider {
+    height: var(--retro-border-width);
+    background: #000000;
+    width: 100%;
+  }
+
+  /* ─── Retro Input ───────────────────────────────────────────────────── */
+  .retro-input {
+    background: #ffffff;
+    border: var(--retro-border-width) solid #000000;
+    box-shadow: var(--retro-shadow-sm);
+    border-radius: 0px;
+    padding: 0.65rem 1rem;
+    font-family: var(--font-main);
+    font-size: var(--text-sm);
+    color: #000000;
+    width: 100%;
+    outline: none;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+  }
+  .retro-input:focus {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  /* ─── Retro Select ───────────────────────────────────────────────────── */
+  .retro-select {
+    background: #ffffff;
+    border: var(--retro-border-width) solid #000000;
+    box-shadow: var(--retro-shadow-sm);
+    border-radius: 0px;
+    padding: 0.65rem 1rem;
+    font-family: var(--font-main);
+    font-size: var(--text-sm);
+    color: #000000;
+    width: 100%;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  /* ─── Retro Textarea ─────────────────────────────────────────────────── */
+  .retro-textarea {
+    background: #ffffff;
+    border: var(--retro-border-width) solid #000000;
+    box-shadow: var(--retro-shadow-sm);
+    border-radius: 0px;
+    padding: 0.65rem 1rem;
+    font-family: var(--font-main);
+    font-size: var(--text-sm);
+    color: #000000;
+    width: 100%;
+    outline: none;
+    resize: vertical;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+  }
+  .retro-textarea:focus {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  /* ─── Course Detail Page Layout ─────────────────────────────────────────
+   * Scoped to /courses/:id pages. Guarantees the 2-column grid fires at
+   * the lg (1024px) breakpoint without relying on arbitrary Tailwind bracket
+   * syntax that may not be JIT-scanned.
+   * ─────────────────────────────────────────────────────────────────────── */
+  .course-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .course-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .course-detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .course-stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .course-detail-grid {
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: start;
+    }
+    .course-detail-sidebar {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+    }
+  }
 }
+
+/* ─── Legacy animation classes (kept for compatibility) ─────────────────── */
 .cyber-ai-glow {
-  color: #d41212; /* primary corporate red */
+  color: #000000;
   font-weight: 900;
   letter-spacing: 0.05em;
   display: inline-block;
 }
 
 @keyframes cyberLaunchFade {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-    filter: blur(0px);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1.01);
-    filter: blur(0.5px);
-  }
-  45% {
-    opacity: 0.92;
-    transform: scale(1.03) skewX(-1deg);
-  }
-  70% {
-    opacity: 0.78;
-    transform: scale(1.01) skewX(1deg);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.04);
-    filter: blur(2px);
-  }
+  0%   { opacity: 0; transform: scale(1); }
+  20%  { opacity: 1; transform: scale(1.01); }
+  45%  { opacity: 0.92; transform: scale(1.03) skewX(-1deg); }
+  70%  { opacity: 0.78; transform: scale(1.01) skewX(1deg); }
+  100% { opacity: 0; transform: scale(1.04); }
 }
 
 @keyframes cyberGlitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-5px, 5px) }
-  40% { transform: translate(-5px, -5px) }
-  60% { transform: translate(5px, 5px) }
-  80% { transform: translate(5px, -5px) }
-  100% { transform: translate(0) }
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-5px, 5px); }
+  40%  { transform: translate(-5px, -5px); }
+  60%  { transform: translate(5px, 5px); }
+  80%  { transform: translate(5px, -5px); }
+  100% { transform: translate(0); }
 }
 
 @keyframes cyberScan {
-  0% {
-    top: -10%;
-  }
-  100% {
-    top: 110%;
-  }
+  0%   { top: -10%; }
+  100% { top: 110%; }
 }
 
 @keyframes cyberRipple {
-  0% {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.04);
-  }
+  0%   { opacity: 0; transform: scale(0.98); }
+  20%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.04); }
 }
 
 @layer components {
   .cyber-launch-overlay {
-    background:
-      radial-gradient(circle at center, rgba(212, 18, 18, 0.24), transparent 34%),
-      linear-gradient(180deg, rgba(5, 5, 8, 0.96), rgba(5, 5, 8, 0.98));
+    background: linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,0.98));
     animation: cyberLaunchFade 500ms ease both;
   }
-
   .cyber-launch-ripple {
-    background:
-      radial-gradient(circle at center, rgba(255, 0, 0, 0.18), transparent 20%),
-      radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 42%);
+    background: radial-gradient(circle at center, rgba(0,0,0,0.12), transparent 42%);
     animation: cyberRipple 500ms ease both;
-    mix-blend-mode: screen;
+    mix-blend-mode: multiply;
   }
-
-  .cyber-scanlines::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 2;
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
-  }
-
-  .cyber-scan-bar {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: linear-gradient(to bottom, transparent, #d41212, #ff3b30, #d41212, transparent);
-    box-shadow: 0 0 20px #d41212, 0 0 40px #d41212;
-    opacity: 0.85;
-    z-index: 3;
-    animation: cyberScan 0.8s linear infinite;
-  }
-
   .animate-cyber-glitch {
     animation: cyberGlitch 0.15s linear infinite;
   }
-
   .animate-scan {
     position: absolute;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: linear-gradient(to bottom, transparent, #d41212, #ff3b30, #d41212, transparent);
-    box-shadow: 0 0 25px #d41212, 0 0 50px #d41212;
-    opacity: 0.9;
+    left: 0; right: 0;
+    height: 4px;
+    background: #000000;
+    opacity: 0.7;
     z-index: 3;
-    animation: cyberScan 0.5s linear infinite;
+    animation: cyberScan 0.8s linear infinite;
   }
-
-  @keyframes glitchText {
-    0% {
-      text-shadow: 2px -2px 0px #ff0000, -2px 2px 0px #00ff00;
-    }
-    25% {
-      text-shadow: -2px 2px 0px #ff0000, 2px -2px 0px #00ff00;
-    }
-    50% {
-      text-shadow: 2px 2px 0px #ff0000, -2px -2px 0px #00ff00;
-    }
-    75% {
-      text-shadow: -2px -2px 0px #ff0000, 2px 2px 0px #00ff00;
-    }
-    100% {
-      text-shadow: 2px -2px 0px #ff0000, -2px 2px 0px #00ff00;
-    }
-  }
-
   .glitch-text {
-    animation: glitchText 0.1s linear infinite;
+    animation: cyberGlitch 0.1s linear infinite;
+  }
+
+  /* ─── Ribbon cut (legacy) ─────────────────────────────────────────────── */
+  .ribbon-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 96% 100%, 0 100%);
+  }
+
+  /* ─── Text poster ─────────────────────────────────────────────────────── */
+  .text-poster {
+    letter-spacing: -0.03em;
+  }
+
+  /* ─── Red accent (remapped to black) ─────────────────────────────────── */
+  .red-accent {
+    color: #000000;
   }
 }
-
-
-
