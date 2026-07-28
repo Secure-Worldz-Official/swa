@@ -128,7 +128,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: #000000;
+    background: #16a34a;
     color: #ffffff;
     border: var(--retro-border-width) solid #000000;
     box-shadow: var(--retro-shadow-sm);
@@ -140,14 +140,16 @@
     letter-spacing: 0.08em;
     padding: 0.75rem 1.75rem;
     cursor: pointer;
-    transition: box-shadow 0.12s ease, transform 0.12s ease;
+    transition: box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease;
     text-decoration: none;
   }
   .retro-btn:hover {
+    background: #15803d;
     box-shadow: none;
     transform: translate(4px, 4px);
   }
   .retro-btn:active {
+    background: #15803d;
     box-shadow: none;
     transform: translate(4px, 4px);
   }
@@ -159,8 +161,8 @@
     justify-content: center;
     gap: 0.5rem;
     background: #ffffff;
-    color: #000000;
-    border: var(--retro-border-width) solid #000000;
+    color: #16a34a;
+    border: var(--retro-border-width) solid #16a34a;
     box-shadow: var(--retro-shadow-sm);
     border-radius: var(--radius);
     font-family: var(--font-heading);
@@ -170,11 +172,11 @@
     letter-spacing: 0.08em;
     padding: 0.75rem 1.75rem;
     cursor: pointer;
-    transition: box-shadow 0.12s ease, transform 0.12s ease;
+    transition: box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease;
     text-decoration: none;
   }
   .retro-btn-outline:hover {
-    background: #000000;
+    background: #16a34a;
     color: #ffffff;
     box-shadow: none;
     transform: translate(4px, 4px);

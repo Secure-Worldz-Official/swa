@@ -172,7 +172,7 @@ export default function AdminPanel() {
                             disabled={loading}
                             style={{
                                 width: '100%',
-                                background: '#000000',
+                                background: '#16a34a',
                                 color: '#ffffff',
                                 border: '4px solid #000000',
                                 boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
@@ -184,10 +184,10 @@ export default function AdminPanel() {
                                 fontFamily: 'var(--font-heading)',
                                 cursor: loading ? 'not-allowed' : 'pointer',
                                 opacity: loading ? 0.5 : 1,
-                                transition: 'box-shadow 0.12s, transform 0.12s',
+                                transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                             }}
-                            onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; } }}
-                            onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                            onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; e.currentTarget.style.background = '#15803d'; } }}
+                            onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                         >
                             {loading ? 'AUTHENTICATING...' : 'SECURE LOGIN'}
                         </button>
@@ -210,7 +210,7 @@ export default function AdminPanel() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.5rem',
-                        background: '#000000',
+                        background: '#16a34a',
                         color: '#ffffff',
                         border: '4px solid #000000',
                         boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
@@ -221,7 +221,10 @@ export default function AdminPanel() {
                         letterSpacing: '0.12em',
                         fontFamily: 'var(--font-heading)',
                         cursor: 'pointer',
+                        transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                     }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                 >
                     <LogoutIcon style={{ height: '1.25rem', width: '1.25rem' }} />
                     Logout
@@ -283,7 +286,7 @@ export default function AdminPanel() {
                                                                     display: 'flex',
                                                                     alignItems: 'center',
                                                                     gap: '0.375rem',
-                                                                    background: '#000000',
+                                                                    background: '#16a34a',
                                                                     color: '#ffffff',
                                                                     border: '2px solid #000',
                                                                     padding: '0.25rem 0.625rem',
@@ -314,7 +317,7 @@ export default function AdminPanel() {
                                                                 }}
                                                                 style={{
                                                                     padding: '0.5rem 1rem',
-                                                                    background: '#000000',
+                                                                    background: '#16a34a',
                                                                     color: '#ffffff',
                                                                     border: '2px solid #000000',
                                                                     boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
@@ -324,7 +327,10 @@ export default function AdminPanel() {
                                                                     letterSpacing: '0.12em',
                                                                     fontFamily: 'var(--font-heading)',
                                                                     cursor: 'pointer',
+                                                                    transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                                                                 }}
+                                                                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                                                                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                                                             >
                                                                 Approve
                                                             </button>
@@ -382,7 +388,7 @@ export default function AdminPanel() {
                                                                                         style={{
                                                                                             width: '100%',
                                                                                             padding: '0.75rem',
-                                                                                            background: '#000000',
+                                                                                            background: '#16a34a',
                                                                                             color: '#ffffff',
                                                                                             border: '4px solid #000000',
                                                                                             boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
@@ -392,7 +398,10 @@ export default function AdminPanel() {
                                                                                             letterSpacing: '0.12em',
                                                                                             fontFamily: 'var(--font-heading)',
                                                                                             cursor: 'pointer',
+                                                                                            transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                                                                                         }}
+                                                                                        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                                                                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                                                                                     >
                                                                                         Approve enrollment
                                                                                     </button>

@@ -116,7 +116,7 @@ export default function SiteNavbar({ theme = 'dark' }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: '#000000',
+                  background: '#16a34a',
                   color: '#ffffff',
                   border: '4px solid #000000',
                   boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
@@ -126,11 +126,11 @@ export default function SiteNavbar({ theme = 'dark' }) {
                   textTransform: 'uppercase',
                   letterSpacing: '0.12em',
                   padding: '0.5rem 1.25rem',
-                  transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                  transition: 'box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease',
                   textDecoration: 'none',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
               >
                 Explore Courses
               </Link>
@@ -177,7 +177,7 @@ export default function SiteNavbar({ theme = 'dark' }) {
           <Link
             to="/courses"
             onClick={() => setMenuOpen(false)}
-            style={{ display: 'block', background: '#000', color: '#fff', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', textDecoration: 'none' }}
+            style={{ display: 'block', background: '#16a34a', color: '#fff', border: '4px solid #000', padding: '0.65rem 1rem', textAlign: 'center', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', textDecoration: 'none' }}
           >
             Explore Courses
           </Link>

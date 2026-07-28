@@ -37,7 +37,7 @@ function CTAButton({ children, variant = 'solid', to }) {
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.5rem',
-    background: '#000000',
+    background: '#16a34a',
     color: '#ffffff',
     border: '4px solid #000000',
     boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
@@ -48,7 +48,7 @@ function CTAButton({ children, variant = 'solid', to }) {
     padding: 'clamp(0.65rem,1.5vw,0.9rem) clamp(1.25rem,3vw,2rem)',
     fontSize: 'var(--text-sm)',
     textDecoration: 'none',
-    transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+    transition: 'box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease',
   };
   const outlineStyle = {
     display: 'inline-flex',
@@ -56,8 +56,8 @@ function CTAButton({ children, variant = 'solid', to }) {
     justifyContent: 'center',
     gap: '0.5rem',
     background: '#ffffff',
-    color: '#000000',
-    border: '4px solid #000000',
+    color: '#16a34a',
+    border: '4px solid #16a34a',
     boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
     fontFamily: 'var(--font-heading)',
     fontWeight: 800,
@@ -66,7 +66,7 @@ function CTAButton({ children, variant = 'solid', to }) {
     padding: 'clamp(0.65rem,1.5vw,0.9rem) clamp(1.25rem,3vw,2rem)',
     fontSize: 'var(--text-sm)',
     textDecoration: 'none',
-    transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+    transition: 'box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease, color 0.12s ease',
   };
 
   return (
@@ -74,8 +74,26 @@ function CTAButton({ children, variant = 'solid', to }) {
       <Link
         to={to}
         style={variant === 'solid' ? solidStyle : outlineStyle}
-        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; }}
-        onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+        onMouseEnter={e => {
+          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.transform = 'translate(4px,4px)';
+          if (variant === 'outline') {
+            e.currentTarget.style.background = '#16a34a';
+            e.currentTarget.style.color = '#ffffff';
+          } else {
+            e.currentTarget.style.background = '#15803d';
+          }
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)';
+          e.currentTarget.style.transform = 'none';
+          if (variant === 'outline') {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.color = '#16a34a';
+          } else {
+            e.currentTarget.style.background = '#16a34a';
+          }
+        }}
       >
         {children}
       </Link>
@@ -91,7 +109,7 @@ function GetStartedButton() {
         display: 'inline-flex',
         alignItems: 'center',
         gap: '0.75rem',
-        background: '#000000',
+        background: '#16a34a',
         color: '#ffffff',
         border: '4px solid #000000',
         boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
@@ -102,10 +120,18 @@ function GetStartedButton() {
         fontSize: 'var(--text-sm)',
         padding: 'clamp(0.75rem,1.5vw,1rem) clamp(1.25rem,3vw,2rem)',
         textDecoration: 'none',
-        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+        transition: 'box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease',
       }}
-      onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(8px,8px)'; }}
-      onMouseLeave={e => { e.currentTarget.style.boxShadow = '8px 8px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+      onMouseEnter={e => {
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translate(8px,8px)';
+        e.currentTarget.style.background = '#15803d';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.boxShadow = '8px 8px 0px 0px rgba(0,0,0,1)';
+        e.currentTarget.style.transform = 'none';
+        e.currentTarget.style.background = '#16a34a';
+      }}
       aria-label="Redirect to Courses page"
     >
       <span>GET STARTED</span>

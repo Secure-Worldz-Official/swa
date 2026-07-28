@@ -266,9 +266,9 @@ export default function ExperienceCarousel() {
               <button
                 type="button"
                 onClick={handlePrev}
-                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#000000', background: '#ffffff', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s' }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
+                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#ffffff', background: '#16a34a', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s' }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; e.currentTarget.style.color = '#fff'; }}
               >
                 <svg style={{ height: '1.25rem', width: '1.25rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M15 19l-7-7 7-7" />
@@ -277,9 +277,9 @@ export default function ExperienceCarousel() {
               <button
                 type="button"
                 onClick={handleNext}
-                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#000000', background: '#ffffff', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s' }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
+                style={{ display: 'flex', height: '2.5rem', width: '2.5rem', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', border: '4px solid #000000', color: '#ffffff', background: '#16a34a', boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)', transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s' }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; e.currentTarget.style.color = '#fff'; }}
               >
                 <svg style={{ height: '1.25rem', width: '1.25rem' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="square" strokeLinejoin="miter" d="M9 5l7 7-7 7" />
@@ -297,7 +297,7 @@ export default function ExperienceCarousel() {
                     height: '10px',
                     cursor: 'pointer',
                     border: '2px solid #000000',
-                    background: idx === activeIndex ? '#000000' : '#ffffff',
+                    background: idx === activeIndex ? '#16a34a' : '#ffffff',
                     width: idx === activeIndex ? '2.5rem' : '10px',
                     transition: 'all 0.3s ease',
                   }}

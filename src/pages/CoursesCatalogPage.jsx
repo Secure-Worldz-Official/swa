@@ -122,7 +122,7 @@ export default function CoursesCatalogPage() {
                         width: '100%',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: '#000000',
+                        background: '#16a34a',
                         color: '#ffffff',
                         border: '4px solid #000000',
                         boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
@@ -133,10 +133,10 @@ export default function CoursesCatalogPage() {
                         letterSpacing: '0.12em',
                         textDecoration: 'none',
                         fontFamily: 'var(--font-heading)',
-                        transition: 'box-shadow 0.12s ease, transform 0.12s ease',
+                        transition: 'box-shadow 0.12s ease, transform 0.12s ease, background 0.12s ease',
                       }}
-                      onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                      onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; e.currentTarget.style.background = '#15803d'; }}
+                      onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                     >
                       View Course Details
                     </Link>

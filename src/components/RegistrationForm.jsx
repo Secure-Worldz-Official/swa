@@ -160,7 +160,7 @@ export default function RegistrationForm() {
                 <button
                     onClick={() => window.location.reload()}
                     style={{
-                        background: '#000000',
+                        background: '#16a34a',
                         color: '#ffffff',
                         border: '4px solid #000000',
                         boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
@@ -171,10 +171,10 @@ export default function RegistrationForm() {
                         letterSpacing: '0.15em',
                         fontFamily: 'var(--font-heading)',
                         cursor: 'pointer',
-                        transition: 'box-shadow 0.12s, transform 0.12s',
+                        transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; e.currentTarget.style.background = '#15803d'; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                 >
                     Back to home
                 </button>
@@ -270,7 +270,7 @@ export default function RegistrationForm() {
                                     type="submit"
                                     style={{
                                         width: '100%',
-                                        background: '#000000',
+                                        background: '#16a34a',
                                         color: '#ffffff',
                                         border: '4px solid #000000',
                                         boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)',
@@ -281,10 +281,10 @@ export default function RegistrationForm() {
                                         letterSpacing: '0.15em',
                                         fontFamily: 'var(--font-heading)',
                                         cursor: 'pointer',
-                                        transition: 'box-shadow 0.12s, transform 0.12s',
+                                        transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                                     }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; }}
-                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(6px,6px)'; e.currentTarget.style.background = '#15803d'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                                 >
                                     Continue to Payment
                                 </button>
@@ -345,8 +345,8 @@ export default function RegistrationForm() {
                                         onClick={() => { setError(''); setStep(1); }}
                                         style={{
                                             background: '#ffffff',
-                                            color: '#000000',
-                                            border: '4px solid #000000',
+                                            color: '#16a34a',
+                                            border: '4px solid #16a34a',
                                             boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
                                             padding: '1rem',
                                             fontSize: '0.75rem',
@@ -355,10 +355,10 @@ export default function RegistrationForm() {
                                             letterSpacing: '0.12em',
                                             fontFamily: 'var(--font-heading)',
                                             cursor: 'pointer',
-                                            transition: 'box-shadow 0.12s, transform 0.12s',
+                                            transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s, color 0.12s',
                                         }}
-                                        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
+                                        onMouseEnter={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#16a34a'; e.currentTarget.style.color = '#fff'; }}
+                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#16a34a'; }}
                                     >
                                         Back
                                     </button>
@@ -366,7 +366,7 @@ export default function RegistrationForm() {
                                         type="submit"
                                         disabled={loading}
                                         style={{
-                                            background: '#000000',
+                                            background: '#16a34a',
                                             color: '#ffffff',
                                             border: '4px solid #000000',
                                             boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
@@ -378,10 +378,10 @@ export default function RegistrationForm() {
                                             fontFamily: 'var(--font-heading)',
                                             cursor: loading ? 'not-allowed' : 'pointer',
                                             opacity: loading ? 0.5 : 1,
-                                            transition: 'box-shadow 0.12s, transform 0.12s',
+                                            transition: 'box-shadow 0.12s, transform 0.12s, background 0.12s',
                                         }}
-                                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; } }}
-                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; }}
+                                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translate(4px,4px)'; e.currentTarget.style.background = '#15803d'; } }}
+                                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgba(0,0,0,1)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#16a34a'; }}
                                     >
                                         {loading ? 'SUBMITTING...' : 'FINISH ENROLL'}
                                     </button>
